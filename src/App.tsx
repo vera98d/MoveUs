@@ -1,10 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className="App">
+    <Routes>
+      <Route index element={
+        <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +24,18 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </div> 
+  }
+      />
+      <Route path="register" element={
+    <Register />
+      }>
+      </Route>
+      <Route path="login" element={
+          <Login />
+        }></Route>
+
+      </Routes>
   );
 }
 
