@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "filenames"],
+  "rules": {
+    "camelcase": [2, { "properties": "always" }],
+    "filenames/match-regex": [
+      2,
+      "[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?",
+      true
+    ],
+    "object-shorthand": "off",
+    "array-callback-return": "off",
+    "no-underscore-dangle": "off",
+    "no-plusplus": "off",
+    "no-await-in-loop": "off",
+    "class-methods-use-this": "off",
+    "import/order": "off",
+    "linebreak-style": "off",
+    "quotes": [2, "double"]
+  }
+}
