@@ -1,9 +1,11 @@
-import React from "react";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { Button, Form, FormField, FormFieldError, Input } from "../../components/Form/styles";
+
 
 type FormFields = {
-    userName: string;
+    username: string;
     password: string;
 }
 
@@ -14,27 +16,27 @@ const Login = () => {
 
     return (
         <div className="login">
-            <form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
-               <input
+            <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
+               <FormField><Input
           type="text"
-          {...register('userName', { required: true, minLength: 3, maxLength: 20 })}
-          placeholder="Put your user name"
+          {...register("username", { required: true, minLength: 3, maxLength: 20 })}
+          placeholder="Enter your user name"
         />        
-        {errors.userName?.type === 'required' && "Please put your user name"}
-        {errors.userName?.type === 'minLength' && "Use at least 3 characters"}
-        {errors.userName?.type === 'maxLength' && "You can use 20 characters at most"}
+        <FormFieldError>{errors.username?.type === "required" && "Please enter your user name"}
+        {errors.username?.type === "minLength" && "Use at least 3 characters"}
+        {errors.username?.type === "maxLength" && "You can use 20 characters at most"}</FormFieldError></FormField>
    
-                <input
+                <Input
           type="password"
-          {...register('password', { required: true, minLength: 8, })}
-          placeholder="Put your password"
+          {...register("password", { required: true, minLength: 8, })}
+          placeholder="Enter your password"
                 />
-                <button>Login</button>
+                <Button>Login</Button>
                 <div>
-          Don't have an account?{" "}
+          Don"t have an account?{" "}
           <Link to="/register">Register</Link> now.
         </div>
-            </form>
+            </Form>
         </div>
     )
 }
