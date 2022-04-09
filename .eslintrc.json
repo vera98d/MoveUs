@@ -35,6 +35,6 @@
         "class-methods-use-this": "off",
         "import/order": "off",
         "linebreak-style": "off",
-        "quotes": ["2, double"]
+        "quotes": [2, "double"]
     }
 }
