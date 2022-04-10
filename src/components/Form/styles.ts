@@ -1,4 +1,26 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+export const Container = styled.div`
+background-image: url("assets/background_photo.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: 15% 85%;
+height: 100vh;
+`;
+
+export const Img = styled.img`
+position: absolute;
+`;
+
+export const Wrapper = styled.div`
+display: flex;
+justify-content: flex-end;
+height: 100%;
+max-width: 1320px;
+margin: 0 auto;
+padding: 0 10px;
+`;
 
 export const Form = styled.form`
 display: flex;
@@ -6,7 +28,6 @@ display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin-top: 100px;
   gap: 20px;
  `;
 
@@ -19,18 +40,19 @@ align-items: center;
 
 export const Input = styled.input`
 display: flex;
-  text-align: center;
+  text-align: left;
   padding: 1em;
-  background-color: black;
-  color: white;
-  font-size: 20px;
-  border: 1px solid white;
+  border: solid 2px ${(props) => props.theme.colors.secondaryUi};
   border-radius: 15px;
-  width: 500px;
+  background-color: ${(props) => props.theme.colors.primaryUi};
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  font-size: 20px;
+  color: ${(props) => props.theme.colors.secondaryUi};
+  width: 450px;
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 2px rgba(191, 125, 101, 0.77);
+    box-shadow: 0px 0px 10px ${(props) => props.theme.colors.secondaryUi};
   }
 `;
 
@@ -38,15 +60,40 @@ export const Button = styled.button`
 display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
-  color: white;
+  background-color: ${(props) => props.theme.colors.secondaryUi};
+  color: ${(props) => props.theme.colors.primaryUi};
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
   font-size: 18px;
-  padding: 0.75em 2em;
+  padding: 0.75em 4em;
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  margin-top: 20px;
+
+   &:hover{
+    box-shadow: 0px 0px 10px ${(props) => props.theme.colors.secondaryUi};
+  }
 `;
 
 export const FormFieldError = styled.span`
-color: red;
+color: ${(props) => props.theme.colors.secondaryUi};
+ font-family: ${(props) => props.theme.fontFamily.primaryFont};
+font-size: 18px;
+`;
+
+export const AccountText = styled.div`
+color: ${(props) => props.theme.colors.white};
+ font-family: ${(props) => props.theme.fontFamily.primaryFont};
+font-size: 18px;
+ text-decoration: none;
+`;
+
+export const StyledLink = styled(Link)`
+text-decoration: none;
+color:${(props) => props.theme.colors.white};
+ font-weight: bold;
+
+  &:hover{
+    color: ${(props) => props.theme.colors.secondaryUi};
+  }
 `;
