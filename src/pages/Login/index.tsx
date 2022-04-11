@@ -5,9 +5,9 @@ import {
 } from "../../components/Form/styles";
 
 type FormFields = {
-    username: string;
-    password: string;
-}
+  username: string;
+  password: string;
+};
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormFields>();
@@ -18,35 +18,35 @@ function Login() {
     <Container>
       <Img src="assets/logo.png" />
       <Wrapper>
-      <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
-        <FormField>
-          <Input
-            type="text"
-            {...register("username", { required: true, minLength: 3, maxLength: 20 })}
-            placeholder="Enter your user name"
-          />
-          <FormFieldError>
-            {errors.username?.type === "required" && "Please enter your user name"}
-            {errors.username?.type === "minLength" && "Use at least 3 characters"}
-            {errors.username?.type === "maxLength" && "You can use 20 characters at most"}
-          </FormFieldError>
-        </FormField>
+        <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
+          <FormField>
+            <Input
+              type="text"
+              {...register("username", { required: true, minLength: 3, maxLength: 20 })}
+              placeholder="Enter your user name"
+            />
+            <FormFieldError>
+              {errors.username?.type === "required" && "Please enter your user name"}
+              {errors.username?.type === "minLength" && "Use at least 3 characters"}
+              {errors.username?.type === "maxLength" && "You can use 20 characters at most"}
+            </FormFieldError>
+          </FormField>
 
-        <Input
-          type="password"
-          {...register("password", { required: true, minLength: 8 })}
-          placeholder="Enter your password"
-        />
-        <Button>Login</Button>
-        <AccountText>
-          Not a member yet?
-          {" "}
-          <StyledLink to="/register">Register now</StyledLink>
-          {" "}
-          now.
-        </AccountText>
+          <Input
+            type="password"
+            {...register("password", { required: true, minLength: 8 })}
+            placeholder="Enter your password"
+          />
+          <Button>Login</Button>
+          <AccountText>
+            Not a member yet?
+            {" "}
+            <StyledLink to="/register">Register now</StyledLink>
+            {" "}
+            now.
+          </AccountText>
         </Form>
-        </Wrapper>
+      </Wrapper>
     </Container>
   );
 }
