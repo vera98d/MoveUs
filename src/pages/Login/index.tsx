@@ -1,17 +1,21 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAuthState } from "react-firebase-hooks/auth";
 import {
   AccountText,
   Button, Container, Form, FormField, FormFieldError, Img, Input, StyledLink, Wrapper,
 } from "../../components/Form/styles";
+import authService from "../../services/authService";
 
 type FormFields = {
-    username: string;
+    email: string;
     password: string;
 }
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormFields>();
-  const onSubmit: SubmitHandler<FormFields> = (data) => console.log(data, errors);
+  const onSubmit: SubmitHandler<FormFields> = (data) => authService.logInWithEmailAndPassword(data.email, data.password);
+  const [user] = useAuthState(authService.getAuth());
+  console.log(user) //TODO remove later when protected routes implemented
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
 
   return (
@@ -21,15 +25,17 @@ function Login() {
       <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
         <FormField>
           <Input
-            type="text"
-            {...register("username", { required: true, minLength: 3, maxLength: 20 })}
-            placeholder="Enter your user name"
+              type="email"
+            {...register("email", {
+              required: true,
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "invalid email address",
+              },
+            })}
+            placeholder="Email"
           />
-          <FormFieldError>
-            {errors.username?.type === "required" && "Please enter your user name"}
-            {errors.username?.type === "minLength" && "Use at least 3 characters"}
-            {errors.username?.type === "maxLength" && "You can use 20 characters at most"}
-          </FormFieldError>
+          <FormFieldError>{errors.email?.type === "required" && "Email is required"}</FormFieldError>
         </FormField>
 
         <Input
