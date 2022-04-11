@@ -41,7 +41,8 @@
         "quotes": [2, "double"],
         "@typescript-eslint/quotes": [2, "double"],
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-        "react/jsx-one-expression-per-line": "off"
+        "react/jsx-one-expression-per-line": "off",
+        "object-curly-newline": "off"
     },
     "settings": {
         "import/resolver": {
