@@ -33,7 +33,7 @@ function Register() {
             placeholder="Name"
           />
           <FormFieldError>
-            {errors.firstName?.type === "required" && "Please enter your first name"}
+            {errors.firstName?.type === "required" && "Please enter your name"}
             {errors.firstName?.type === "minLength" && "Use at least 3 characters"}
             {errors.firstName?.type === "maxLength" && "You can use 20 characters at most"}
           </FormFieldError>
@@ -46,7 +46,7 @@ function Register() {
             placeholder="Surname"
           />
           <FormFieldError>
-            {errors.lastName?.type === "required" && "Please enter your last name"}
+            {errors.lastName?.type === "required" && "Please enter your surname"}
             {errors.lastName?.type === "minLength" && "Use at least 3 characters"}
             {errors.lastName?.type === "maxLength" && "You can use 20 characters at most"}
           </FormFieldError>
@@ -59,7 +59,7 @@ function Register() {
             placeholder="Username"
           />
           <FormFieldError>
-            {errors.username?.type === "required" && "Please enter your user name"}
+            {errors.username?.type === "required" && "Please enter your username"}
             {errors.username?.type === "minLength" && "Use at least 3 characters"}
             {errors.username?.type === "maxLength" && "You can use 20 characters at most"}
           </FormFieldError>
