@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
   AccountText,
-  Button, Container, Form, FormField, FormFieldError, Img, Input, StyledLink, Wrapper,
+  Button, Container, Form, FormField, FormFieldError, Img, Input, Label, StyledLink, Wrapper,
 } from "../../components/Form/styles";
 import authService from "../../services/authService";
 
@@ -25,8 +25,10 @@ function Login() {
       <Wrapper>
         <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
           <FormField>
+            <Label>Eneter your email</Label>
             <Input
               type="email"
+              autoComplete="email"
               {...register("email", {
                 required: true,
                 pattern: {
@@ -38,18 +40,21 @@ function Login() {
             />
             <FormFieldError>{errors.email?.type === "required" && "Email is required"}</FormFieldError>
           </FormField>
-          <Input
-            type="password"
-            {...register("password", { required: true, minLength: 8 })}
-            placeholder="Enter your password"
-          />
+          <FormField>
+            <Label>Enter your password</Label>
+            <Input
+              type="password"
+              {...register("password", { required: true, minLength: 8 })}
+              placeholder="Enter your password"
+
+            />
+          </FormField>
           <Button>Login</Button>
           <AccountText>
             Not a member yet?
             {" "}
             <StyledLink to="/register">Register now</StyledLink>
             {" "}
-            now.
           </AccountText>
         </Form>
       </Wrapper>

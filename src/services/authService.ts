@@ -29,14 +29,20 @@ class AuthService {
     }
   };
 
-  registerWithEmailAndPassword = async (name: string, surname: string, login: string, email:string, password:string) => {
+  registerWithEmailAndPassword = async (
+    name: string,
+    surname: string,
+    login: string,
+    email: string,
+    password: string,
+  ) => {
     try {
       const res = await createUserWithEmailAndPassword(
         this.auth,
-         email,
-        password
+        email,
+        password,
       );
-      const user = res.user;
+      const { user } = res;
       await addDoc(collection(getFirestore(), "users"), {
         name,
         surname,
@@ -47,7 +53,7 @@ class AuthService {
       });
     } catch (err: unknown) {
       console.error(err);
-     if (err instanceof Error) {
+      if (err instanceof Error) {
         alert(err.message);
       }
     }

@@ -5,12 +5,13 @@ export const Container = styled.div`
 background-image: url("assets/background_photo.jpg");
 background-repeat: no-repeat;
 background-size: cover;
-background-position: 15% 85%;
+background-position: 0% 90%;
 height: 100vh;
 `;
 
 export const Img = styled.img`
 position: absolute;
+height: 100px;
 `;
 
 export const Wrapper = styled.div`
@@ -33,22 +34,28 @@ display: flex;
 
 export const FormField = styled.div`
 display: flex;
-  flex-direction: column;
-align-items: center;
-  gap: 5px;
+flex-direction: column;
+align-items: flex-start;
+gap: 5px;
+`;
+
+export const Label = styled.p`
+color: ${(props) => props.theme.colors.white};
+font-family: ${(props) => props.theme.fontFamily.primaryFont};
+font-size: 18px;
 `;
 
 export const Input = styled.input`
 display: flex;
-  text-align: left;
-  padding: 1em;
-  border: solid 2px ${(props) => props.theme.colors.secondaryUi};
-  border-radius: 15px;
-  background-color: ${(props) => props.theme.colors.primaryUi};
-  font-family: ${(props) => props.theme.fontFamily.primaryFont};
-  font-size: 20px;
-  color: ${(props) => props.theme.colors.secondaryUi};
-  width: 450px;
+text-align: left;
+padding: 1em;
+border: solid 2px ${(props) => props.theme.colors.secondaryUi};
+border-radius: 15px;
+background-color: ${(props) => props.theme.colors.primaryUi};
+font-family: ${(props) => props.theme.fontFamily.primaryFont};
+font-size: 18px;
+color: ${(props) => props.theme.colors.secondaryUi};
+ width: 400px;
 
   &:focus {
     outline: none;
@@ -83,15 +90,14 @@ font-size: 18px;
 
 export const AccountText = styled.div`
 color: ${(props) => props.theme.colors.white};
- font-family: ${(props) => props.theme.fontFamily.primaryFont};
+font-family: ${(props) => props.theme.fontFamily.primaryFont};
 font-size: 18px;
- text-decoration: none;
 `;
 
 export const StyledLink = styled(Link)`
 text-decoration: none;
 color:${(props) => props.theme.colors.white};
- font-weight: bold;
+font-weight: bold;
 
   &:hover{
     color: ${(props) => props.theme.colors.secondaryUi};

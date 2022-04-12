@@ -35,6 +35,7 @@ function Register() {
           <FormField>
             <Input
               type="text"
+              autoComplete="name"
               {...register("name", { required: true, minLength: 3, maxLength: 20 })}
               placeholder="Name"
             />
@@ -47,6 +48,7 @@ function Register() {
           <FormField>
             <Input
               type="text"
+              autoComplete="family-name"
               {...register("surname", { required: true, minLength: 3, maxLength: 20 })}
               placeholder="Surname"
             />
@@ -59,6 +61,7 @@ function Register() {
           <FormField>
             <Input
               type="text"
+              autoComplete="username"
               {...register("login", { required: true, minLength: 3, maxLength: 20 })}
               placeholder="Login"
             />
@@ -71,6 +74,7 @@ function Register() {
           <FormField>
             <Input
               type="email"
+              autoComplete="email"
               {...register("email", {
                 required: true,
                 pattern: {
