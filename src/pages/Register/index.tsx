@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
   AccountText,
-  Button, Container, Form, FormField, FormFieldError, Img, Input, StyledLink, Wrapper,
+  Button, Container, Form, FormField, FormFieldError, Img, Input, Label, StyledLink, Wrapper,
 } from "../../components/Form/styles";
 import authService from "../../services/authService";
 
@@ -33,6 +33,7 @@ function Register() {
       <Wrapper>
         <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
           <FormField>
+            <Label>Eneter your name</Label>
             <Input
               type="text"
               autoComplete="name"
@@ -46,6 +47,7 @@ function Register() {
             </FormFieldError>
           </FormField>
           <FormField>
+            <Label>Eneter your surname</Label>
             <Input
               type="text"
               autoComplete="family-name"
@@ -59,6 +61,7 @@ function Register() {
             </FormFieldError>
           </FormField>
           <FormField>
+            <Label>Eneter your username</Label>
             <Input
               type="text"
               autoComplete="username"
@@ -72,6 +75,7 @@ function Register() {
             </FormFieldError>
           </FormField>
           <FormField>
+            <Label>Eneter your email</Label>
             <Input
               type="email"
               autoComplete="email"
@@ -87,6 +91,7 @@ function Register() {
             <FormFieldError>{errors.email?.type === "required" && "Email is required"}</FormFieldError>
           </FormField>
           <FormField>
+            <Label>Eneter your password</Label>
             <Input
               type="password"
               {...register("password", { required: true, minLength: 8 })}
@@ -98,6 +103,7 @@ function Register() {
             </FormFieldError>
           </FormField>
           <FormField>
+            <Label>Confirm your password</Label>
             <Input
               type="password"
               {...register("passwordConfirmation", {
