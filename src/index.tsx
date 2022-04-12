@@ -10,10 +10,10 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-    <BrowserRouter>
-      <App />
+      <BrowserRouter>
+        <App />
       </BrowserRouter>
-      </ThemeProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root"),
 );
