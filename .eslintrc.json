@@ -1,55 +1,52 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "jest": true
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "airbnb-typescript"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb",
-        "airbnb-typescript"
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "@typescript-eslint", "filenames"],
+  "rules": {
+    "camelcase": [2, { "properties": "always" }],
+    "filenames/match-regex": [
+      2,
+      "[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?",
+      true
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        "project": "./tsconfig.json"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "filenames"
+    "object-shorthand": "off",
+    "array-callback-return": "off",
+    "no-underscore-dangle": "off",
+    "no-plusplus": "off",
+    "no-await-in-loop": "off",
+    "class-methods-use-this": "off",
+    "import/order": "off",
+    "linebreak-style": "off",
+    "quotes": [2, "double"],
+    "@typescript-eslint/quotes": [2, "double"],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
-    "rules": {
-        "camelcase": [2, { "properties": "always" }],
-        "filenames/match-regex": [
-        2,
-        "[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?",
-        true
-        ],
-        "object-shorthand": "off",
-        "array-callback-return": "off",
-        "no-underscore-dangle": "off",
-        "no-plusplus": "off",
-        "no-await-in-loop": "off",
-        "class-methods-use-this": "off",
-        "import/order": "off",
-        "linebreak-style": "off",
-        "quotes": [2, "double"],
-        "@typescript-eslint/quotes": [2, "double"],
-        "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-        "react/jsx-one-expression-per-line": "off",
-        "object-curly-newline": "off",
-        "react/react-in-jsx-scope": "off"
-    },
-    "settings": {
-        "import/resolver": {
-          "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"]
-          }
-        }
+    "react/jsx-one-expression-per-line": "off",
+    "object-curly-newline": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "consistent-return": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
+    }
+  }
 }
