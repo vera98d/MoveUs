@@ -40,7 +40,9 @@
     "object-curly-newline": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "react/function-component-definition": "off",
+    "arrow-body-style": "off"
   },
   "settings": {
     "import/resolver": {
