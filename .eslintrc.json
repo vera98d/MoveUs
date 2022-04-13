@@ -41,7 +41,9 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "consistent-return": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "react/function-component-definition": "off",
+    "arrow-body-style": "off"
   },
   "settings": {
     "import/resolver": {
