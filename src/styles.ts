@@ -6,8 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   };
-  `
-  export const theme = {
+  `;
+export const theme = {
   colors: {
     white: "#fff",
     primaryUi: "#D6E7FF",
