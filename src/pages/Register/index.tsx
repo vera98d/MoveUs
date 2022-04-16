@@ -4,16 +4,10 @@ import {
   AccountText,
   Button, Container, Form, FormField, FormFieldError, Img, Input, Label, StyledLink, Wrapper,
 } from "../../components/Form/styles";
+import { User } from "../../interfaces/dbData";
 import authService from "../../services/authService";
 
-type FormFields = {
-  name: string;
-  surname: string;
-  login: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string
-};
+type FormFields = Pick<User, "name" | "surname" | "login" | "email" | "password"> & { passwordConfirmation: string };
 
 function Register() {
   const navigate = useNavigate();
@@ -33,7 +27,7 @@ function Register() {
       <Wrapper>
         <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
           <FormField>
-            <Label>Eneter your name</Label>
+            <Label>Enter your name</Label>
             <Input
               type="text"
               autoComplete="name"

@@ -5,11 +5,9 @@ import {
   Button, Container, Form, FormField, FormFieldError, Img, Input, Label, StyledLink, Wrapper,
 } from "../../components/Form/styles";
 import authService from "../../services/authService";
+import { User } from "../../interfaces/dbData";
 
-type FormFields = {
-  email: string;
-  password: string;
-};
+type FormFields = Pick<User, "email" | "password">;
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormFields>();
@@ -25,7 +23,7 @@ function Login() {
       <Wrapper>
         <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
           <FormField>
-            <Label>Eneter your email</Label>
+            <Label>Enter your email</Label>
             <Input
               type="email"
               autoComplete="email"
