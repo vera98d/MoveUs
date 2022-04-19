@@ -67,6 +67,7 @@ export const Button = styled.button`
 display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
   background-color: ${(props) => props.theme.colors.secondaryUi};
   color: ${(props) => props.theme.colors.primaryUi};
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
