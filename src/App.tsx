@@ -2,6 +2,8 @@ import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import GroupRanking from "./pages/GroupRanking";
+import UsersGroups from "./pages/UsersGroups";
 
 function App() {
   return (
@@ -29,13 +31,13 @@ function App() {
               </a>
             </header>
           </div>
-      )}
+        )}
       />
       <Route
         path="register"
         element={
           <Register />
-      }
+        }
       />
       <Route
         path="login"
@@ -43,7 +45,16 @@ function App() {
           <Login />
         }
       />
-
+      <Route
+        path="/groups"
+        element={
+          <UsersGroups />
+        }
+      />
+      <Route
+        path="groups/:groupId"
+        element={<GroupRanking />}
+      />
     </Routes>
   );
 }
