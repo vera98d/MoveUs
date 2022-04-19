@@ -2,6 +2,8 @@ import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import UserExerciseHistory from "./pages/UserExerciseHistory";
+import UsersHistory from "./pages/UsersHistory";
 
 function App() {
   return (
@@ -43,7 +45,18 @@ function App() {
           <Login />
         }
       />
-
+      <Route
+        path="/UserExerciseHistory"
+        element={
+          <UserExerciseHistory />
+        }
+      />
+      <Route
+        path="/UsersHistory"
+        element={
+          <UsersHistory />
+        }
+      />
     </Routes>
   );
 }
