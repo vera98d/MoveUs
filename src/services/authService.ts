@@ -50,6 +50,11 @@ class AuthService {
         email,
         uid: user.uid,
         authProvider: "local",
+        score: 0,
+        lastActivity: "",
+        groups: [],
+        ownedGroups: [],
+        activities: [],
       });
     } catch (err: unknown) {
       console.error(err);

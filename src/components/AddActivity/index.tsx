@@ -4,10 +4,17 @@ import {
   Button, Container, Form, FormField, FormFieldError, Label, Img, Input, StyledLink, Wrapper,
 } from "../Form/styles";
 import { Activity } from "../../interfaces/dbData";
+import authService from "../../services/authService";
+import { useAuthState } from "react-firebase-hooks/auth";
+import activityService from "../../services/activityService";
+
+type ActivityField = Omit<Activity, "id" | "score">;
 
 function AddActivity() {
-  const { register, handleSubmit, formState: { errors } } = useForm<Activity>();
-  const onSubmit: SubmitHandler<Activity> = (data) => console.log(data, errors);
+  const [user] = useAuthState(authService.getAuth());
+  const { register, handleSubmit, formState: { errors } } = useForm<ActivityField>();
+  const onSubmit: SubmitHandler<ActivityField> = (data) => activityService
+    .insert(data, user!.uid);
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
 
   const exercises: string[] = ["running", "cycling", "walking"];
@@ -28,7 +35,7 @@ function AddActivity() {
           </FormFieldError>
         </FormField>
         <FormField>
-        <Label>Enter date of the activity.</Label>
+          <Label>Enter date of the activity.</Label>
           <input
             type="date"
             {...register("date", { required: true })}
@@ -47,6 +54,7 @@ function AddActivity() {
             {errors.exercise?.type === "required" && "Please select  the activity type"}
           </FormFieldError>
         </FormField>
+        <Button>Login</Button>
       </Form>
     </Wrapper>
   );
