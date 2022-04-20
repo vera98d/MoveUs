@@ -1,22 +1,20 @@
 import styled from "styled-components";
 
 interface TileProps {
-    img?: string;
-};
+  img?: string;
+}
 
 export const Tile = styled.div<TileProps>`
     width: 130px;
     height: 130px;
     position: relative ;    
-    background: ${(props) => props.img ?
-        `url(${props.img})`
-        : props.theme.colors.white};
+    background: ${(props) => (props.img ? `url(${props.img})` : props.theme.colors.white)};
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 80%;
     border: ${(props) => props.theme.border};
-    border-radius: 15px;
+    border-radius: 25px;
 
     &::before{
         content: "";
@@ -27,10 +25,9 @@ export const Tile = styled.div<TileProps>`
         width:100%;
         height: 100%;
         background: rgba(255,255,255,0.2);
-        filter: blur(1px);
-        border-radius: 15px;
+        border-radius: 25px;
+        backdrop-filter: blur(.5px);
     }
-    
 `;
 
 export const TileContent = styled.p`
@@ -54,7 +51,7 @@ export const TileContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5em;
-    margin: 2em 0;
+    margin: 1.5em 0;
     text-align: center;
     
     &>a{

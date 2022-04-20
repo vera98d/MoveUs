@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import BackgroundContainer from "../../components/BackgroundContainer/styles";
 import { Header } from "../../components/Typography/styles";
 import { Tile, TileContainer, TileContent } from "./styles";
-import { Link } from "react-router-dom";
 import { groups, user } from "./mockedData";
 
 const UsersGroups = (): JSX.Element => {
@@ -48,7 +49,7 @@ const UsersGroups = (): JSX.Element => {
       <TileContainer>
         {groupsUserBelongsTo}
       </TileContainer>
-    </BackgroundContainer >
+    </BackgroundContainer>
 
   );
 };
