@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import app from "./firebase";
 import { FirebaseApp } from "firebase/app";
+import { User } from "../interfaces/dbData";
 
 class AuthService {
   auth: Auth;
@@ -30,11 +31,11 @@ class AuthService {
   };
 
   registerWithEmailAndPassword = async (
-    name: string,
-    surname: string,
-    login: string,
-    email: string,
-    password: string,
+    name: User["name"],
+    surname: User["surname"],
+    login: User["login"],
+    email: User["email"],
+    password: User["password"],
   ) => {
     try {
       const res = await createUserWithEmailAndPassword(
@@ -50,6 +51,11 @@ class AuthService {
         email,
         uid: user.uid,
         authProvider: "local",
+        score: 0,
+        lastActivity: "",
+        groups: [],
+        ownedGroups: [],
+        activities: [],
       });
     } catch (err: unknown) {
       console.error(err);
