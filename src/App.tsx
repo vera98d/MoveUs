@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -47,7 +47,7 @@ function App() {
       <Route
         path="home"
         element={
-          <Home />
+          <HomePage />
         }
       />
 
