@@ -1,10 +1,16 @@
-import { ExerciseTable, ExerciseCell, TableWrapper, PaginationWrapper } from "./styles";
-import { FC, Fragment, SetStateAction, useEffect, useState } from "react";
-import Pagination from "../ExerciseHistoryPagination";
-import { useLocation } from "react-router-dom";
+import React, { FC, Fragment, useEffect, useState } from "react";
+import {
+  ExerciseTable,
+  ExerciseCell,
+  TableWrapper,
+  PaginationWrapper,
+  ListElement,
+  PaginationList,
+} from "./styles";
 
 interface Props {
   activities: Activity[];
+  isButtonVisible?: boolean;
 }
 
 export interface Activity {
@@ -15,23 +21,29 @@ export interface Activity {
   date: Date;
 }
 
-const ActivityTable: FC<Props> = ({ activities }) => {
-  const [actualActivities, setActualActivities] = useState<any>([]);
+const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
+  const pageNumbers: number[] = [];
+  const [actualActivities, setActualActivities] = useState<Activity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [activityPerPage] = useState(7);
-  const location = useLocation();
 
   useEffect(() => {
     setActualActivities(activities);
   }, []);
 
+  for (let i = 1; i <= Math.ceil(actualActivities.length / activityPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   const sum = activities.reduce((prev, current) => {
     return prev + +current.score;
   }, 0);
+
   const indexOfLastActivity = currentPage * activityPerPage;
   const indexOfFirstActivity = indexOfLastActivity - activityPerPage;
   const currentActivities = actualActivities.slice(indexOfFirstActivity, indexOfLastActivity);
-  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber);
+
+  const tablePaginationSetter = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const tableBody = () => {
     return currentActivities?.map((activity: Activity) => {
@@ -44,6 +56,18 @@ const ActivityTable: FC<Props> = ({ activities }) => {
             {activity.date.getUTCFullYear()}
           </ExerciseCell>
         </Fragment>
+      );
+    });
+  };
+
+  const paginateBody = () => {
+    return pageNumbers.map((number) => {
+      return (
+        <ListElement key={number}>
+          <button type="button" className="linkStyle" onClick={() => tablePaginationSetter(number)}>
+            {number}
+          </button>
+        </ListElement>
       );
     });
   };
@@ -66,7 +90,7 @@ const ActivityTable: FC<Props> = ({ activities }) => {
         {currentActivities && tableBody()}
       </ExerciseTable>
       <div className="lineWrapperContent">
-        {!location.pathname.includes("UsersHistory") && <button type="button">Add activity</button>}
+        {isButtonVisible && <button type="button">Add activity</button>}
         <p>Total Score: {sum}</p>
       </div>
       <PaginationWrapper>
@@ -77,11 +101,9 @@ const ActivityTable: FC<Props> = ({ activities }) => {
         >
           Poprzednia Strona
         </button>
-        <Pagination
-          activityPerPage={activityPerPage}
-          totalActivities={actualActivities.length}
-          paginate={paginate}
-        />
+        <PaginationList>
+          {pageNumbers && paginateBody()}
+        </PaginationList>
         <button
           type="button"
           disabled={currentActivities.length < 7}

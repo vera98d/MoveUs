@@ -6,24 +6,108 @@ function UserExerciseHistory() {
   const activities: Activity[] = [
     {
       id: "1",
-      exercise: "pompki",
+      exercise: "pajacyki",
       duration: "1000",
-      score: 5000,
-      date: new Date(2016, 11, 17),
+      score: 7000,
+      date: new Date(2018, 6, 22),
     },
     {
       id: "2",
       exercise: "brzuszki",
       duration: "2000",
       score: 4000,
-      date: new Date(2016, 11, 17),
+      date: new Date(2019, 11, 14),
     },
     {
       id: "3",
       exercise: "pajacyki",
       duration: "3000",
       score: 5000,
-      date: new Date(2016, 11, 17),
+      date: new Date(2020, 11, 12),
+    },
+    {
+      id: "4",
+      exercise: "sklony",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "5",
+      exercise: "sklony",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "6",
+      exercise: "sklony",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "7",
+      exercise: "sklony",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "8",
+      exercise: "druga strona",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "9",
+      exercise: "druga strona",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "10",
+      exercise: "druga strona",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "11",
+      exercise: "druga strona",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "12",
+      exercise: "druga strona",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "13",
+      exercise: "druga strona",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "14",
+      exercise: "druga strona",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
+    },
+    {
+      id: "15",
+      exercise: "trzecia",
+      duration: "5000",
+      score: 7000,
+      date: new Date(2019, 11, 17),
     },
   ];
   return (
@@ -35,19 +119,8 @@ function UserExerciseHistory() {
           <span>Jurek Jurkowy (nick)</span>
         </div>
         <LineWrapper>
-          <ActivityTable activities={activities} />
+          <ActivityTable activities={activities} isButtonVisible />
         </LineWrapper>
-        {/* <div className="groupWrapper"> */}
-        {/*   <h3>Group Invitations</h3> */}
-        {/*   <GroupContainer> */}
-        {/*     <span className="groupName">Group Name</span> */}
-        {/*     <div className="buttonWrapper"> */}
-        {/*       <button type="button">Accept</button> */}
-        {/*       <span className="verticalLine">|</span> */}
-        {/*       <button type="button">Reject</button> */}
-        {/*     </div> */}
-        {/*   </GroupContainer> */}
-        {/* </div> */}
       </Wrapper>
     </Test>
   );
