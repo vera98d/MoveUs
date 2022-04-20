@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import AddActivity from "./components/AddActivity";
 
 function App() {
   return (
@@ -42,6 +43,13 @@ function App() {
         element={
           <Login />
         }
+      />
+
+      <Route
+        path="addactivity"
+        element={
+          <AddActivity />
+         }
       />
 
     </Routes>

@@ -8,7 +8,7 @@ import authService from "../../services/authService";
 import { useAuthState } from "react-firebase-hooks/auth";
 import activityService from "../../services/activityService";
 
-type ActivityField = Omit<Activity, "id" | "score">;
+type ActivityField = Omit<Activity, "score">;
 
 function AddActivity() {
   const [user] = useAuthState(authService.getAuth());

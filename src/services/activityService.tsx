@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 class ActivityService {
   db = getFirestore();
 
-  insert = async (activity: Omit<Activity, "id" | "score">, user: string) => {
+  insert = async (activity: Omit<Activity, "score">, user: string) => {
     console.log(activity);
     const activityRef = doc(collection(this.db, "activities"));
     try {
