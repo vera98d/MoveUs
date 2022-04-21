@@ -1,12 +1,15 @@
+/* eslint-disable no-self-assign */
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   AccountText,
   Button, Container, Form, FormField, FormFieldError, Label, Img, Input, StyledLink, Wrapper,
 } from "../Form/styles";
-import { Activity } from "../../interfaces/dbData";
+import { Activity, Exercise } from "../../interfaces/dbData";
 import authService from "../../services/authService";
 import { useAuthState } from "react-firebase-hooks/auth";
 import activityService from "../../services/activityService";
+import exerciseService from "../../services/exerciseService";
+import { useEffect, useState } from "react";
 
 type ActivityField = Omit<Activity, "score">;
 
@@ -16,8 +19,16 @@ function AddActivity() {
   const onSubmit: SubmitHandler<ActivityField> = (data) => activityService
     .insert(data, user!.uid);
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
+  const [exercisesState, setExercisesState] = useState<any>([]);
+
+  useEffect(() => {
+    exerciseService.getAll().then((data) => setExercisesState(data));
+  }, []);
+
+  console.log("state", exercisesState);
 
   const exercises: string[] = ["running", "cycling", "walking"];
+
   // TODO get these from DB
 
   return (
