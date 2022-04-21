@@ -26,8 +26,14 @@ background-image: url("assets/ranking.PNG");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
+box-shadow: 2px 2px 10px #000;
+cursor: pointer;
 filter: opacity(85%);
   -webkit-filter: opacity(85%);
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   @media (max-width: 1100px) {
     width: 150px;
@@ -55,8 +61,14 @@ background-image: url("assets/groups.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
+box-shadow: 2px 2px 10px #000;
+cursor: pointer;
 filter: opacity(85%);
   -webkit-filter: opacity(85%);
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   @media (max-width: 1100px) {
     width: 150px;
@@ -84,8 +96,14 @@ background-image: url("assets/activity.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
+box-shadow: 2px 2px 10px #000;
+cursor: pointer;
 filter: opacity(85%);
   -webkit-filter: opacity(85%);
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   @media (max-width: 1100px) {
     width: 150px;
@@ -113,8 +131,14 @@ background-image: url("assets/workout.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
+box-shadow: 2px 2px 10px #000;
+cursor: pointer;
 filter: opacity(85%);
   -webkit-filter: opacity(85%);
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   @media (max-width: 1100px) {
     width: 300px;
