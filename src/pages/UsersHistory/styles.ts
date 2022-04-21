@@ -49,11 +49,4 @@ export const LineWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin: 20px 0;
-  
-  .lineWrapperContent {
-    margin: 20px 0;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
 `;

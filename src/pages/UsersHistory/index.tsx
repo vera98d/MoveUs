@@ -1,4 +1,5 @@
-import ActivityTable, { Activity } from "../../components/ActivityTable";
+import ActivityTable from "../../components/ActivityTable";
+import { Activity } from "../../interfaces/dbData";
 import { Img, Test, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
 

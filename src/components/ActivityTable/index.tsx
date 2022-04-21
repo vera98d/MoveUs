@@ -1,11 +1,17 @@
-import React, { FC, Fragment, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { Activity } from "../../interfaces/dbData";
+
 import {
-  ExerciseTable,
-  ExerciseCell,
-  TableWrapper,
   PaginationWrapper,
   ListElement,
   PaginationList,
+  EmptyGridLine,
+  GridLine,
+  GridChild,
+  GridContainer,
+  GridHeader,
+  ScoreLine,
+  PageSetter,
 } from "./styles";
 
 interface Props {
@@ -13,16 +19,7 @@ interface Props {
   isButtonVisible?: boolean;
 }
 
-export interface Activity {
-  id: string;
-  exercise: string;
-  duration: string;
-  score: number;
-  date: Date;
-}
-
 const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
-  const pageNumbers: number[] = [];
   const [actualActivities, setActualActivities] = useState<Activity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [activityPerPage] = useState(7);
@@ -30,11 +27,6 @@ const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
   useEffect(() => {
     setActualActivities(activities);
   }, []);
-
-  for (let i = 1; i <= Math.ceil(actualActivities.length / activityPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
   const sum = activities.reduce((prev, current) => {
     return prev + +current.score;
   }, 0);
@@ -43,76 +35,74 @@ const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
   const indexOfFirstActivity = indexOfLastActivity - activityPerPage;
   const currentActivities = actualActivities.slice(indexOfFirstActivity, indexOfLastActivity);
 
-  const tablePaginationSetter = (pageNumber: number) => setCurrentPage(pageNumber);
-
   const tableBody = () => {
     return currentActivities?.map((activity: Activity) => {
       return (
-        <Fragment key={activity.id}>
-          <ExerciseCell>{activity.exercise}</ExerciseCell>
-          <ExerciseCell>{activity.duration}</ExerciseCell>
-          <ExerciseCell>{activity.score}</ExerciseCell>
-          <ExerciseCell>{activity.date.getUTCDate()}/{activity.date.getUTCMonth()}/
+        <GridLine key={activity.id}>
+          <GridChild>{activity.exercise}</GridChild>
+          <GridChild>{activity.duration}</GridChild>
+          <GridChild>{activity.score}</GridChild>
+          <GridChild>{activity.date.getUTCDate()}/{activity.date.getUTCMonth()}/
             {activity.date.getUTCFullYear()}
-          </ExerciseCell>
-        </Fragment>
+          </GridChild>
+        </GridLine>
       );
     });
   };
-
-  const paginateBody = () => {
-    return pageNumbers.map((number) => {
-      return (
-        <ListElement key={number}>
-          <button type="button" className="linkStyle" onClick={() => tablePaginationSetter(number)}>
-            {number}
-          </button>
-        </ListElement>
-      );
-    });
-  };
-
   return (
-    <TableWrapper>
-      <ExerciseTable>
-        <ExerciseCell>
-          Exercise
-        </ExerciseCell>
-        <ExerciseCell>
-          Time
-        </ExerciseCell>
-        <ExerciseCell>
-          Score
-        </ExerciseCell>
-        <ExerciseCell>
-          Last Activity
-        </ExerciseCell>
+    <>
+      <GridContainer>
+        <GridLine>
+          <GridHeader>
+            Exercise
+          </GridHeader>
+          <GridHeader>
+            Time
+          </GridHeader>
+          <GridHeader>
+            Score
+          </GridHeader>
+          <GridHeader>
+            Last Activity
+          </GridHeader>
+        </GridLine>
         {currentActivities && tableBody()}
-      </ExerciseTable>
-      <div className="lineWrapperContent">
+        {activityPerPage > currentActivities.length
+          && (
+            <EmptyGridLine lines={activityPerPage - currentActivities.length}>
+              <GridChild />
+              <GridChild />
+              <GridChild />
+              <GridChild />
+            </EmptyGridLine>
+          )}
+      </GridContainer>
+      <ScoreLine>
         {isButtonVisible && <button type="button">Add activity</button>}
         <p>Total Score: {sum}</p>
-      </div>
+      </ScoreLine>
       <PaginationWrapper>
-        <button
+        <PageSetter
           type="button"
           disabled={currentPage === 1}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
-          Poprzednia Strona
-        </button>
+          {"<"}
+        </PageSetter>
         <PaginationList>
-          {pageNumbers && paginateBody()}
+          <ListElement>
+            {currentPage}
+          </ListElement>
         </PaginationList>
-        <button
+        <PageSetter
           type="button"
           disabled={currentActivities.length < 7}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          Następna Strona
-        </button>
+          {">"}
+        </PageSetter>
       </PaginationWrapper>
-    </TableWrapper>
+    </>
   );
 };
 
