@@ -1,6 +1,6 @@
 import ActivityTable from "../../components/ActivityTable";
 import { Activity } from "../../interfaces/dbData";
-import { Img, Test, Header, Wrapper, LineWrapper } from "./styles";
+import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
 
 function UserExerciseHistory() {
@@ -112,7 +112,7 @@ function UserExerciseHistory() {
     },
   ];
   return (
-    <Test>
+    <BackgroundContainer>
       <Header />
       <Wrapper>
         <div className="UserInformationContainer">
@@ -123,7 +123,7 @@ function UserExerciseHistory() {
           <ActivityTable activities={activities} isButtonVisible />
         </LineWrapper>
       </Wrapper>
-    </Test>
+    </BackgroundContainer>
   );
 }
 

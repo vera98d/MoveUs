@@ -2,17 +2,27 @@ import styled from "styled-components";
 
 export const Img = styled.img`
   border-radius: 50%;
-  width: 75px;
-  height: 75px;
+  width: 70px;
+  height: 70px;
   margin: 0 30px 0 0;
 `;
 
-export const Test = styled.div`
+export const BackgroundContainer = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 3em;
+  background: ${(props) => props.theme.colors.background};
 `;
 
-export const Header = styled.header`
-  height: 130px;
-  background-color: aqua;
+export const Header = styled.h1`
+  font-size: ${(props) => props.theme.fontSize.header};
+  color: ${(props) => props.theme.colors.secondaryUi};
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  margin-bottom: .4em;
 `;
 
 export const Wrapper = styled.div`
@@ -45,6 +55,12 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+  
+  .usernameStyle {
+    color: ${(props) => props.theme.colors.secondaryUi};
+    font-family: ${(props) => props.theme.fontFamily.primaryFont};
+    font-size: 18px;
   }
 `;
 

@@ -12,6 +12,7 @@ import {
   GridHeader,
   ScoreLine,
   PageSetter,
+  SiteSetterWrapper,
 } from "./styles";
 
 interface Props {
@@ -78,29 +79,31 @@ const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
           )}
       </GridContainer>
       <ScoreLine>
-        {isButtonVisible && <button type="button">Add activity</button>}
-        <p>Total Score: {sum}</p>
+        {isButtonVisible && <button type="button">Add activity</button> }
+        <p className="sumPosition">Total Score: {sum}</p>
       </ScoreLine>
       <PaginationWrapper>
-        <PageSetter
-          type="button"
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          {"<"}
-        </PageSetter>
-        <PaginationList>
-          <ListElement>
-            {currentPage}
-          </ListElement>
-        </PaginationList>
-        <PageSetter
-          type="button"
-          disabled={currentActivities.length < 7}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          {">"}
-        </PageSetter>
+        <SiteSetterWrapper>
+          <PageSetter
+            type="button"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            {"<"}
+          </PageSetter>
+          <PaginationList>
+            <ListElement>
+              {currentPage}
+            </ListElement>
+          </PaginationList>
+          <PageSetter
+            type="button"
+            disabled={currentActivities.length < 7}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            {">"}
+          </PageSetter>
+        </SiteSetterWrapper>
       </PaginationWrapper>
     </>
   );

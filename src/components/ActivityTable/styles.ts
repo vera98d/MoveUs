@@ -9,7 +9,7 @@ export const PaginationWrapper = styled.div`
   width: 100%;
   max-width: 1050px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const PaginationList = styled.ul`
@@ -28,6 +28,16 @@ export const ScoreLine = styled.div`
   max-width: 1050px;
   display: flex;
   justify-content: space-between;
+  align-items: stretch;
+  position: relative;
+  
+  .sumPosition {
+    position: absolute;
+    left: 66%;
+    font-family: ${(props) => props.theme.fontFamily.primaryFont};
+    font-size: 16px;
+    color: ${(props) => props.theme.colors.secondaryUi};
+  }
 `;
 
 export const ListElement = styled.li`
@@ -88,5 +98,18 @@ export const EmptyGridLine = styled(BlankLine) <EmptyGridLineProps>`
     min-height: ${(props) => (props.lines !== 0 ? `${props.lines * 35}px` : "0px")};
 `;
 
+export const SiteSetterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const PageSetter = styled.button`
+  margin: 0 10px;
+  border: none;
+  color: ${(props) => props.theme.colors.secondaryUi};
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  font-weight: 900;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: transparent;
 `;

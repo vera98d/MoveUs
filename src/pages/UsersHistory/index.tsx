@@ -1,6 +1,6 @@
 import ActivityTable from "../../components/ActivityTable";
 import { Activity } from "../../interfaces/dbData";
-import { Img, Test, Header, Wrapper, LineWrapper } from "./styles";
+import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
 
 function UserHistory() {
@@ -112,18 +112,18 @@ function UserHistory() {
     },
   ];
   return (
-    <Test>
+    <BackgroundContainer>
       <Header />
       <Wrapper>
         <div className="UserInformationContainer">
           <Img src={image} alt="" />
-          <span>Jurek Jurkowy (nick)</span>
+          <span className="usernameStyle">Jurek Jurkowy (nick)</span>
         </div>
         <LineWrapper>
           <ActivityTable activities={activities} />
         </LineWrapper>
       </Wrapper>
-    </Test>
+    </BackgroundContainer>
   );
 }
 
