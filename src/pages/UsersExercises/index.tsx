@@ -1,9 +1,9 @@
-import ActivityTable from "../../components/ActivityTable";
+import ExercisesTable from "../../components/ActivityTable";
 import { Activity } from "../../interfaces/dbData";
 import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
 
-function UserExerciseHistory() {
+function UsersExercises() {
   const activities: Activity[] = [
     {
       id: "1",
@@ -117,14 +117,14 @@ function UserExerciseHistory() {
       <Wrapper>
         <div className="UserInformationContainer">
           <Img src={image} alt="" />
-          <span>Jurek Jurkowy (nick)</span>
+          <span className="usernameStyle">Jurek Jurkowy (nick)</span>
         </div>
         <LineWrapper>
-          <ActivityTable activities={activities} isButtonVisible />
+          <ExercisesTable activities={activities} />
         </LineWrapper>
       </Wrapper>
     </BackgroundContainer>
   );
 }
 
-export default UserExerciseHistory;
+export default UsersExercises;

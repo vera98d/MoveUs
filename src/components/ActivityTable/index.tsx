@@ -3,7 +3,7 @@ import { Activity } from "../../interfaces/dbData";
 
 import {
   PaginationWrapper,
-  ListElement,
+  PageNumber,
   PaginationList,
   EmptyGridLine,
   GridLine,
@@ -11,7 +11,7 @@ import {
   GridContainer,
   GridHeader,
   ScoreLine,
-  PageSetter,
+  PageButton,
   SiteSetterWrapper,
 } from "./styles";
 
@@ -20,21 +20,21 @@ interface Props {
   isButtonVisible?: boolean;
 }
 
-const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
-  const [actualActivities, setActualActivities] = useState<Activity[]>([]);
+const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
+  const [actualExercises, setActualExercises] = useState<Activity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [activityPerPage] = useState(7);
+  const [ExercisesPerPage] = useState(7);
 
   useEffect(() => {
-    setActualActivities(activities);
+    setActualExercises(activities);
   }, []);
   const sum = activities.reduce((prev, current) => {
     return prev + +current.score;
   }, 0);
 
-  const indexOfLastActivity = currentPage * activityPerPage;
-  const indexOfFirstActivity = indexOfLastActivity - activityPerPage;
-  const currentActivities = actualActivities.slice(indexOfFirstActivity, indexOfLastActivity);
+  const indexOfLastActivity = currentPage * ExercisesPerPage;
+  const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;
+  const currentActivities = actualExercises.slice(indexOfFirstActivity, indexOfLastActivity);
 
   const tableBody = () => {
     return currentActivities?.map((activity: Activity) => {
@@ -68,9 +68,9 @@ const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
           </GridHeader>
         </GridLine>
         {currentActivities && tableBody()}
-        {activityPerPage > currentActivities.length
+        {ExercisesPerPage > currentActivities.length
           && (
-            <EmptyGridLine lines={activityPerPage - currentActivities.length}>
+            <EmptyGridLine lines={ExercisesPerPage - currentActivities.length}>
               <GridChild />
               <GridChild />
               <GridChild />
@@ -79,34 +79,34 @@ const ActivityTable: FC<Props> = ({ activities, isButtonVisible }) => {
           )}
       </GridContainer>
       <ScoreLine>
-        {isButtonVisible && <button type="button">Add activity</button> }
+        {isButtonVisible && <PageButton className="buttonFontSize" type="button">Add activity</PageButton> }
         <p className="sumPosition">Total Score: {sum}</p>
       </ScoreLine>
       <PaginationWrapper>
         <SiteSetterWrapper>
-          <PageSetter
+          <PageButton
             type="button"
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}
           >
             {"<"}
-          </PageSetter>
+          </PageButton>
           <PaginationList>
-            <ListElement>
+            <PageNumber>
               {currentPage}
-            </ListElement>
+            </PageNumber>
           </PaginationList>
-          <PageSetter
+          <PageButton
             type="button"
             disabled={currentActivities.length < 7}
             onClick={() => setCurrentPage(currentPage + 1)}
           >
             {">"}
-          </PageSetter>
+          </PageButton>
         </SiteSetterWrapper>
       </PaginationWrapper>
     </>
   );
 };
 
-export default ActivityTable;
+export default ExercisesTable;
