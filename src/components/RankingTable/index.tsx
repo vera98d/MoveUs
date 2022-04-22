@@ -13,7 +13,7 @@ interface UsersWithRankPosition extends User {
 
 const RankingTable: FC<Props> = ({ groupUsers }) => {
   const sortedUsersWithRankPosition: UsersWithRankPosition[] = groupUsers.sort(
-    (a, b) => b.score - a.score
+    (a, b) => b.score - a.score,
   ).map((user, index) => {
     return { ...user, rankPosition: index + 1 };
   });

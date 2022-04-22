@@ -12,4 +12,4 @@ jobs:
         run: npm ci
 
       - name: Test 🧪
-        run: npm test
+        run: npm test    

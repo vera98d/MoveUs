@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import GroupRanking from "./pages/GroupRanking";
 import UsersGroups from "./pages/UsersGroups";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -55,6 +56,13 @@ function App() {
         path="groups/:groupId"
         element={<GroupRanking />}
       />
+      <Route
+        path="home"
+        element={
+          <HomePage />
+        }
+      />
+
     </Routes>
   );
 }
