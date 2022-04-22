@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -41,6 +42,12 @@ function App() {
         path="login"
         element={
           <Login />
+        }
+      />
+      <Route
+        path="home"
+        element={
+          <HomePage />
         }
       />
 

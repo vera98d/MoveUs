@@ -19,6 +19,7 @@ export interface Group {
   description: string;
   members: string[];
   owner: string;
+  img: string;
 }
 
 export interface Activity {
