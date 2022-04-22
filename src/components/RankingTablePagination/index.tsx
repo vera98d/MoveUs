@@ -23,7 +23,7 @@ const RankingTablePagination: FC<Props> = ({
       setCurrentPage(currentPage + 1);
     }
   };
-  const previoustPage = (): void => {
+  const previousPage = (): void => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
@@ -45,7 +45,7 @@ const RankingTablePagination: FC<Props> = ({
   return (
     <NavContainer>
       <NavigationButton
-        onClick={previoustPage}
+        onClick={previousPage}
         enabled={showPreviousButton}
       >
         {"<"}
