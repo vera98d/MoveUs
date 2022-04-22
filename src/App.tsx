@@ -2,15 +2,8 @@ import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import { useContext, useEffect } from "react";
-import { ModalContext } from "./context/ModalContextProvider";
-import GroupForm from "./components/GroupForm";
 
 function App() {
-  const modalContextValue = useContext(ModalContext);
-  useEffect(() => {
-    modalContextValue.setDisplayedComponent(<GroupForm />);
-  }, []);
   return (
     <Routes>
       <Route
