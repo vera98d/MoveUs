@@ -30,6 +30,10 @@ export const ScoreLine = styled.div`
   justify-content: space-between;
   align-items: stretch;
   position: relative;
+
+  .buttonFontSize {
+    font-size: 16px;
+  }
   
   .sumPosition {
     position: absolute;
@@ -40,7 +44,7 @@ export const ScoreLine = styled.div`
   }
 `;
 
-export const ListElement = styled.li`
+export const PageNumber = styled.li`
 `;
 
 export const GridContainer = styled.div`
@@ -103,7 +107,7 @@ export const SiteSetterWrapper = styled.div`
   justify-content: center;
 `;
 
-export const PageSetter = styled.button`
+export const PageButton = styled.button`
   margin: 0 10px;
   border: none;
   color: ${(props) => props.theme.colors.secondaryUi};
