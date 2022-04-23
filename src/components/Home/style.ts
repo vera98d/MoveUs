@@ -23,7 +23,7 @@ width: 200px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("${process.env.PUBLIC_URL}/assets/ranking.png");
+background-image: url("${process.env.PUBLIC_URL}/assets/ranking.PNG");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
