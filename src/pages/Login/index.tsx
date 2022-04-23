@@ -19,7 +19,6 @@ function Login() {
 
   return (
     <Container>
-      <Img src="assets/logo.png" />
       <Wrapper>
         <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
           <FormField>
@@ -44,15 +43,15 @@ function Login() {
               type="password"
               {...register("password", { required: true, minLength: 8 })}
               placeholder="Enter your password"
-
             />
           </FormField>
           <Button>Login</Button>
           <AccountText>
             Not a member yet?
             {" "}
-            <StyledLink to="/register">Register now</StyledLink>
+            <StyledLink to="/team-jo-project-4/register">Register</StyledLink>
             {" "}
+            now
           </AccountText>
         </Form>
       </Wrapper>
