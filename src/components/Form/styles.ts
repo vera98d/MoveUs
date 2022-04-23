@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
-background-image: url("assets/background_photo.jpg");
+background-image: url("${process.env.PUBLIC_URL}/assets/background_photo.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: 0% 90%;
