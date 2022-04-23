@@ -23,7 +23,6 @@ interface Props {
 
 const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
   const [currentExercises, setCurrentExercises] = useState<Activity[]>([]);
-  const [activityState, setActivityState] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ExercisesPerPage] = useState(7);
 
@@ -33,9 +32,8 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
 
   useEffect(() => {
     ActivityService.getActivity().then((data) => {
-      setActivityState(data);
+      console.log(data);
     });
-    console.log(activityState);
   }, []);
   const indexOfLastActivity = currentPage * ExercisesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;

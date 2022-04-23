@@ -6,11 +6,9 @@ class ActivityService {
   db = getFirestore();
 
   getActivity = async () => {
-    let userRef: any = null;
-    const q = query(collection(this.db, "users"), where("activities", "==", true));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((document) => {
-
+      console.log(document.id, " => ", document.data());
     });
   };
 
