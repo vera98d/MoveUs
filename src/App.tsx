@@ -5,7 +5,6 @@ import GroupRanking from "./pages/GroupRanking";
 import UsersGroups from "./pages/UsersGroups";
 import HomePage from "./pages/HomePage";
 import Auth from "./components/Auth";
-import Header from "./components/Header";
 
 function App() {
   return (
@@ -35,21 +34,20 @@ function App() {
             </Auth>
           )}
         />
+        <Route
+          path="/groups"
+          element={(
+            <Auth restricted>
+              <UsersGroups />
+            </Auth>
+          )}
+        />
+        <Route
+          path="groups/:groupId"
+          element={(
+            <Auth restricted><GroupRanking /></Auth>)}
+        />
       </Route>
-      <Route
-        path="/groups"
-        element={(
-          <Auth restricted>
-            <UsersGroups />
-          </Auth>
-
-        )}
-      />
-      <Route
-        path="groups/:groupId"
-        element={(
-          <Auth restricted><GroupRanking /></Auth>)}
-      />
     </Routes>
   );
 }
