@@ -14,6 +14,7 @@ import {
   PageButton,
   SiteSetterWrapper,
 } from "./styles";
+import ActivityService from "../../services/activityService";
 
 interface Props {
   activities: Activity[];
@@ -22,16 +23,20 @@ interface Props {
 
 const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
   const [currentExercises, setCurrentExercises] = useState<Activity[]>([]);
+  const [activityState, setActivityState] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ExercisesPerPage] = useState(7);
 
   useEffect(() => {
     setCurrentExercises(activities);
   }, []);
-  const sum = activities.reduce((prev, current) => {
-    return prev + +current.score;
-  }, 0);
 
+  useEffect(() => {
+    ActivityService.getActivity().then((data) => {
+      setActivityState(data);
+    });
+    console.log(activityState);
+  }, []);
   const indexOfLastActivity = currentPage * ExercisesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;
   const currentPageActivities = currentExercises.slice(indexOfFirstActivity, indexOfLastActivity);
@@ -80,7 +85,7 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
       </GridContainer>
       <ScoreLine>
         {isButtonVisible && <PageButton className="buttonFontSize" type="button">Add activity</PageButton> }
-        <p className="sumPosition">Total Score: {sum}</p>
+        <p className="sumPosition">Total Score: 1000</p>
       </ScoreLine>
       <PaginationWrapper>
         <SiteSetterWrapper>

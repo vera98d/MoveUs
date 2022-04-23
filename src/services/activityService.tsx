@@ -1,10 +1,18 @@
 import { getFirestore, collection, query, where, doc, setDoc, getDocs } from "firebase/firestore";
 import { Activity, User } from "../interfaces/dbData";
-import authService from "./authService";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { getUsers } from "./groupService";
 
 class ActivityService {
   db = getFirestore();
+
+  getActivity = async () => {
+    let userRef: any = null;
+    const q = query(collection(this.db, "users"), where("activities", "==", true));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((document) => {
+
+    });
+  };
 
   insert = async (activity: Omit<Activity, "score">, user: string) => {
     console.log(activity);
