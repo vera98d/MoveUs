@@ -10,15 +10,6 @@ function MyUserExercises() {
   if (loading || !user) {
     return null;
   }
-  const activities: Activity[] = [
-    {
-      id: "1",
-      exercise: "pajacyki",
-      duration: "1000",
-      score: 7000,
-      date: new Date(2018, 6, 22),
-    },
-  ];
   return (
     <BackgroundContainer>
       <Header />
@@ -28,7 +19,7 @@ function MyUserExercises() {
           <span>Mój USER</span>
         </div>
         <LineWrapper>
-          <ExercisesTable activities={activities} isButtonVisible />
+          <ExercisesTable userId={user.uid} isButtonVisible />
         </LineWrapper>
       </Wrapper>
     </BackgroundContainer>

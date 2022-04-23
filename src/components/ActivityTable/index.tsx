@@ -17,21 +17,19 @@ import {
 import ActivityService from "../../services/activityService";
 
 interface Props {
-  activities: Activity[];
+  userId?: string;
+  activities?: Activity[];
   isButtonVisible?: boolean;
 }
 
-const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
+const ExercisesTable: FC<Props> = ({ userId, activities, isButtonVisible }) => {
   const [currentExercises, setCurrentExercises] = useState<Activity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ExercisesPerPage] = useState(7);
 
   useEffect(() => {
-    setCurrentExercises(activities);
-  }, []);
-
-  useEffect(() => {
-    ActivityService.getActivity().then((data) => {
+    ActivityService.getActivity(userId).then((data) => {
+      setCurrentExercises(data);
       console.log(data);
     });
   }, []);
@@ -46,8 +44,7 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
           <GridChild>{activity.exercise}</GridChild>
           <GridChild>{activity.duration}</GridChild>
           <GridChild>{activity.score}</GridChild>
-          <GridChild>{activity.date.getUTCDate()}/{activity.date.getUTCMonth()}/
-            {activity.date.getUTCFullYear()}
+          <GridChild>{activity.date.toLocaleString()}
           </GridChild>
         </GridLine>
       );

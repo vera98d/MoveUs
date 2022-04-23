@@ -5,11 +5,14 @@ import { getUsers } from "./groupService";
 class ActivityService {
   db = getFirestore();
 
-  getActivity = async () => {
-    const querySnapshot = await getDocs(collection(this.db, "users"));
+  getActivity = async (userId: string | undefined) => {
+    let userRef: any = null;
+    const q = query(collection(this.db, "users"), where("uid", "==", userId));
+    const querySnapshot = await getDocs(q);
     querySnapshot.forEach((document) => {
-      console.log(document.id, " => ", document.data());
+      userRef = (document.id, " => ", document.data().activities);
     });
+    return userRef;
   };
 
   insert = async (activity: Omit<Activity, "score">, user: string) => {
