@@ -31,7 +31,7 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
 
   const rankingTable: JSX.Element[] = currentRankPositions.map((groupUser) => {
     return (
-      <GridLine key={groupUser.id}>
+      <GridLine key={groupUser.uid}>
         <GridChild>
           {groupUser.rankPosition}
         </GridChild>

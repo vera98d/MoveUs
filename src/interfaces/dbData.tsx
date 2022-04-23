@@ -1,5 +1,5 @@
 export interface User {
-  id: string;
+  uid: string;
   name: string;
   surname: string;
   login: string;
@@ -13,12 +13,12 @@ export interface User {
 }
 
 export interface Group {
-  id: string;
+  uid: string;
   name: string;
+  imageUrl: string;
   description: string;
   members: string[];
   owner: string;
-  img: string;
 }
 
 export interface Activity {

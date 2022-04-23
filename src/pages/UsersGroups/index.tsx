@@ -7,10 +7,10 @@ import { groups, user } from "./mockedData";
 
 const UsersGroups = (): JSX.Element => {
   const usersGroups: (JSX.Element | undefined)[] = groups.map((group) => {
-    if (group.owner === user.id) {
+    if (group.owner === user.uid) {
       return (
-        <Link to={`/groups/${group.id}`} key={group.id}>
-          <Tile img={group.img}>
+        <Link to={`/groups/${group.uid}`} key={group.uid}>
+          <Tile img={group.imageUrl}>
             <TileContent>
               {group.name}
             </TileContent>
@@ -21,10 +21,10 @@ const UsersGroups = (): JSX.Element => {
   });
 
   const groupsUserBelongsTo: (JSX.Element | undefined)[] = groups.map((group) => {
-    if (group.id in user.groups && group.owner !== user.id) {
+    if (group.uid in user.groups && group.owner !== user.uid) {
       return (
-        <Link to={`/groups/${group.id}`} key={group.id}>
-          <Tile img={group.img}>
+        <Link to={`/groups/${group.uid}`} key={group.uid}>
+          <Tile img={group.imageUrl}>
             <TileContent>
               {group.name}
             </TileContent>

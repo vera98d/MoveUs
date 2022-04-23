@@ -9,11 +9,11 @@ const GroupRanking = (): JSX.Element => {
   const { groupId } = useParams();
 
   const groupInfo: Group | undefined = groups.find(
-    (group) => group.id === groupId,
+    (group) => group.uid === groupId,
   );
 
   const groupUsers: User[] = users.filter((user) => {
-    if (groupInfo && groupInfo.members.includes(user.id)) {
+    if (groupInfo && groupInfo.members.includes(user.uid)) {
       return user;
     }
   });
