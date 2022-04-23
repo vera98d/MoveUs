@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -12,6 +12,7 @@ export const theme = {
     white: "#fff",
     primaryUi: "#D6E7FF",
     secondaryUi: "#041850",
+    tertiaryUi: "#2A95FF",
   },
 
   fontFamily: {
