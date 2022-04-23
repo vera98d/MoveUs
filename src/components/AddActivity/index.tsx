@@ -39,19 +39,15 @@ function AddActivity() {
       }
     });
     const durationSeconds: number = convertToSeconds(getValues("duration"));
-    if (selectedExercise.weight) {
+    if (selectedExercise.weight && getValues("duration")) {
       setValue("score", selectedExercise.weight * durationSeconds);
     }
   }
 
   function handleDurationChange(event: any) {
-    const durationSeconds: number = convertToSeconds(getValues("duration"));
-    console.log(selectedExercise);
-    if (selectedExercise !== undefined) {
-      console.log(selectedExercise);
+    const durationSeconds: number = convertToSeconds(event.target.value);
+    if (selectedExercise && event.target.value) {
       setValue("score", selectedExercise.weight * durationSeconds);
-      console.log(selectedExercise.weight);
-      console.log(durationSeconds);
     }
   }
 
