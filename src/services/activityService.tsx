@@ -36,7 +36,7 @@ class ActivityService {
         userRef = doc(this.db, "users", documentID);
       });
       setDoc(userRef, {
-        score: 8 * 7, lastActivity: activity.date, activities: activity.id,
+        score: 8 * 7, lastActivity: activity.date, activities: activity.uid,
       }, { merge: true });
     } catch (e) {
       console.error("Error adding document: ", e);

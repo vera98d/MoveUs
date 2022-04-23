@@ -6,7 +6,7 @@ import image from "./testimg.png";
 function UsersExercises() {
   const activities: Activity[] = [
     {
-      id: "1",
+      uid: "1",
       exercise: "pajacyki",
       duration: "1000",
       score: 7000,

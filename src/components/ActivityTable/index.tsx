@@ -30,7 +30,6 @@ const ExercisesTable: FC<Props> = ({ userId, activities, isButtonVisible }) => {
   useEffect(() => {
     ActivityService.getActivity(userId).then((data) => {
       setCurrentExercises(data);
-      console.log(data);
     });
   }, []);
   const indexOfLastActivity = currentPage * ExercisesPerPage;
@@ -40,7 +39,7 @@ const ExercisesTable: FC<Props> = ({ userId, activities, isButtonVisible }) => {
   const tableBody = () => {
     return currentPageActivities?.map((activity: Activity) => {
       return (
-        <GridLine key={activity.id}>
+        <GridLine key={activity.uid}>
           <GridChild>{activity.exercise}</GridChild>
           <GridChild>{activity.duration}</GridChild>
           <GridChild>{activity.score}</GridChild>

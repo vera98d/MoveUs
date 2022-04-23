@@ -1,5 +1,4 @@
 import ExercisesTable from "../../components/ActivityTable";
-import { Activity } from "../../interfaces/dbData";
 import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
 import { useAuthState } from "react-firebase-hooks/auth";
