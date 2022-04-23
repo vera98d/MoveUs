@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import HomePage from "./pages/HomePage";
 import MyUserExercises from "./pages/MyUserExercises";
 import UsersHistory from "./pages/UsersExercises";
 
@@ -57,6 +58,13 @@ function App() {
           <UsersHistory />
         }
       />
+      <Route
+        path="home"
+        element={
+          <HomePage />
+        }
+      />
+
     </Routes>
   );
 }
