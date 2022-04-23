@@ -1,56 +1,38 @@
-import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
+import Auth from "./components/Auth";
 
 function App() {
   return (
     <Routes>
-      <Route
-        index
-        element={(
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit
-                {" "}
-                <code>src/App.tsx</code>
-                {" "}
-                and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </header>
-          </div>
-      )}
-      />
-      <Route
-        path="register"
-        element={
-          <Register />
-      }
-      />
-      <Route
-        path="login"
-        element={
-          <Login />
-        }
-      />
-      <Route
-        path="home"
-        element={
-          <HomePage />
-        }
-      />
-
+      <Route path="/team-jo-project-4">
+        <Route
+          index
+          element={(
+            <Auth>
+              <Login />
+            </Auth>
+        )}
+        />
+        <Route
+          path="register"
+          element={(
+            <Auth>
+              <Register />
+            </Auth>
+        )}
+        />
+        <Route
+          path="home"
+          element={(
+            <Auth restricted>
+              <HomePage />
+            </Auth>
+          )}
+        />
+      </Route>
     </Routes>
   );
 }
