@@ -57,7 +57,7 @@ width: 200px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("assets/groups.jpg");
+background-image: url("${process.env.PUBLIC_URL}assets/groups.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
@@ -92,7 +92,7 @@ width: 200px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("assets/activity.jpg");
+background-image: url("${process.env.PUBLIC_URL}assets/activity.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
@@ -127,7 +127,7 @@ width: 400px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("assets/workout.jpg");
+background-image: url("${process.env.PUBLIC_URL}assets/workout.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
@@ -169,5 +169,4 @@ text-align: center;
 @media (max-width: 1100px) {
     font-size: 32px
   }
-}
 `;

@@ -38,7 +38,7 @@ const LogoutButton = () => {
 function Header() {
   return (
     <Container>
-      <Img src="assets/logo.png" />
+      <Img src={`${process.env.PUBLIC_URL}assets/logo.png`} />
       <RightSection>
         <ProfilePage />
         <LogoutButton />
