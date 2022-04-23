@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import authService from "../../services/authService";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Spinner from "./style";
+import Header from "../Header";
 
 interface Props {
   restricted?: boolean;
@@ -37,7 +38,12 @@ const Auth: React.FC<Props> = ({ restricted, children }: Props): JSX.Element => 
       </Spinner>
     );
   }
-  return children;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 };
 
 Auth.defaultProps = {
