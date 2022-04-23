@@ -13,6 +13,7 @@ export const theme = {
     primaryUi: "#D6E7FF",
     secondaryUi: "#041850",
     background: "linear-gradient(#2A95FF, #D6E7FF)",
+    tertiaryUi: "#2A95FF",
   },
 
   fontFamily: {

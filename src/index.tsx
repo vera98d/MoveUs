@@ -5,13 +5,18 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle, theme } from "./styles";
 import { ThemeProvider } from "styled-components";
+import { ModalContextProvider } from "./context/ModalContextProvider";
+import Modal from "./components/Modal";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <App />
+        <ModalContextProvider>
+          <App />
+          <Modal />
+        </ModalContextProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>,

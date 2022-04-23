@@ -25,37 +25,40 @@ padding: 0 10px;
 
 export const Form = styled.form`
 display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  gap: 20px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+align-content: center;
+gap: 20px;
+max-width: 400px;
+width: 100%;
+align-items: stretch;
  `;
 
 export const FormField = styled.div`
 display: flex;
 flex-direction: column;
-align-items: flex-start;
 gap: 5px;
 `;
 
 export const Label = styled.p`
 color: ${(props) => props.theme.colors.white};
 font-family: ${(props) => props.theme.fontFamily.primaryFont};
-font-size: 18px;
+font-size: 15px;
 `;
 
 export const Input = styled.input`
 display: flex;
 text-align: left;
-padding: 1em;
+padding: 1.2em;
 border: solid 2px ${(props) => props.theme.colors.secondaryUi};
 border-radius: 15px;
 background-color: ${(props) => props.theme.colors.primaryUi};
 font-family: ${(props) => props.theme.fontFamily.primaryFont};
-font-size: 18px;
+font-size: 15px;
 color: ${(props) => props.theme.colors.secondaryUi};
- width: 400px;
+width: 100%;
+max-width: 400px;
 
   &:focus {
     outline: none;
@@ -67,6 +70,7 @@ export const Button = styled.button`
 display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
   background-color: ${(props) => props.theme.colors.secondaryUi};
   color: ${(props) => props.theme.colors.primaryUi};
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
@@ -84,14 +88,15 @@ display: flex;
 
 export const FormFieldError = styled.span`
 color: ${(props) => props.theme.colors.secondaryUi};
- font-family: ${(props) => props.theme.fontFamily.primaryFont};
-font-size: 18px;
+font-family: ${(props) => props.theme.fontFamily.primaryFont};
+font-size: 15px;
 `;
 
 export const AccountText = styled.div`
 color: ${(props) => props.theme.colors.white};
 font-family: ${(props) => props.theme.fontFamily.primaryFont};
 font-size: 18px;
+align-self: center;
 `;
 
 export const StyledLink = styled(Link)`
