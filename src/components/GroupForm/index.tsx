@@ -4,10 +4,10 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../services/firebase";
 import { useContext, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Group } from "../../interfaces/dbData";
+import { Group, User } from "../../interfaces/dbData";
 import { useAuthState } from "react-firebase-hooks/auth";
 import authService from "../../services/authService";
-import { createGroup, getUserIds } from "../../services/groupService";
+import { createGroup, getUsers } from "../../services/groupService";
 import { ModalContext } from "../../context/ModalContextProvider";
 import { AddPhoto, AddPhotoInput, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
 
@@ -15,7 +15,7 @@ type FormFields = {
   name: string
   description: string
   images: FileList
-  members: string[]
+  members: User[]
 };
 
 function GroupForm() {
@@ -27,19 +27,27 @@ function GroupForm() {
   };
   const [user] = useAuthState(authService.getAuth());
   const { register, setValue, handleSubmit, formState: { errors }, watch } = useForm<FormFields>();
-  const [users, setUsers] = useState<string[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    getUserIds()
+    getUsers()
       .then((data) => {
         if (data) {
           setUsers(data);
+        }
+      })
+      .catch((err: unknown) => {
+        console.log(err);
+        if (err instanceof Error) {
+          alert(err.message);
         }
       });
   }, []);
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const file = data.images[0];
+    setIsSubmitting(true);
 
     const storageRef = ref(storage, file.name);
     await uploadBytes(storageRef, file);
@@ -49,10 +57,19 @@ function GroupForm() {
       name: data.name,
       imageUrl: fileUrl,
       description: data.description,
-      members: data.members,
+      members: data.members.map((member) => member.uid),
       owner: user!.uid,
     };
-    await createGroup(group, closeModalOnSuccess);
+
+    try {
+      await createGroup(group);
+      closeModalOnSuccess();
+    } catch (err: unknown) {
+      setIsSubmitting(false);
+      if (err instanceof Error) {
+        alert(err.message);
+      }
+    }
   };
 
   watch(({ images }) => {
@@ -127,16 +144,18 @@ function GroupForm() {
           <ModalLabel>Add friend to the group</ModalLabel>
           <UsersMultiSelect
             placeholder="Type your friend's login"
-            isObject={false}
+            disablePreSelectedValues
+            selectedValues={users.filter((u) => u.uid === user?.uid)}
             options={users}
-            onSelect={(selectedList: string[]) => {
+            displayValue="login"
+            onSelect={(selectedList: User[]) => {
               setValue("members", selectedList);
             }}
-            onRemove={(selectedList: string[]) => {
+            onRemove={(selectedList: User[]) => {
               setValue("members", selectedList);
             }}
           />
-          <Button>Create</Button>
+          <Button disabled={isSubmitting}>Create</Button>
         </FormField>
       </Form>
     </>
