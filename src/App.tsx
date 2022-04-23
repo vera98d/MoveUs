@@ -35,7 +35,7 @@ function App() {
           )}
         />
         <Route
-          path="/groups"
+          path="groups"
           element={(
             <Auth restricted>
               <UsersGroups />
@@ -45,7 +45,10 @@ function App() {
         <Route
           path="groups/:groupId"
           element={(
-            <Auth restricted><GroupRanking /></Auth>)}
+            <Auth restricted>
+              <GroupRanking />
+            </Auth>
+          )}
         />
       </Route>
     </Routes>
