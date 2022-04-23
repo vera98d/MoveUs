@@ -4,14 +4,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 
-const ProfilePage = () => {
-  const navigate = useNavigate();
+const Profile = () => {
   const [user, loading] = useAuthState(authService.getAuth());
   if (!user || loading) {
     return null;
   }
   return (
-    <PhotoProfile onClick={() => navigate("/register")} />
+    <PhotoProfile />
   );
 };
 
@@ -23,7 +22,7 @@ const LogoutButton = () => {
   }
   const handleButtonClick = () => {
     signOut(authService.getAuth()).then(() => {
-      navigate("/login");
+      navigate("/team-jo-project-4");
     });
   };
   return (
@@ -38,9 +37,9 @@ const LogoutButton = () => {
 function Header() {
   return (
     <Container>
-      <Img src="assets/logo.png" />
+      <Img src="/assets/logo.png" />
       <RightSection>
-        <ProfilePage />
+        <Profile />
         <LogoutButton />
       </RightSection>
     </Container>
