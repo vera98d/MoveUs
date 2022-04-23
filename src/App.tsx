@@ -3,15 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
-import { useContext, useEffect } from "react";
-import GroupForm from "./components/GroupForm";
-import { ModalContext } from "./context/ModalContextProvider";
 
 function App() {
-  const modalContextValue = useContext(ModalContext);
-  useEffect(() => {
-    modalContextValue.setDisplayedComponent(<GroupForm />);
-  }, []);
   return (
     <Routes>
       <Route
