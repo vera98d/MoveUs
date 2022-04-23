@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 height: 100%;
+padding-top: 100px;
 `;
 
 export const Tiles = styled.div`
@@ -22,7 +23,7 @@ width: 200px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("assets/ranking.PNG");
+background-image: url("/assets/ranking.PNG");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
@@ -57,7 +58,7 @@ width: 200px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("assets/groups.jpg");
+background-image: url("/assets/groups.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
@@ -92,7 +93,7 @@ width: 200px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("assets/activity.jpg");
+background-image: url("/assets/activity.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
@@ -127,7 +128,7 @@ width: 400px;
 height: 200px;
 border: 2px solid ${(props) => props.theme.colors.secondaryUi};
 border-radius: 50px;
-background-image: url("assets/workout.jpg");
+background-image: url("/assets/workout.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
@@ -158,16 +159,15 @@ filter: opacity(85%);
 `;
 
 export const H3 = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100%;
-font-size: 42px;
-font-weight: bold;
-text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
 
-@media (max-width: 1100px) {
+  @media (max-width: 1100px) {
     font-size: 32px
   }
-}
 `;

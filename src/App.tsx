@@ -3,6 +3,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import Auth from "./components/Auth";
+import Header from "./components/Header";
 
 function App() {
   return (

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: fixed;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -38,7 +39,7 @@ export const PhotoProfile = styled.div`
   border: 2px solid ${(props) => props.theme.colors.secondaryUi};
   border-radius: 50%;
   cursor: pointer;
-  background-image: url("assets/background_photo.jpg");
+  background-image: url("/assets/background_photo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 `;
