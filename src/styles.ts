@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   };
   `;
+
 export const theme = {
   colors: {
     white: "#fff",
