@@ -21,12 +21,12 @@ interface Props {
 }
 
 const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
-  const [actualExercises, setActualExercises] = useState<Activity[]>([]);
+  const [currentExercises, setCurrentExercises] = useState<Activity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ExercisesPerPage] = useState(7);
 
   useEffect(() => {
-    setActualExercises(activities);
+    setCurrentExercises(activities);
   }, []);
   const sum = activities.reduce((prev, current) => {
     return prev + +current.score;
@@ -34,10 +34,10 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
 
   const indexOfLastActivity = currentPage * ExercisesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;
-  const currentActivities = actualExercises.slice(indexOfFirstActivity, indexOfLastActivity);
+  const currentPageActivities = currentExercises.slice(indexOfFirstActivity, indexOfLastActivity);
 
   const tableBody = () => {
-    return currentActivities?.map((activity: Activity) => {
+    return currentPageActivities?.map((activity: Activity) => {
       return (
         <GridLine key={activity.id}>
           <GridChild>{activity.exercise}</GridChild>
@@ -67,10 +67,10 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
             Last Activity
           </GridHeader>
         </GridLine>
-        {currentActivities && tableBody()}
-        {ExercisesPerPage > currentActivities.length
+        {currentPageActivities && tableBody()}
+        {ExercisesPerPage > currentPageActivities.length
           && (
-            <EmptyGridLine lines={ExercisesPerPage - currentActivities.length}>
+            <EmptyGridLine lines={ExercisesPerPage - currentPageActivities.length}>
               <GridChild />
               <GridChild />
               <GridChild />
@@ -98,7 +98,7 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
           </PaginationList>
           <PageButton
             type="button"
-            disabled={currentActivities.length < 7}
+            disabled={currentPageActivities.length < 7}
             onClick={() => setCurrentPage(currentPage + 1)}
           >
             {">"}

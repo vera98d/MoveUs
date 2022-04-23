@@ -24,9 +24,9 @@ export interface Group {
 export interface Activity {
   id: string;
   exercise: string;
+  date: Date;
   duration: string;
   score: number;
-  date: Date;
 }
 
 export interface Exercise {
