@@ -54,13 +54,13 @@ function App() {
           )}
         />
         <Route
-          path="/MyUserExercises"
+          path="MyUserExercises"
           element={
             <MyUserExercises />
           }
         />
         <Route
-          path="/UsersExercises"
+          path="UsersExercises"
           element={
             <UsersHistory />
           }
