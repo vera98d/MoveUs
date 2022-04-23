@@ -1,4 +1,3 @@
-/* eslint-disable no-self-assign */
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   AccountText,
@@ -11,34 +10,63 @@ import activityService from "../../services/activityService";
 import exerciseService from "../../services/exerciseService";
 import { useEffect, useState } from "react";
 
-type ActivityField = Omit<Activity, "score">;
-
 function AddActivity() {
   const [user] = useAuthState(authService.getAuth());
-  const { register, handleSubmit, formState: { errors } } = useForm<ActivityField>();
-  const onSubmit: SubmitHandler<ActivityField> = (data) => activityService
+  const { register, handleSubmit,
+    setValue, getValues, formState: { errors } } = useForm<Activity>();
+  const onSubmit: SubmitHandler<Activity> = (data) => activityService
     .insert(data, user!.uid);
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
   const [exercisesState, setExercisesState] = useState<any>([]);
+  let selectedExercise: Exercise;
 
   useEffect(() => {
     exerciseService.getAll().then((data) => setExercisesState(data));
   }, []);
 
-  console.log("state", exercisesState);
+  function convertToSeconds(time: string): number {
+    const t = time.split(":");
+    const hours = t[0] as unknown;
+    const minutes = t[1] as unknown;
+    const convertedSeconds = (hours as number) * 60 * 60 + (minutes as number) * 60;
+    return convertedSeconds;
+  }
 
-  const exercises: string[] = ["running", "cycling", "walking"];
+  function handleExerciseChange(event: any) {
+    exercisesState.forEach((element: Exercise) => {
+      if (element.name === event.target.value) {
+        selectedExercise = element;
+      }
+    });
+    const durationSeconds: number = convertToSeconds(getValues("duration"));
+    if (selectedExercise.weight) {
+      setValue("score", selectedExercise.weight * durationSeconds);
+    }
+  }
 
-  // TODO get these from DB
+  function handleDurationChange(event: any) {
+    const durationSeconds: number = convertToSeconds(getValues("duration"));
+    console.log(selectedExercise);
+    if (selectedExercise !== undefined) {
+      console.log(selectedExercise);
+      setValue("score", selectedExercise.weight * durationSeconds);
+      console.log(selectedExercise.weight);
+      console.log(durationSeconds);
+    }
+  }
 
   return (
     <Wrapper>
       <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
         <FormField>
           <Label>Select exercise.</Label>
-          <select {...register("exercise", { required: true, minLength: 3, maxLength: 20 })}>
-            { exercises.map((e) => {
-              return <option value={e}>{e}</option>;
+          <select
+            {...register("exercise", { required: true })}
+            onChange={handleExerciseChange}
+          >
+            <option value=""> </option>
+            { exercisesState.map((e: any) => {
+              return <option value={e.name}>{e.name}, weight: {e.weight}</option>;
             })}
           </select>
           <FormFieldError>
@@ -60,12 +88,16 @@ function AddActivity() {
           <input
             type="time"
             {...register("duration", { required: true })}
+            onChange={handleDurationChange}
           />
           <FormFieldError>
-            {errors.exercise?.type === "required" && "Please select  the activity type"}
+            {errors.exercise?.type === "required" && "Please enter duration of your activity."}
           </FormFieldError>
         </FormField>
-        <Button>Login</Button>
+        <FormField>
+          <input readOnly {...register("score", { required: true })} />
+        </FormField>
+        <Button>Submit activity</Button>
       </Form>
     </Wrapper>
   );
