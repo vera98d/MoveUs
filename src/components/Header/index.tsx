@@ -35,9 +35,10 @@ const LogoutButton = () => {
 };
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <Container>
-      <Img src={`${process.env.PUBLIC_URL}/assets/logo.png`} />
+      <Img src={`${process.env.PUBLIC_URL}/assets/logo.png`} onClick={() => navigate("/team-jo-project-4/home")} />
       <RightSection>
         <Profile />
         <LogoutButton />
