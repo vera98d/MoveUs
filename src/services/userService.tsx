@@ -3,9 +3,9 @@ import { collection, doc, getDocs, getFirestore, query, where } from "firebase/f
 class UserService {
   db = getFirestore();
 
-  getUser = async (user: string | undefined) => {
+  getUser = async (userId: string | undefined) => {
     let userRef: any = null;
-    const q = query(collection(this.db, "users"), where("uid", "==", user));
+    const q = query(collection(this.db, "users"), where("uid", "==", userId));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((document) => {
       const documentID = document.id;
