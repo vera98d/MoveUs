@@ -39,7 +39,7 @@ export const PhotoProfile = styled.div`
   border: 2px solid ${(props) => props.theme.colors.secondaryUi};
   border-radius: 50%;
   cursor: pointer;
-  background-image: url("${process.env.PUBLIC_URL}assets/background_photo.jpg");
+  background-image: url("${process.env.PUBLIC_URL/}assets/background_photo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 `;
