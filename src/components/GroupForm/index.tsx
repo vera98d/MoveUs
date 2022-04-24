@@ -7,7 +7,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Group, User } from "../../interfaces/dbData";
 import { useAuthState } from "react-firebase-hooks/auth";
 import authService from "../../services/authService";
-import GroupService from "../../services/groupService";
+import groupService from "../../services/groupService";
+import userService from "../../services/userService";
 import { ModalContext } from "../../context/ModalContextProvider";
 import { AddPhoto, AddPhotoInput, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
 
@@ -31,14 +32,13 @@ function GroupForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    GroupService.getUsers()
+    userService.getAllUsers()
       .then((data) => {
         if (data) {
           setUsers(data);
         }
       })
       .catch((err: unknown) => {
-        console.log(err);
         if (err instanceof Error) {
           alert(err.message);
         }
@@ -62,7 +62,7 @@ function GroupForm() {
     };
 
     try {
-      await GroupService.createGroup(group);
+      await groupService.createGroup(group);
       closeModalOnSuccess();
     } catch (err: unknown) {
       setIsSubmitting(false);
