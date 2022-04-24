@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
   AccountText,
-  Button, Container, Form, FormField, FormFieldError, Img, Input, Label, StyledLink, Wrapper,
+  Button, Container, Form, FormField, FormFieldError, Input, Label, StyledLink, Wrapper,
 } from "../../components/Form/styles";
 import { User } from "../../interfaces/dbData";
 import authService from "../../services/authService";
@@ -114,9 +114,8 @@ function Register() {
           <AccountText>
             Already have an account?
             {" "}
-            <StyledLink to="/team-jo-project-4">Login</StyledLink>
+            <StyledLink to="/team-jo-project-4">Login now</StyledLink>
             {" "}
-            now.
           </AccountText>
         </Form>
       </Wrapper>

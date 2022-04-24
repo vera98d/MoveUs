@@ -49,9 +49,8 @@ function Login() {
           <AccountText>
             Not a member yet?
             {" "}
-            <StyledLink to="/team-jo-project-4/register">Register</StyledLink>
+            <StyledLink to="/team-jo-project-4/register">Register now</StyledLink>
             {" "}
-            now
           </AccountText>
         </Form>
       </Wrapper>
