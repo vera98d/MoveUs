@@ -40,7 +40,7 @@ function Register() {
             </FormFieldError>
           </FormField>
           <FormField>
-            <Label>Eneter your surname</Label>
+            <Label>Enter your surname</Label>
             <Input
               type="text"
               autoComplete="family-name"
