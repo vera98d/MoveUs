@@ -10,6 +10,7 @@ export interface User {
   groups: string[];
   ownedGroups: string[];
   activities: string[];
+  avatarUrl?: string;
 }
 
 export interface Group {
@@ -22,7 +23,7 @@ export interface Group {
 }
 
 export interface Activity {
-  id: string;
+  uid: string;
   exercise: string;
   date: Date;
   duration: string;

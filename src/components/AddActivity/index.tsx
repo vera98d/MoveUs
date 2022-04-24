@@ -28,7 +28,7 @@ function AddActivity() {
     activityID.then((d) => {
       userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, d);
     });
-    userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, data.id);
+    userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, data.uid);
     closeModalOnSuccess();
   };
 
