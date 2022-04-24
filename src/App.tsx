@@ -3,10 +3,11 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import GroupRanking from "./pages/GroupRanking";
 import UsersGroups from "./pages/UsersGroups";
-import HomePage from "./pages/HomePage";
+import Home from "./pages/Home";
 import Auth from "./components/Auth";
 import MyUserExercises from "./pages/MyUserExercises";
 import UsersHistory from "./pages/UsersExercises";
+import Workout from "./pages/Workout";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           path="home"
           element={(
             <Auth restricted>
-              <HomePage />
+              <Home />
             </Auth>
           )}
         />
@@ -45,6 +46,14 @@ function App() {
           )}
         />
         <Route
+          path="workout"
+          element={(
+            <Auth restricted>
+              <Workout />
+            </Auth>
+          )}
+        />
+        <Route
           path="groups/:groupId"
           element={(
             <Auth restricted>
@@ -53,7 +62,7 @@ function App() {
           )}
         />
         <Route
-          path="MyUserExercises"
+          path="my-exercises"
           element={(
             <Auth restricted>
               <MyUserExercises />
@@ -61,7 +70,7 @@ function App() {
           )}
         />
         <Route
-          path="UsersExercises"
+          path="user-exercises"
           element={(
             <Auth restricted>
               <UsersHistory />

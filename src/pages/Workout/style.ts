@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-height: 100%;
+height: 100vh;
+background: ${(props) => props.theme.colors.background};
+padding-top: 150px;
 `;
 
 export const Tiles = styled.div`

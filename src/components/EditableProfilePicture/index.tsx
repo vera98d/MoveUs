@@ -20,7 +20,7 @@ const EditableProfilePicture = () => {
     const storageRef = ref(storage, file.name);
     await uploadBytes(storageRef, file);
     const fileUrl = await getDownloadURL(storageRef);
-    await userService.updateUser(user.uid, { avatarUrl: fileUrl });
+    await userService.updateUserAvatar(user.uid, fileUrl);
     setAvatarUrl(fileUrl);
   };
 

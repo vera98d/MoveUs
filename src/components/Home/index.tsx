@@ -17,7 +17,7 @@ function Home() {
             Groups
           </H3>
         </GroupsTile>
-        <ActivityTile onClick={() => navigate("/team-jo-project-4/MyUserExercises")}>
+        <ActivityTile onClick={() => navigate("/team-jo-project-4/my-exercises")}>
           <H3>
             Activity
           </H3>

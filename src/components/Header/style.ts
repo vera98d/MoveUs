@@ -12,6 +12,7 @@ export const Container = styled.div`
 export const Img = styled.img`
   height: 100px;
   align-self: center;
+  cursor: pointer;
 `;
 
 export const RightSection = styled.div`

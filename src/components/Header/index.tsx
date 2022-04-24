@@ -27,7 +27,7 @@ function Header() {
   const [user, loading] = useAuthState(authService.getAuth());
 
   const handleProfilePictureClick = () => {
-    navigate("/team-jo-project-4/MyUserExercises");
+    navigate("/team-jo-project-4/my-exercises");
   };
 
   return (
