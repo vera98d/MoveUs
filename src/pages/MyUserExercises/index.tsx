@@ -1,7 +1,7 @@
 import ExercisesTable from "../../components/ActivityTable";
+import EditableProfilePicture from "../../components/EditableProfilePicture";
 import { Activity } from "../../interfaces/dbData";
-import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
-import image from "./testimg.png";
+import { BackgroundContainer, Wrapper, LineWrapper } from "./styles";
 
 function MyUserExercises() {
   const activities: Activity[] = [
@@ -113,10 +113,9 @@ function MyUserExercises() {
   ];
   return (
     <BackgroundContainer>
-      <Header />
       <Wrapper>
         <div className="UserInformationContainer">
-          <Img src={image} alt="" />
+          <EditableProfilePicture />
           <span>Jurek Jurkowy (nick)</span>
         </div>
         <LineWrapper>

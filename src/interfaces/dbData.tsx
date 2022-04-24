@@ -10,6 +10,7 @@ export interface User {
   groups: string[];
   ownedGroups: string[];
   activities: string[];
+  avatarUrl?: string;
 }
 
 export interface Group {

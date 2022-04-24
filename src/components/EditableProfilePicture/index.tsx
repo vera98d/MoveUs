@@ -1,0 +1,55 @@
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import authService from "../../services/authService";
+import { storage } from "../../services/firebase";
+import userService from "../../services/userService";
+import { AddPhotoInput, StyledPhotoProfile } from "./style";
+
+const EditableProfilePicture = () => {
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [user, loading] = useAuthState(authService.getAuth());
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+    if (!user || !e.target.files) {
+      return;
+    }
+
+    const file = e.target.files[0];
+
+    const storageRef = ref(storage, file.name);
+    await uploadBytes(storageRef, file);
+    const fileUrl = await getDownloadURL(storageRef);
+    await userService.updateUser(user.uid, { avatarUrl: fileUrl });
+    setAvatarUrl(fileUrl);
+  };
+
+  useEffect(() => {
+    if (user) {
+      userService.getUserById(user.uid).then((data) => {
+        if (data && data.avatarUrl) {
+          setAvatarUrl(data.avatarUrl);
+        }
+      });
+    }
+  }, [user]);
+
+  if (!user || loading) {
+    return null;
+  }
+
+  return (
+    <>
+      <label htmlFor="file-input">
+        <StyledPhotoProfile avatarUrl={avatarUrl} />
+      </label>
+      <AddPhotoInput
+        id="file-input"
+        type="file"
+        onChange={handleChange}
+      />
+    </>
+  );
+};
+
+export default EditableProfilePicture;
