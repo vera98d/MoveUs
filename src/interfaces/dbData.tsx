@@ -22,7 +22,7 @@ export interface Group {
 }
 
 export interface Activity {
-  id: string;
+  uid: string;
   exercise: string;
   date: Date;
   duration: string;

@@ -62,16 +62,20 @@ function App() {
           )}
         />
         <Route
-          path="MyUserExercises"
-          element={
-            <MyUserExercises />
-          }
+          path="myUserExercises"
+          element={(
+            <Auth restricted>
+              <MyUserExercises />
+            </Auth>
+          )}
         />
         <Route
-          path="UsersExercises"
-          element={
-            <UsersHistory />
-          }
+          path="usersExercises"
+          element={(
+            <Auth restricted>
+              <UsersHistory />
+            </Auth>
+          )}
         />
       </Route>
     </Routes>

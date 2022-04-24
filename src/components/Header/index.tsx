@@ -10,7 +10,11 @@ const Profile = () => {
     return null;
   }
   return (
-    <PhotoProfile />
+    <a
+      href="myUserExercises"
+    >
+      <PhotoProfile />
+    </a>
   );
 };
 
