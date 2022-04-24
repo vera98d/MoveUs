@@ -21,9 +21,7 @@ export function ModalContextProvider({ children }: Props) {
   }), [displayedComponent]);
 
   return (
-    <ModalContext.Provider
-      value={contextValue}
-    >
+    <ModalContext.Provider value={contextValue}>
       { children }
     </ModalContext.Provider>
   );
