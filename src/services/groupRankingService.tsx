@@ -37,7 +37,7 @@ class GroupRankingService {
       description: doc.data().description,
       members: doc.data().members,
       owner: doc.data().owner,
-      imageUrl: doc.data().img,
+      imageUrl: doc.data().imageUrl,
     }));
   };
 
@@ -53,11 +53,7 @@ class GroupRankingService {
     const userRef = collection(getFirestore(), "users");
     const queryByGroupMembers = query(userRef, where("uid", "in", groupInfo.members));
     const querySnapshot = await getDocs(queryByGroupMembers);
-    console.log("members:", groupInfo.docs);
 
-    querySnapshot.docs.forEach((doc) => {
-      console.log("doc:", doc.data());
-    });
     return querySnapshot.docs.map((doc) => ({
       uid: doc.data().uid,
       name: doc.data().name,
@@ -71,6 +67,23 @@ class GroupRankingService {
       ownedGroups: doc.data().ownedGroups,
       activities: doc.data().activities,
     }));
+  };
+
+  getGroupInfoById = async (groupId: string) => {
+    const groupRef = collection(getFirestore(), "groups");
+    const queryByGroupId = query(
+      groupRef,
+      where(documentId(), "==", groupId),
+    );
+    const ByGroupIdSnapshot = await getDocs(queryByGroupId);
+    return ByGroupIdSnapshot.docs.map((doc) => ({
+      uid: doc.data().uid,
+      name: doc.data().name,
+      description: doc.data().description,
+      members: doc.data().members,
+      owner: doc.data().owner,
+      imageUrl: doc.data().img,
+    }))[0];
   };
 }
 

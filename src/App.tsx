@@ -7,6 +7,8 @@ import MyUserExercises from "./pages/MyUserExercises";
 import UsersHistory from "./pages/UsersExercises";
 import OverallRanking from "./pages/OverallRanking";
 import Workout from "./pages/Workout";
+import UsersGroups from "./pages/UsersGroups";
+import GroupRanking from "./pages/GroupRanking";
 
 function App() {
   return (
@@ -61,12 +63,26 @@ function App() {
           )}
         />
         <Route
-          path="user-exercises"
+          path="user-exercises/:uid"
           element={(
             <Auth restricted>
               <UsersHistory />
             </Auth>
           )}
+        />
+        <Route
+          path="groups"
+          element={(
+            <Auth restricted>
+              <UsersGroups />
+            </Auth>
+
+          )}
+        />
+        <Route
+          path="groups/:groupId"
+          element={(
+            <Auth restricted><GroupRanking /></Auth>)}
         />
       </Route>
     </Routes>
