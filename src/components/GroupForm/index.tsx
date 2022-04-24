@@ -5,11 +5,11 @@ import { storage } from "../../services/firebase";
 import { useContext, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Group, User } from "../../interfaces/dbData";
-import { useAuthState } from "react-firebase-hooks/auth";
-import authService from "../../services/authService";
-import GroupService from "../../services/groupService";
+import groupService from "../../services/groupService";
+import userService from "../../services/userService";
 import { ModalContext } from "../../context/ModalContextProvider";
-import { AddPhoto, AddPhotoInput, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
+import { AddPhoto, AddPhotoInput, Container, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
+import { UserContext } from "../../context/UserContextProvider";
 
 type FormFields = {
   name: string
@@ -23,22 +23,20 @@ function GroupForm() {
   const [preview, setPreview] = useState<string | null>(null);
   const closeModalOnSuccess = () => {
     modalContextValue.setDisplayedComponent(null);
-    alert("yeey! you have created new group");
   };
-  const [user] = useAuthState(authService.getAuth());
+  const { user } = useContext(UserContext);
   const { register, setValue, handleSubmit, formState: { errors }, watch } = useForm<FormFields>();
   const [users, setUsers] = useState<User[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    GroupService.getUsers()
+    userService.getAllUsers()
       .then((data) => {
         if (data) {
           setUsers(data);
         }
       })
       .catch((err: unknown) => {
-        console.log(err);
         if (err instanceof Error) {
           alert(err.message);
         }
@@ -62,7 +60,7 @@ function GroupForm() {
     };
 
     try {
-      await GroupService.createGroup(group);
+      await groupService.createGroup(group);
       closeModalOnSuccess();
     } catch (err: unknown) {
       setIsSubmitting(false);
@@ -88,7 +86,7 @@ function GroupForm() {
   });
 
   return (
-    <>
+    <Container>
       <Header>Create new group</Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormField>
@@ -158,8 +156,7 @@ function GroupForm() {
           <Button disabled={isSubmitting}>Create</Button>
         </FormField>
       </Form>
-    </>
-
+    </Container>
   );
 }
 

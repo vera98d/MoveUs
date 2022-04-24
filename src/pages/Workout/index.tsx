@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import DrawForm from "../../components/DrawForm";
+import { ModalContext } from "../../context/ModalContextProvider";
 import { Container, Exercise, H3, Tiles } from "./style";
 import exerciseService from "../../services/exerciseService";
 
 function Workout() {
-  exerciseService.getRandomExercises(0);
+  const modalContextValue = useContext(ModalContext);
+
   return (
     <Container>
       <Tiles>
@@ -11,7 +15,7 @@ function Workout() {
             List of all exercises
           </H3>
         </Exercise>
-        <Exercise>
+        <Exercise onClick={() => modalContextValue.setDisplayedComponent(<DrawForm />)}>
           <H3>
             Draw exercises
           </H3>

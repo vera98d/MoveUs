@@ -1,17 +1,15 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import authService from "../../services/authService";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContextProvider";
 import { storage } from "../../services/firebase";
 import userService from "../../services/userService";
 import { AddPhotoInput, StyledPhotoProfile } from "./style";
 
 const EditableProfilePicture = () => {
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [user, loading] = useAuthState(authService.getAuth());
+  const { user, setUser, isLoading } = useContext(UserContext);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
-    if (!user || !e.target.files) {
+    if (!user || !e.target.files || !e.target.files[0]) {
       return;
     }
 
@@ -21,27 +19,17 @@ const EditableProfilePicture = () => {
     await uploadBytes(storageRef, file);
     const fileUrl = await getDownloadURL(storageRef);
     await userService.updateUserAvatar(user.uid, fileUrl);
-    setAvatarUrl(fileUrl);
+    setUser({ ...user, avatarUrl: fileUrl });
   };
 
-  useEffect(() => {
-    if (user) {
-      userService.getUserById(user.uid).then((data) => {
-        if (data && data.avatarUrl) {
-          setAvatarUrl(data.avatarUrl);
-        }
-      });
-    }
-  }, [user]);
-
-  if (!user || loading) {
+  if (!user || isLoading) {
     return null;
   }
 
   return (
     <>
       <label htmlFor="file-input">
-        <StyledPhotoProfile avatarUrl={avatarUrl} />
+        <StyledPhotoProfile avatarUrl={user.avatarUrl} />
       </label>
       <AddPhotoInput
         id="file-input"

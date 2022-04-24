@@ -7,6 +7,10 @@ background-repeat: no-repeat;
 background-size: cover;
 background-position: 0% 90%;
 height: 100vh;
+
+@media (max-width: 1170px) {
+  background-position: 30% 90%;
+}
 `;
 
 export const Img = styled.img`
@@ -18,9 +22,17 @@ export const Wrapper = styled.div`
 display: flex;
 justify-content: flex-end;
 height: 100%;
-max-width: 1320px;
+max-width: 1200px;
 margin: 0 auto;
-padding: 0 10px;
+padding: 0 20px;
+
+@media (max-width: 1050px) {
+  justify-content: center;
+}
+
+@media (max-width: 450px) {
+  padding-top: 70px;
+}
 `;
 
 export const Form = styled.form`
@@ -30,8 +42,6 @@ justify-content: center;
 align-items: center;
 align-content: center;
 gap: 20px;
-max-width: 400px;
-width: 100%;
 align-items: stretch;
  `;
 
@@ -80,6 +90,7 @@ display: flex;
   border: none;
   cursor: pointer;
   margin-top: 20px;
+  margin-bottom: 30px;
 
    &:hover{
     box-shadow: 0px 0px 10px ${(props) => props.theme.colors.secondaryUi};
@@ -87,6 +98,7 @@ display: flex;
 `;
 
 export const FormFieldError = styled.span`
+text-align: center;
 color: ${(props) => props.theme.colors.secondaryUi};
 font-family: ${(props) => props.theme.fontFamily.primaryFont};
 font-size: 15px;
