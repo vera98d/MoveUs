@@ -30,8 +30,6 @@ justify-content: center;
 align-items: center;
 align-content: center;
 gap: 20px;
-max-width: 400px;
-width: 100%;
 align-items: stretch;
  `;
 
@@ -80,6 +78,7 @@ display: flex;
   border: none;
   cursor: pointer;
   margin-top: 20px;
+  margin-bottom: 30px;
 
    &:hover{
     box-shadow: 0px 0px 10px ${(props) => props.theme.colors.secondaryUi};
@@ -87,6 +86,7 @@ display: flex;
 `;
 
 export const FormFieldError = styled.span`
+text-align: center;
 color: ${(props) => props.theme.colors.secondaryUi};
 font-family: ${(props) => props.theme.fontFamily.primaryFont};
 font-size: 15px;

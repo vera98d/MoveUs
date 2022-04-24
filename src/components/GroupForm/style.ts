@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import Multiselect from "multiselect-react-dropdown";
 
+export const Container = styled.div`
+  height: 100%;
+  max-height: 650px;
+  max-width: 400px;
+  width: 100%;
+`;
+
 export const GroupDescription = styled.textarea`
 display: flex;
 text-align: left;

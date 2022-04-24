@@ -10,7 +10,7 @@ import authService from "../../services/authService";
 import groupService from "../../services/groupService";
 import userService from "../../services/userService";
 import { ModalContext } from "../../context/ModalContextProvider";
-import { AddPhoto, AddPhotoInput, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
+import { AddPhoto, AddPhotoInput, Container, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
 
 type FormFields = {
   name: string
@@ -24,7 +24,6 @@ function GroupForm() {
   const [preview, setPreview] = useState<string | null>(null);
   const closeModalOnSuccess = () => {
     modalContextValue.setDisplayedComponent(null);
-    alert("yeey! you have created new group");
   };
   const [user] = useAuthState(authService.getAuth());
   const { register, setValue, handleSubmit, formState: { errors }, watch } = useForm<FormFields>();
@@ -88,7 +87,7 @@ function GroupForm() {
   });
 
   return (
-    <>
+    <Container>
       <Header>Create new group</Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormField>
@@ -158,8 +157,7 @@ function GroupForm() {
           <Button disabled={isSubmitting}>Create</Button>
         </FormField>
       </Form>
-    </>
-
+    </Container>
   );
 }
 

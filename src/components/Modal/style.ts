@@ -21,10 +21,6 @@ export const StyledModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 400px;
-  height: 100%;
-  max-height: 650px;
   background-image: linear-gradient(180deg, ${(props) => props.theme.colors.primaryUi} 15%, 
   ${(props) => props.theme.colors.tertiaryUi} 100%);
   border: 2px solid ${(props) => props.theme.colors.secondaryUi};
@@ -68,6 +64,7 @@ export const ModalOverlay = styled.div`
 export const Header = styled.h1`
 display: flex;
 justify-content: center;
+text-align: center;
 margin: 25px;
 font-family: ${(props) => props.theme.fontFamily.primaryFont};
 font-size: 24px;
