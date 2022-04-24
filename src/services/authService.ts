@@ -51,7 +51,7 @@ class AuthService {
         email,
         uid: user.uid,
         authProvider: "local",
-        score: 0,
+        score: 0.0,
         lastActivity: "",
         groups: [],
         ownedGroups: [],

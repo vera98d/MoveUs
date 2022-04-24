@@ -3,35 +3,57 @@ import { Link } from "react-router-dom";
 import BackgroundContainer from "../../components/BackgroundContainer/styles";
 import { Header } from "../../components/Typography/styles";
 import { Tile, TileContainer, TileContent } from "./styles";
-import { groups, user } from "./mockedData";
+import groupRankingService from "../../services/groupRankingService";
+import { Group, User } from "../../interfaces/dbData";
+import { useAuthState } from "react-firebase-hooks/auth";
+import authService from "../../services/authService";
+import userService from "../../services/userService";
 
 const UsersGroups = (): JSX.Element => {
-  const usersGroups: (JSX.Element | undefined)[] = groups.map((group) => {
-    if (group.owner === user.uid) {
-      return (
-        <Link to={`/groups/${group.uid}`} key={group.uid}>
-          <Tile img={group.imageUrl}>
-            <TileContent>
-              {group.name}
-            </TileContent>
-          </Tile>
-        </Link>
-      );
-    }
+  const [usersOwnedGroups, setUsersOwnedGroups] = useState<Group[]>([]);
+  const [groupsUserBelongsTo, setGroupsUserBelongsTo] = useState<Group[]>([]);
+  const [currentUserInfo, setCurrentUserInfo] = useState<User>({});
+  const [currentUser] = useAuthState(authService.getAuth());
+  console.log(usersOwnedGroups)
+  useEffect(() => {
+    userService.getUser(currentUser!.uid)
+      .then((data) => {
+        setCurrentUserInfo(data);
+        groupRankingService.getUsersOwnedGroups(data)
+          .then((usersGroups) => setUsersOwnedGroups(usersGroups));
+      });
+
+
+
+    groupRankingService.getGroupsUserBelongsTo()
+      .then((data) => setGroupsUserBelongsTo(data));
+
+    // console.log("belongs", groupsUserBelongsTo, "owns", usersOwnedGroups);
+    // console.log("uid", currentUser!.uid)
+  }, []);
+
+  const usersGroupsTiles: JSX.Element[] = usersOwnedGroups.map((group: Group) => {
+    return (
+      <Link to={`/team-jo-project-4/groups/${group.uid}`} key={group.uid}>
+        <Tile img={group.imageUrl}>
+          <TileContent>
+            {group.name}
+          </TileContent>
+        </Tile>
+      </Link>
+    );
   });
 
-  const groupsUserBelongsTo: (JSX.Element | undefined)[] = groups.map((group) => {
-    if (group.uid in user.groups && group.owner !== user.uid) {
-      return (
-        <Link to={`/groups/${group.uid}`} key={group.uid}>
-          <Tile img={group.imageUrl}>
-            <TileContent>
-              {group.name}
-            </TileContent>
-          </Tile>
-        </Link>
-      );
-    }
+  const groupsUserBelongsToTiles: JSX.Element[] = groupsUserBelongsTo.map((group: Group) => {
+    return (
+      <Link to={`/team-jo-project-4/groups/${group.uid}`} key={group.uid}>
+        <Tile img={group.imageUrl}>
+          <TileContent>
+            {group.name}
+          </TileContent>
+        </Tile>
+      </Link>
+    );
   });
 
   return (
@@ -43,11 +65,11 @@ const UsersGroups = (): JSX.Element => {
             Create new group
           </TileContent>
         </Tile>
-        {usersGroups}
+        {usersGroupsTiles}
       </TileContainer>
       <Header>The groups I belong to</Header>
       <TileContainer>
-        {groupsUserBelongsTo}
+        {groupsUserBelongsToTiles}
       </TileContainer>
     </BackgroundContainer>
 
