@@ -41,7 +41,6 @@ const ExercisesTable: FC<Props> = ({ userId, isButtonVisible }) => {
 
   const tableBody = () => {
     return currentPageActivities?.map((activity: Activity) => {
-      console.log(activity.uid);
       return (
         <GridLine key={activity.uid}>
           <GridChild key={`exercise${activity.uid}`}>{activity.exercise}</GridChild>

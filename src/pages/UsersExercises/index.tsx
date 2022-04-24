@@ -1,9 +1,10 @@
 import ExercisesTable from "../../components/ActivityTable";
 import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ActivityService from "../../services/activityService";
 import { User } from "../../interfaces/dbData";
+import { Link } from "react-router-dom";
 
 function UsersExercises() {
   const [usersData, setUsersData] = useState<User[]>([]);
@@ -18,7 +19,7 @@ function UsersExercises() {
       return usersData.map((selectedUser) => {
         if (selectedUser.email === "anna@tresko.com") {
           return (
-            <>
+            <Fragment key={selectedUser.uid}>
               <Header />
               <Wrapper>
                 <div className="UserInformationContainer">
@@ -26,10 +27,10 @@ function UsersExercises() {
                   <span className="usernameStyle">{selectedUser.name} {selectedUser.surname}</span>
                 </div>
                 <LineWrapper>
-                  <ExercisesTable key={selectedUser.uid} userId={selectedUser.uid} />
+                  <ExercisesTable userId={selectedUser.uid} />
                 </LineWrapper>
               </Wrapper>
-            </>
+            </Fragment>
           );
         }
       });

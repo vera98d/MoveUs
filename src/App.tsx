@@ -55,15 +55,19 @@ function App() {
         />
         <Route
           path="myUserExercises"
-          element={
-            <MyUserExercises />
-          }
+          element={(
+            <Auth restricted>
+              <MyUserExercises />
+            </Auth>
+          )}
         />
         <Route
           path="usersExercises"
-          element={
-            <UsersHistory />
-          }
+          element={(
+            <Auth restricted>
+              <UsersHistory />
+            </Auth>
+          )}
         />
       </Route>
     </Routes>
