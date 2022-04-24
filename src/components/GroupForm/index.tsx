@@ -8,7 +8,7 @@ import { Group, User } from "../../interfaces/dbData";
 import groupService from "../../services/groupService";
 import userService from "../../services/userService";
 import { ModalContext } from "../../context/ModalContextProvider";
-import { AddPhoto, AddPhotoInput, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
+import { AddPhoto, AddPhotoInput, Container, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
 import { UserContext } from "../../context/UserContextProvider";
 
 type FormFields = {
@@ -86,7 +86,7 @@ function GroupForm() {
   });
 
   return (
-    <>
+    <Container>
       <Header>Create new group</Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormField>
@@ -156,8 +156,7 @@ function GroupForm() {
           <Button disabled={isSubmitting}>Create</Button>
         </FormField>
       </Form>
-    </>
-
+    </Container>
   );
 }
 
