@@ -1,30 +1,43 @@
 import ExercisesTable from "../../components/ActivityTable";
-import { Activity } from "../../interfaces/dbData";
 import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
+import { useEffect, useState } from "react";
+import ActivityService from "../../services/activityService";
+import { User } from "../../interfaces/dbData";
 
 function UsersExercises() {
-  const activities: Activity[] = [
-    {
-      uid: "1",
-      exercise: "pajacyki",
-      duration: "1000",
-      score: 7000,
-      date: new Date(2018, 6, 22),
-    },
-  ];
+  const [usersData, setUsersData] = useState<User[]>([]);
+  useEffect(() => {
+    ActivityService.getUsers()
+      .then((data) => {
+        setUsersData(data);
+      });
+  }, []);
+  const ExceptedUserDataTable = () => {
+    if (usersData !== null) {
+      return usersData.map((selectedUser) => {
+        if (selectedUser.email === "anna@tresko.com") {
+          return (
+            <>
+              <Header />
+              <Wrapper>
+                <div className="UserInformationContainer">
+                  <Img src={image} alt="" />
+                  <span className="usernameStyle">{selectedUser.name} {selectedUser.surname}</span>
+                </div>
+                <LineWrapper>
+                  <ExercisesTable key={selectedUser.uid} userId={selectedUser.uid} />
+                </LineWrapper>
+              </Wrapper>
+            </>
+          );
+        }
+      });
+    }
+  };
   return (
     <BackgroundContainer>
-      <Header />
-      <Wrapper>
-        <div className="UserInformationContainer">
-          <Img src={image} alt="" />
-          <span className="usernameStyle">Jurek Jurkowy (nick)</span>
-        </div>
-        <LineWrapper>
-          <ExercisesTable activities={activities} />
-        </LineWrapper>
-      </Wrapper>
+      {ExceptedUserDataTable()}
     </BackgroundContainer>
   );
 }

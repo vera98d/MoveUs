@@ -1,12 +1,26 @@
 import { getFirestore, collection, query, where, doc, setDoc, getDocs } from "firebase/firestore";
 import { Activity, User } from "../interfaces/dbData";
-import { getUsers } from "./groupService";
 
 class ActivityService {
   db = getFirestore();
 
-  getActivity = async (userId: string | undefined) => {
-    let userRef: any = null;
+  getMyUser = async (userId: string) => {
+    let userRef: any = [];
+    const q = query(collection(this.db, "users"), where("uid", "==", userId));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((document) => {
+      userRef = (document.id, " => ", document.data());
+    });
+    return userRef;
+  };
+
+  getUsers = async () => {
+    const response = await getDocs(collection(getFirestore(), "users"));
+    return response?.docs.map((document) => document.data() as User);
+  };
+
+  getActivity = async (userId: string) => {
+    let userRef: Activity[] = [];
     const q = query(collection(this.db, "users"), where("uid", "==", userId));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((document) => {

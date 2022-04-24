@@ -18,32 +18,36 @@ import ActivityService from "../../services/activityService";
 
 interface Props {
   userId?: string;
-  activities?: Activity[];
   isButtonVisible?: boolean;
 }
 
-const ExercisesTable: FC<Props> = ({ userId, activities, isButtonVisible }) => {
+const ExercisesTable: FC<Props> = ({ userId, isButtonVisible }) => {
   const [currentExercises, setCurrentExercises] = useState<Activity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ExercisesPerPage] = useState(7);
 
   useEffect(() => {
-    ActivityService.getActivity(userId).then((data) => {
-      setCurrentExercises(data);
-    });
+    if (userId != null) {
+      ActivityService.getActivity(userId)
+        .then((data) => {
+          setCurrentExercises(data);
+        });
+    }
   }, []);
+
   const indexOfLastActivity = currentPage * ExercisesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;
   const currentPageActivities = currentExercises.slice(indexOfFirstActivity, indexOfLastActivity);
 
   const tableBody = () => {
     return currentPageActivities?.map((activity: Activity) => {
+      console.log(activity.uid);
       return (
         <GridLine key={activity.uid}>
-          <GridChild>{activity.exercise}</GridChild>
-          <GridChild>{activity.duration}</GridChild>
-          <GridChild>{activity.score}</GridChild>
-          <GridChild>{activity.date.toLocaleString()}
+          <GridChild key={`exercise${activity.uid}`}>{activity.exercise}</GridChild>
+          <GridChild key={`duration${activity.uid}`}>{activity.duration}</GridChild>
+          <GridChild key={`score${activity.uid}`}>{activity.score}</GridChild>
+          <GridChild key={`date${activity.uid}`}>{activity.date.toLocaleString()}
           </GridChild>
         </GridLine>
       );
