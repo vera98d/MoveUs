@@ -1,5 +1,5 @@
 import { getFirestore, collection, query, where, getDocs, addDoc } from "firebase/firestore";
-import { Activity, User } from "../interfaces/dbData";
+import { Activity } from "../interfaces/dbData";
 
 class ActivityService {
   db = getFirestore();

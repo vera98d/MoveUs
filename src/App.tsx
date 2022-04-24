@@ -61,7 +61,7 @@ function App() {
           )}
         />
         <Route
-          path="user-exercises"
+          path="user-exercises/:uid"
           element={(
             <Auth restricted>
               <UsersHistory />

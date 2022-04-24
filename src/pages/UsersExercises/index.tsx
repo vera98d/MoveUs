@@ -4,8 +4,10 @@ import image from "./testimg.png";
 import { Fragment, useEffect, useState } from "react";
 import { User } from "../../interfaces/dbData";
 import userService from "../../services/userService";
+import { useParams } from "react-router-dom";
 
 function UsersExercises() {
+  const { uid } = useParams();
   const [usersData, setUsersData] = useState<User[]>([]);
   useEffect(() => {
     userService.getUsers()
@@ -16,7 +18,7 @@ function UsersExercises() {
   const ExceptedUserDataTable = () => {
     if (usersData !== null) {
       return usersData.map((selectedUser) => {
-        if (selectedUser.email === "ondrej@o2.pl") {
+        if (selectedUser.uid === uid) {
           return (
             <Fragment key={selectedUser.uid}>
               <Header />
