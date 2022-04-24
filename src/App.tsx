@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import Auth from "./components/Auth";
 import MyUserExercises from "./pages/MyUserExercises";
 import UsersHistory from "./pages/UsersExercises";
+import OverallRanking from "./pages/OverallRanking";
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
           element={(
             <Auth restricted>
               <HomePage />
+            </Auth>
+          )}
+        />
+        <Route
+          path="overall-ranking"
+          element={(
+            <Auth restricted>
+              <OverallRanking />
             </Auth>
           )}
         />

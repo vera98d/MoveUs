@@ -1,4 +1,5 @@
 import { collection, doc, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { User } from "../interfaces/dbData";
 
 class UserService {
   db = getFirestore();
@@ -12,6 +13,11 @@ class UserService {
       userRef = doc(this.db, "users", documentID);
     });
     return userRef;
+  };
+
+  getAllUsers = async () => {
+    const response = await getDocs(collection(getFirestore(), "users"));
+    return response?.docs.map((docUser) => docUser.data() as User);
   };
 }
 

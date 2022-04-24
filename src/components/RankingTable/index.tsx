@@ -45,7 +45,7 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
         </GridChild>
 
         <GridChild>
-          {groupUser.lastActivity.toLocaleDateString()}
+          {new Date(groupUser.lastActivity).toLocaleDateString()}
         </GridChild>
       </GridLine>
     );
