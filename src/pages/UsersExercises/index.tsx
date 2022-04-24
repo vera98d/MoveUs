@@ -2,13 +2,13 @@ import ExercisesTable from "../../components/ActivityTable";
 import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
 import { Fragment, useEffect, useState } from "react";
-import ActivityService from "../../services/activityService";
+import userService from "../../services/activityService";
 import { User } from "../../interfaces/dbData";
 
 function UsersExercises() {
   const [usersData, setUsersData] = useState<User[]>([]);
   useEffect(() => {
-    ActivityService.getUsers()
+    userService.getUsers()
       .then((data) => {
         setUsersData(data);
       });
