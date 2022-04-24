@@ -12,6 +12,7 @@ export const Container = styled.div`
 export const Img = styled.img`
   height: 100px;
   align-self: center;
+  cursor: pointer;
 `;
 
 export const RightSection = styled.div`
@@ -31,15 +32,4 @@ export const Logout = styled.span`
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   font-weight: bold;
   color: black;
-`;
-
-export const PhotoProfile = styled.div`
-  width: 40px;
-  height: 40px;
-  border: 2px solid ${(props) => props.theme.colors.secondaryUi};
-  border-radius: 50%;
-  cursor: pointer;
-  background-image: url("${process.env.PUBLIC_URL}/assets/background_photo.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
 `;

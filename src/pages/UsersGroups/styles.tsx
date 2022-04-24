@@ -16,7 +16,6 @@ export const Tile = styled.div<TileProps>`
     border: ${(props) => props.theme.border};
     border-radius: 25px;
     cursor: pointer;
-
     &::before{
         content: "";
         display: block;

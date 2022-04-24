@@ -23,7 +23,6 @@ class AuthService {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
     } catch (err: unknown) {
-      console.error(err);
       if (err instanceof Error) {
         alert(err.message);
       }
@@ -51,14 +50,13 @@ class AuthService {
         email,
         uid: user.uid,
         authProvider: "local",
-        score: 0,
+        score: 0.0,
         lastActivity: "",
         groups: [],
         ownedGroups: [],
         activities: [],
       });
     } catch (err: unknown) {
-      console.error(err);
       if (err instanceof Error) {
         alert(err.message);
       }
