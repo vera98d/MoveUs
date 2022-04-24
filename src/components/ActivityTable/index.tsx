@@ -52,7 +52,7 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
           <GridChild key={`exercise${activity.uid}`}>{activity.exercise}</GridChild>
           <GridChild key={`duration${activity.uid}`}>{activity.duration}</GridChild>
           <GridChild key={`score${activity.uid}`}>{activity.score}</GridChild>
-          <GridChild key={`date${activity.uid}`}>{activity.date.toLocaleString()}
+          <GridChild key={`date${activity.uid}`}>{new Date(activity.date).toLocaleDateString()}
           </GridChild>
         </GridLine>
       );
