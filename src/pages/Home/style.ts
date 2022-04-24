@@ -172,6 +172,7 @@ export const H3 = styled.div`
   font-size: 42px;
   font-weight: bold;
   text-align: center;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
 
   @media (max-width: 1100px) {
     font-size: 32px
