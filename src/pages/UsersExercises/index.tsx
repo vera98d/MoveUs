@@ -4,7 +4,6 @@ import image from "./testimg.png";
 import { Fragment, useEffect, useState } from "react";
 import ActivityService from "../../services/activityService";
 import { User } from "../../interfaces/dbData";
-import { Link } from "react-router-dom";
 
 function UsersExercises() {
   const [usersData, setUsersData] = useState<User[]>([]);

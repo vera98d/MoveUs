@@ -4,7 +4,7 @@ import { Activity, User } from "../interfaces/dbData";
 class ActivityService {
   db = getFirestore();
 
-  getMyUser = async (userId: string) => {
+  getMyUser = async (userId: string): Promise<User> => {
     let userRef: any = [];
     const q = query(collection(this.db, "users"), where("uid", "==", userId));
     const querySnapshot = await getDocs(q);
