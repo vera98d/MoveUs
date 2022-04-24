@@ -2,9 +2,9 @@ import ExercisesTable from "../../components/ActivityTable";
 import { BackgroundContainer, Wrapper, LineWrapper } from "./styles";
 import { useAuthState } from "react-firebase-hooks/auth";
 import authService from "../../services/authService";
-import activityService from "../../services/activityService";
 import { useEffect, useState } from "react";
 import EditableProfilePicture from "../../components/EditableProfilePicture";
+import userService from "../../services/userService";
 
 function MyUserExercises() {
   const [user, loading] = useAuthState(authService.getAuth());
@@ -13,7 +13,7 @@ function MyUserExercises() {
     if (!user) {
       return;
     }
-    activityService.getMyUser(user.uid).then((data) => {
+    userService.getUser(user.uid).then((data) => {
       const username = `${data.name} ${data.surname}`;
       setUserTitle(username);
     });

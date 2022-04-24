@@ -16,7 +16,7 @@ import {
   PageButton,
   SiteSetterWrapper,
 } from "./styles";
-import ActivityService from "../../services/activityService";
+import activityService from "../../services/activityService";
 
 interface Props {
   userId?: string;
@@ -30,9 +30,10 @@ const ExercisesTable: FC<Props> = ({ userId, isButtonVisible }) => {
 
   useEffect(() => {
     if (userId != null) {
-      ActivityService.getActivity(userId)
+      activityService.getActivity(userId)
         .then((data) => {
-          setCurrentExercises(data);
+          const newActivities = data;
+          setCurrentExercises(newActivities);
         });
     }
   }, []);

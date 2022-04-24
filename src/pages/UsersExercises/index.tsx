@@ -2,8 +2,8 @@ import ExercisesTable from "../../components/ActivityTable";
 import { Img, BackgroundContainer, Header, Wrapper, LineWrapper } from "./styles";
 import image from "./testimg.png";
 import { Fragment, useEffect, useState } from "react";
-import userService from "../../services/activityService";
 import { User } from "../../interfaces/dbData";
+import userService from "../../services/userService";
 
 function UsersExercises() {
   const [usersData, setUsersData] = useState<User[]>([]);
@@ -16,7 +16,7 @@ function UsersExercises() {
   const ExceptedUserDataTable = () => {
     if (usersData !== null) {
       return usersData.map((selectedUser) => {
-        if (selectedUser.email === "anna@tresko.com") {
+        if (selectedUser.email === "ondrej@o2.pl") {
           return (
             <Fragment key={selectedUser.uid}>
               <Header />

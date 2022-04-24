@@ -4,6 +4,11 @@ import { User } from "../interfaces/dbData";
 class UserService {
   db = getFirestore();
 
+  getUsers = async () => {
+    const response = await getDocs(collection(getFirestore(), "users"));
+    return response?.docs.map((document) => document.data() as User);
+  };
+
   getUser = async (userId: string): Promise<User> => {
     const q = query(collection(this.db, "users"), where("uid", "==", userId));
     const querySnapshot = await getDocs(q);
