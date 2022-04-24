@@ -1,23 +1,38 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Header, ModalLabel } from "../Modal/style";
+import { ModalContext } from "../../context/ModalContextProvider";
 import {
-  AccountText,
-  Button, Container, Form, FormField, FormFieldError, Label, Img, Input, StyledLink, Wrapper,
+  Button, Form, FormField, FormFieldError,
 } from "../Form/styles";
+
 import { Activity, Exercise } from "../../interfaces/dbData";
 import authService from "../../services/authService";
 import { useAuthState } from "react-firebase-hooks/auth";
 import activityService from "../../services/activityService";
 import exerciseService from "../../services/exerciseService";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import userService from "../../services/userService";
+import { DocumentData } from "firebase/firestore";
 
 function AddActivity() {
+  const modalContextValue = useContext(ModalContext);
+  const closeModalOnSuccess = () => {
+    modalContextValue.setDisplayedComponent(null);
+    alert("You've added a new activity!");
+  };
   const [user] = useAuthState(authService.getAuth());
   const { register, handleSubmit,
     setValue, getValues, formState: { errors } } = useForm<Activity>();
-  const onSubmit: SubmitHandler<Activity> = (data) => activityService
-    .insert(data, user!.uid);
-  const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
-  const [exercisesState, setExercisesState] = useState<any>([]);
+  const onSubmit: SubmitHandler<Activity> = (data) => {
+    const activityID : Promise<string | undefined> = activityService.insert(data);
+    activityID.then((d) => {
+      userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, d);
+    });
+    userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, data.id);
+    closeModalOnSuccess();
+  };
+
+  const [exercisesState, setExercisesState] = useState<DocumentData>([]);
   let selectedExercise: Exercise;
 
   useEffect(() => {
@@ -32,9 +47,9 @@ function AddActivity() {
     return convertedSeconds;
   }
 
-  function handleExerciseChange(event: any) {
+  function handleExerciseChange(event: React.ChangeEvent<HTMLSelectElement>) {
     exercisesState.forEach((element: Exercise) => {
-      if (element.name === event.target.value) {
+      if (element.name === event.currentTarget.value) {
         selectedExercise = element;
       }
     });
@@ -44,7 +59,7 @@ function AddActivity() {
     }
   }
 
-  function handleDurationChange(event: any) {
+  function handleDurationChange(event: React.ChangeEvent<HTMLInputElement>) {
     const durationSeconds: number = convertToSeconds(event.target.value);
     if (selectedExercise && event.target.value) {
       setValue("score", selectedExercise.weight * durationSeconds);
@@ -52,17 +67,18 @@ function AddActivity() {
   }
 
   return (
-    <Wrapper>
-      <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
+    <>
+      <Header> Add activity</Header>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <FormField>
-          <Label>Select exercise.</Label>
+          <ModalLabel>Select exercise.</ModalLabel>
           <select
             {...register("exercise", { required: true })}
             onChange={handleExerciseChange}
           >
             <option value=""> </option>
-            { exercisesState.map((e: any) => {
-              return <option value={e.name}>{e.name}, weight: {e.weight}</option>;
+            { exercisesState.map((e: Exercise) => {
+              return <option key={e.name} value={e.name}>{e.name}, weight: {e.weight}</option>;
             })}
           </select>
           <FormFieldError>
@@ -70,7 +86,7 @@ function AddActivity() {
           </FormFieldError>
         </FormField>
         <FormField>
-          <Label>Enter date of the activity.</Label>
+          <ModalLabel>Enter date of the activity.</ModalLabel>
           <input
             type="date"
             {...register("date", { required: true })}
@@ -80,7 +96,7 @@ function AddActivity() {
           </FormFieldError>
         </FormField>
         <FormField>
-          <Label>Select duration of the exercise..</Label>
+          <ModalLabel>Select duration of the exercise</ModalLabel>
           <input
             type="time"
             {...register("duration", { required: true })}
@@ -90,12 +106,13 @@ function AddActivity() {
             {errors.exercise?.type === "required" && "Please enter duration of your activity."}
           </FormFieldError>
         </FormField>
+        <ModalLabel>Points gained:</ModalLabel>
         <FormField>
           <input readOnly {...register("score", { required: true })} />
         </FormField>
         <Button>Submit activity</Button>
       </Form>
-    </Wrapper>
+    </>
   );
 }
 
