@@ -2,6 +2,9 @@ import { FC, useState } from "react";
 import { GridContainer, GridLine, GridChild, GridHeader, EmptyGridLine } from "./styles";
 import { User } from "../../interfaces/dbData";
 import RankingTablePagination from "../RankingTablePagination";
+import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import authService from "../../services/authService";
 
 interface Props {
   groupUsers: User[];
@@ -28,6 +31,15 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
     firstUsernIndex,
     lastUserIndex,
   );
+  const [user] = useAuthState(authService.getAuth());
+  const navigate = useNavigate();
+  const redirectToProfile = (groupUser: UsersWithRankPosition) => {
+    if (user?.email === groupUser.email) {
+      navigate("/team-jo-project-4/my-exercises");
+    } else {
+      navigate(`/team-jo-project-4/user-exercises/${groupUser.uid}`);
+    }
+  };
 
   const rankingTable: JSX.Element[] = currentRankPositions.map((groupUser) => {
     return (
@@ -36,7 +48,7 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
           {groupUser.rankPosition}
         </GridChild>
 
-        <GridChild>
+        <GridChild onClick={() => { redirectToProfile(groupUser); }}>
           {groupUser.name} {groupUser.surname}
         </GridChild>
 
