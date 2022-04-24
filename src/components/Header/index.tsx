@@ -1,29 +1,13 @@
-import { Container, Img, Logout, PhotoProfile, RightButton, RightSection } from "./style";
+import { Container, Img, Logout, RightButton, RightSection } from "./style";
 import authService from "../../services/authService";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-
-const Profile = () => {
-  const [user, loading] = useAuthState(authService.getAuth());
-  if (!user || loading) {
-    return null;
-  }
-  return (
-    <a
-      href="myUserExercises"
-    >
-      <PhotoProfile />
-    </a>
-  );
-};
+import ProfilePicture from "../ProfilePicture";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
-  const [user, loading] = useAuthState(authService.getAuth());
-  if (!user || loading) {
-    return null;
-  }
+
   const handleButtonClick = () => {
     signOut(authService.getAuth()).then(() => {
       navigate("/team-jo-project-4");
@@ -40,13 +24,21 @@ const LogoutButton = () => {
 
 function Header() {
   const navigate = useNavigate();
+  const [user, loading] = useAuthState(authService.getAuth());
+
+  const handleProfilePictureClick = () => {
+    navigate("/team-jo-project-4/my-exercises");
+  };
+
   return (
     <Container>
       <Img src={`${process.env.PUBLIC_URL}/assets/logo.png`} onClick={() => navigate("/team-jo-project-4/home")} />
-      <RightSection>
-        <Profile />
-        <LogoutButton />
-      </RightSection>
+      {user && !loading && (
+        <RightSection>
+          <ProfilePicture userId={user.uid} onClick={handleProfilePictureClick} />
+          <LogoutButton />
+        </RightSection>
+      )}
     </Container>
   );
 }

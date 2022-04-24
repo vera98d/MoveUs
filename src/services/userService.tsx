@@ -1,4 +1,4 @@
-import { collection, getDocs, getFirestore, query, where, doc, setDoc, DocumentReference } from "firebase/firestore";
+import { collection, getDocs, getFirestore, query, where, updateDoc, doc, setDoc, DocumentReference } from "firebase/firestore";
 import { User } from "../interfaces/dbData";
 
 class UserService {
@@ -81,6 +81,28 @@ class UserService {
           setDoc(d, { activities: newActivities }, { merge: true });
         });
       });
+    }
+  };
+
+  getUserById = async (userId: string) => {
+    const q = query(collection(this.db, "users"), where("uid", "==", userId));
+    const querySnapshot = await getDocs(q);
+    const user = querySnapshot.docs.find((d) => d.data().uid === userId);
+
+    if (user) {
+      return user.data() as User;
+    }
+
+    return undefined;
+  };
+
+  updateUserAvatar = async (userId: string, avatarUrl: string) => {
+    const q = query(collection(this.db, "users"), where("uid", "==", userId));
+    const querySnapshot = await getDocs(q);
+    const user = querySnapshot.docs.find((d) => d.data().uid === userId);
+
+    if (user) {
+      await updateDoc(user.ref, { avatarUrl });
     }
   };
 }
