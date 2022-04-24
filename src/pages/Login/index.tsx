@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAuthState } from "react-firebase-hooks/auth";
 import {
   AccountText,
   Button, Container, Form, FormField, FormFieldError, Img, Input, Label, StyledLink, Wrapper,
@@ -13,8 +12,6 @@ function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormFields>();
   const onSubmit: SubmitHandler<FormFields> = (data) => authService
     .logInWithEmailAndPassword(data.email, data.password);
-  const [user] = useAuthState(authService.getAuth());
-  console.log(user); // TODO remove later when protected routes implemented
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
 
   return (

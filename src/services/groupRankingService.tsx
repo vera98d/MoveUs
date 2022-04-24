@@ -1,8 +1,5 @@
-import authService from "./authService";
 import { getFirestore, collection, getDocs, query, where, documentId } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Group, User } from "../interfaces/dbData";
+import { User } from "../interfaces/dbData";
 
 class GroupRankingService {
   getGroupsUserBelongsTo = async (currentUserInfo: User) => {

@@ -9,7 +9,7 @@ const EditableProfilePicture = () => {
   const { user, setUser, isLoading } = useContext(UserContext);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
-    if (!user || !e.target.files) {
+    if (!user || !e.target.files || !e.target.files[0]) {
       return;
     }
 
