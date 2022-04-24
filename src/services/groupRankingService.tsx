@@ -32,6 +32,7 @@ class GroupRankingService {
       groupRef,
       where(documentId(), "in", currentUserInfo.ownedGroups),
     );
+    console.log("userinfo", currentUserInfo)
     const usersGroupsSnapshot = await getDocs(queryUsersGroups);
 
     return usersGroupsSnapshot.docs.map((doc) => ({

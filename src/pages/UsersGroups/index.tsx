@@ -4,7 +4,7 @@ import BackgroundContainer from "../../components/BackgroundContainer/styles";
 import { Header } from "../../components/Typography/styles";
 import { Tile, TileContainer, TileContent } from "./styles";
 import groupRankingService from "../../services/groupRankingService";
-import { Group, User } from "../../interfaces/dbData";
+import { Group } from "../../interfaces/dbData";
 import { useAuthState } from "react-firebase-hooks/auth";
 import authService from "../../services/authService";
 import userService from "../../services/userService";
@@ -12,24 +12,17 @@ import userService from "../../services/userService";
 const UsersGroups = (): JSX.Element => {
   const [usersOwnedGroups, setUsersOwnedGroups] = useState<Group[]>([]);
   const [groupsUserBelongsTo, setGroupsUserBelongsTo] = useState<Group[]>([]);
-  const [currentUserInfo, setCurrentUserInfo] = useState<User>({});
   const [currentUser] = useAuthState(authService.getAuth());
-  console.log(usersOwnedGroups)
+
   useEffect(() => {
     userService.getUser(currentUser!.uid)
       .then((data) => {
-        setCurrentUserInfo(data);
         groupRankingService.getUsersOwnedGroups(data)
-          .then((usersGroups) => setUsersOwnedGroups(usersGroups));
+          .then((groups) => setUsersOwnedGroups(groups));
+
+        groupRankingService.getGroupsUserBelongsTo(data)
+          .then((groups) => setGroupsUserBelongsTo(groups));
       });
-
-
-
-    groupRankingService.getGroupsUserBelongsTo()
-      .then((data) => setGroupsUserBelongsTo(data));
-
-    // console.log("belongs", groupsUserBelongsTo, "owns", usersOwnedGroups);
-    // console.log("uid", currentUser!.uid)
   }, []);
 
   const usersGroupsTiles: JSX.Element[] = usersOwnedGroups.map((group: Group) => {
