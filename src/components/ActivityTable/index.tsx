@@ -19,11 +19,12 @@ import {
 import activityService from "../../services/activityService";
 
 interface Props {
+  userScore: number;
   userId?: string;
   isButtonVisible?: boolean;
 }
 
-const ExercisesTable: FC<Props> = ({ userId, isButtonVisible }) => {
+const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
   const [currentExercises, setCurrentExercises] = useState<Activity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ExercisesPerPage] = useState(7);
@@ -87,7 +88,7 @@ const ExercisesTable: FC<Props> = ({ userId, isButtonVisible }) => {
       </GridContainer>
       <ScoreLine>
         {isButtonVisible && <PageButton className="buttonFontSize" type="button" onClick={() => setDisplayedComponent(<AddActivity />)}>Add activity</PageButton> }
-        <p className="sumPosition">Total Score: 1000</p>
+        <p className="sumPosition">Total Score: {userScore}</p>
       </ScoreLine>
       <PaginationWrapper>
         <SiteSetterWrapper>

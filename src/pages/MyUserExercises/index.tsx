@@ -7,6 +7,7 @@ import EditableProfilePicture from "../../components/EditableProfilePicture";
 import userService from "../../services/userService";
 
 function MyUserExercises() {
+  const [userScore, setUserScore] = useState<number>(0);
   const [user, loading] = useAuthState(authService.getAuth());
   const [userTitle, setUserTitle] = useState("");
   useEffect(() => {
@@ -16,6 +17,7 @@ function MyUserExercises() {
     userService.getUser(user.uid).then((data) => {
       const username = `${data.name} ${data.surname}`;
       setUserTitle(username);
+      setUserScore(data.score);
     });
   }, [user]);
 
@@ -31,7 +33,7 @@ function MyUserExercises() {
           <span>{userTitle}</span>
         </div>
         <LineWrapper>
-          <ExercisesTable userId={user.uid} isButtonVisible />
+          <ExercisesTable userId={user.uid} isButtonVisible userScore={userScore} />
         </LineWrapper>
       </Wrapper>
     </BackgroundContainer>

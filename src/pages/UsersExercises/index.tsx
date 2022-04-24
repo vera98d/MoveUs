@@ -26,7 +26,7 @@ function UsersExercises() {
                   <span className="usernameStyle">{selectedUser.name} {selectedUser.surname}</span>
                 </div>
                 <LineWrapper>
-                  <ExercisesTable userId={selectedUser.uid} />
+                  <ExercisesTable userId={selectedUser.uid} userScore={selectedUser.score} />
                 </LineWrapper>
               </Wrapper>
             </Fragment>
