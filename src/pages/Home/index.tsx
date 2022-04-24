@@ -14,7 +14,7 @@ function HomePage() {
     <Container>
       <Wrapper>
         <Tiles>
-          <RankTile>
+          <RankTile onClick={() => navigate("/team-jo-project-4/overall-ranking")}>
             <H3>
               Overall ranking
             </H3>
