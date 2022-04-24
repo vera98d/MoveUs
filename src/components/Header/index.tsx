@@ -1,9 +1,10 @@
 import { Container, Img, Logout, RightButton, RightSection } from "./style";
 import authService from "../../services/authService";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import ProfilePicture from "../ProfilePicture";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContextProvider";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const LogoutButton = () => {
 
 function Header() {
   const navigate = useNavigate();
-  const [user, loading] = useAuthState(authService.getAuth());
+  const { user, isLoading } = useContext(UserContext);
 
   const handleProfilePictureClick = () => {
     navigate("/team-jo-project-4/my-exercises");
@@ -33,9 +34,9 @@ function Header() {
   return (
     <Container>
       <Img src={`${process.env.PUBLIC_URL}/assets/logo.png`} onClick={() => navigate("/team-jo-project-4/home")} />
-      {user && !loading && (
+      {user && !isLoading && (
         <RightSection>
-          <ProfilePicture userId={user.uid} onClick={handleProfilePictureClick} />
+          <ProfilePicture avatarUrl={user.avatarUrl} onClick={handleProfilePictureClick} />
           <LogoutButton />
         </RightSection>
       )}
