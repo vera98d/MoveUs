@@ -84,11 +84,10 @@ class UserService {
     }
   };
 
-
   getAllUsers = async () => {
     const response = await getDocs(collection(getFirestore(), "users"));
     return response?.docs.map((docUser) => docUser.data() as User);
-  }
+  };
 
   getUserById = async (userId: string) => {
     const q = query(collection(this.db, "users"), where("uid", "==", userId));

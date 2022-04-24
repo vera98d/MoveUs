@@ -40,7 +40,7 @@ class ActivityService {
       });
       return res.id;
     } catch (e) {
-      console.error("Error adding document: ", e);
+      alert(e);
     }
   };
 }
