@@ -35,6 +35,10 @@ cursor: pointer;
     max-width: 300px;
     padding: 0 10px;
   }
+
+  @media (max-width: 400px) {
+    width: 200px;
+  }
 `;
 
 export const H3 = styled.div`
@@ -47,5 +51,9 @@ font-weight: bold;
 font-family: ${(props) => props.theme.fontFamily.primaryFont};
 text-align: center;
 color: ${(props) => props.theme.colors.white};
+}
+
+@media (max-width: 400px) {
+  font-size: 32px;
 }
 `;
