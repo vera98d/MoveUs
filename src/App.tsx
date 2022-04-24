@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import GroupRanking from "./pages/GroupRanking";
-import UsersGroups from "./pages/UsersGroups";
 import Home from "./pages/Home";
 import Auth from "./components/Auth";
 import MyUserExercises from "./pages/MyUserExercises";
@@ -38,26 +36,10 @@ function App() {
           )}
         />
         <Route
-          path="groups"
-          element={(
-            <Auth restricted>
-              <UsersGroups />
-            </Auth>
-          )}
-        />
-        <Route
           path="workout"
           element={(
             <Auth restricted>
               <Workout />
-            </Auth>
-          )}
-        />
-        <Route
-          path="groups/:groupId"
-          element={(
-            <Auth restricted>
-              <GroupRanking />
             </Auth>
           )}
         />
