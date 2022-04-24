@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-height: 100%;
-padding-top: 100px;
+background-image: linear-gradient(#2A95FF, #D6E7FF);
+height: 100vh;
+padding-top: 150px;
+`;
+
+export const Wrapper = styled.div`
+width: 60vw;
+margin: 0 auto;
 `;
 
 export const Tiles = styled.div`
