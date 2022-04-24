@@ -19,7 +19,7 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(4);
+  const [usersPerPage] = useState(8);
 
   const lastUserIndex = currentPage * usersPerPage;
   const firstUsernIndex = lastUserIndex - usersPerPage;
@@ -45,7 +45,7 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
         </GridChild>
 
         <GridChild>
-          {groupUser.lastActivity.toLocaleDateString()}
+          {new Date(groupUser.lastActivity).toLocaleDateString()}
         </GridChild>
       </GridLine>
     );

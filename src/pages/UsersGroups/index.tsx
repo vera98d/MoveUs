@@ -8,20 +8,23 @@ import { Group } from "../../interfaces/dbData";
 import { useAuthState } from "react-firebase-hooks/auth";
 import authService from "../../services/authService";
 import userService from "../../services/userService";
+import Spinner from "../../components/Auth/style";
 
 const UsersGroups = (): JSX.Element => {
   const [usersOwnedGroups, setUsersOwnedGroups] = useState<Group[]>([]);
   const [groupsUserBelongsTo, setGroupsUserBelongsTo] = useState<Group[]>([]);
   const [currentUser] = useAuthState(authService.getAuth());
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     userService.getUser(currentUser!.uid)
       .then((data) => {
         groupRankingService.getUsersOwnedGroups(data)
           .then((groups) => setUsersOwnedGroups(groups));
 
         groupRankingService.getGroupsUserBelongsTo(data)
-          .then((groups) => setGroupsUserBelongsTo(groups));
+          .then((groups) => setGroupsUserBelongsTo(groups)).then(() => setLoading(false));
       });
   }, []);
 
@@ -49,6 +52,24 @@ const UsersGroups = (): JSX.Element => {
     );
   });
 
+  if (loading) {
+    return (
+      <Spinner>
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+      </Spinner>
+    );
+  }
   return (
     <BackgroundContainer>
       <Header>My groups</Header>
