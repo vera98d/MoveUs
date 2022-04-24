@@ -1,7 +1,5 @@
-import { collection, getDocs, increment, getDoc, getDocsFromServer, getFirestore, query, where, doc, setDoc, Firestore, updateDoc } from "firebase/firestore";
+import { collection, getDocs, getFirestore, query, where, doc, setDoc } from "firebase/firestore";
 import { User } from "../interfaces/dbData";
-import { useAuthState } from "react-firebase-hooks/auth";
-import authService from "./authService";
 
 class UserService {
   db = getFirestore();
@@ -59,7 +57,8 @@ class UserService {
     }
     if (group) {
       this.getUser(uid).then((data) => {
-        const newGroups = data.groups.push(group);
+        const newGroups = data.groups;
+        newGroups.push(group);
         this.getRef(uid).then((d) => {
           setDoc(d, { groups: newGroups }, { merge: true });
         });
@@ -67,7 +66,8 @@ class UserService {
     }
     if (ownedGroups) {
       this.getUser(uid).then((data) => {
-        const newOwnedGroups = data.ownedGroups.push(ownedGroups);
+        const newOwnedGroups = data.ownedGroups;
+        newOwnedGroups.push(ownedGroups);
         this.getRef(uid).then((d) => {
           setDoc(d, { ownedGroups: newOwnedGroups }, { merge: true });
         });
@@ -75,7 +75,8 @@ class UserService {
     }
     if (activities) {
       this.getUser(uid).then((data) => {
-        const newActivities = data.activities.push(activities);
+        const newActivities = data.activities;
+        newActivities.push(activities);
         this.getRef(uid).then((d) => {
           setDoc(d, { activities: newActivities }, { merge: true });
         });

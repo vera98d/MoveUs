@@ -3,19 +3,27 @@ import {
   AccountText,
   Button, Container, Form, FormField, FormFieldError, Label, Img, Input, StyledLink, Wrapper,
 } from "../Form/styles";
+
 import { Activity, Exercise } from "../../interfaces/dbData";
 import authService from "../../services/authService";
 import { useAuthState } from "react-firebase-hooks/auth";
 import activityService from "../../services/activityService";
 import exerciseService from "../../services/exerciseService";
 import { useEffect, useState } from "react";
+import userService from "../../services/userService";
 
 function AddActivity() {
   const [user] = useAuthState(authService.getAuth());
   const { register, handleSubmit,
     setValue, getValues, formState: { errors } } = useForm<Activity>();
-  const onSubmit: SubmitHandler<Activity> = (data) => activityService
-    .insert(data, user!.uid);
+  const onSubmit: SubmitHandler<Activity> = (data) => {
+    const activityID : Promise<string | undefined> = activityService.insert(data);
+    activityID.then((d) => {
+      userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, d);
+    });
+    userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, data.id);
+  };
+
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
   const [exercisesState, setExercisesState] = useState<any>([]);
   let selectedExercise: Exercise;
