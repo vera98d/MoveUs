@@ -8,8 +8,8 @@ class ExerciseService {
     return querySnapshot.docs.map((doc) => ({ ...doc.data() }));
   };
 
-  getRandomExercises = async (number: number) => {
-    function shuffleArray(array: Exercise[]) {
+  getRandomExercises = async (number: number): Promise<Exercise[]> => {
+    function shuffleArray(array: any) {
       const newArray = array;
       for (let i = newArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -17,10 +17,17 @@ class ExerciseService {
       }
       return newArray;
     }
-    const array = this.getAll().then((data) => {
-      console.log(data);
-      // const newArray = shuffleArray(data);
+    const exerciseArray: Promise<Exercise[]> = this.getAll().then((data) => {
+      let newNumber: number;
+      if (number > data.length) {
+        newNumber = data.length;
+      } else {
+        newNumber = number;
+      }
+      const array: Exercise[] = shuffleArray(data).slice(0, newNumber);
+      return array;
     });
+    return exerciseArray;
   };
 }
 export default new ExerciseService();
