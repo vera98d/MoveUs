@@ -22,7 +22,7 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(4);
+  const [usersPerPage] = useState(8);
 
   const lastUserIndex = currentPage * usersPerPage;
   const firstUsernIndex = lastUserIndex - usersPerPage;

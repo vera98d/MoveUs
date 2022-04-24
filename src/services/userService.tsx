@@ -14,7 +14,7 @@ class UserService {
     const querySnapshot = await getDocs(q);
 
     return querySnapshot.docs.map((docu) => ({
-      uid: docu.id,
+      uid: docu.data().uid,
       name: docu.data().name,
       surname: docu.data().surname,
       login: docu.data().login,
