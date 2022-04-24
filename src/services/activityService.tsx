@@ -1,4 +1,4 @@
-import { getFirestore, collection, doc, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { Activity } from "../interfaces/dbData";
 
 class ActivityService {

@@ -1,10 +1,10 @@
-import { collection, getDocs, getFirestore, query, where, doc, setDoc } from "firebase/firestore";
+import { collection, getDocs, getFirestore, query, where, doc, setDoc, DocumentReference } from "firebase/firestore";
 import { User } from "../interfaces/dbData";
 
 class UserService {
   db = getFirestore();
 
-  getUser = async (userId: string | undefined): Promise<User> => {
+  getUser = async (userId: string): Promise<User> => {
     const q = query(collection(this.db, "users"), where("uid", "==", userId));
     const querySnapshot = await getDocs(q);
 
@@ -23,15 +23,15 @@ class UserService {
     }))[0];
   };
 
-  getRef = async (userId: string | undefined) => {
-    let userRef: any = null;
+  getRef = async (userId: string) => {
+    let userRef: DocumentReference;
     const q = query(collection(this.db, "users"), where("uid", "==", userId));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((document) => {
       const documentID = document.id;
       userRef = doc(this.db, "users", documentID);
     });
-    return userRef;
+    return userRef!;
   };
 
   updateUser = async (
