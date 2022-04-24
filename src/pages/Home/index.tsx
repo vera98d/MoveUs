@@ -1,12 +1,13 @@
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import authService from "../../services/authService";
+import { UserContext } from "../../context/UserContextProvider";
 import { ActivityTile, Container, GroupsTile, H3, RankTile, Tiles, WorkoutTile, Wrapper } from "./style";
 
 function HomePage() {
   const navigate = useNavigate();
-  const [user, loading] = useAuthState(authService.getAuth());
-  if (loading || !user) {
+  const { user, isLoading } = useContext(UserContext);
+
+  if (isLoading || !user) {
     return null;
   }
 
@@ -14,7 +15,7 @@ function HomePage() {
     <Container>
       <Wrapper>
         <Tiles>
-          <RankTile>
+          <RankTile onClick={() => navigate("/team-jo-project-4/overall-ranking")}>
             <H3>
               Overall ranking
             </H3>

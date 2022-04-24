@@ -6,13 +6,12 @@ import {
 } from "../Form/styles";
 
 import { Activity, Exercise } from "../../interfaces/dbData";
-import authService from "../../services/authService";
-import { useAuthState } from "react-firebase-hooks/auth";
 import activityService from "../../services/activityService";
 import exerciseService from "../../services/exerciseService";
 import { useEffect, useState, useContext } from "react";
 import userService from "../../services/userService";
 import { DocumentData } from "firebase/firestore";
+import { UserContext } from "../../context/UserContextProvider";
 
 function AddActivity() {
   const modalContextValue = useContext(ModalContext);
@@ -20,7 +19,7 @@ function AddActivity() {
     modalContextValue.setDisplayedComponent(null);
     alert("You've added a new activity!");
   };
-  const [user] = useAuthState(authService.getAuth());
+  const { user } = useContext(UserContext);
   const { register, handleSubmit,
     setValue, getValues, formState: { errors } } = useForm<Activity>();
   const onSubmit: SubmitHandler<Activity> = (data) => {

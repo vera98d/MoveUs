@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const PhotoProfile = styled.div<{ avatarUrl: string }>`
+const PhotoProfile = styled.div<{ avatarUrl?: string }>`
     width: 60px;
     height: 60px;
     border: 2px solid ${(props) => props.theme.colors.secondaryUi};

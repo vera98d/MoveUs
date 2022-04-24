@@ -7,6 +7,10 @@ background-repeat: no-repeat;
 background-size: cover;
 background-position: 0% 90%;
 height: 100vh;
+
+@media (max-width: 1170px) {
+  background-position: 30% 90%;
+}
 `;
 
 export const Img = styled.img`
@@ -18,9 +22,17 @@ export const Wrapper = styled.div`
 display: flex;
 justify-content: flex-end;
 height: 100%;
-max-width: 1320px;
+max-width: 1200px;
 margin: 0 auto;
-padding: 0 10px;
+padding: 0 20px;
+
+@media (max-width: 1050px) {
+  justify-content: center;
+}
+
+@media (max-width: 450px) {
+  padding-top: 70px;
+}
 `;
 
 export const Form = styled.form`

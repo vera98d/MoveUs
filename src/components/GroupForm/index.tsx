@@ -5,12 +5,11 @@ import { storage } from "../../services/firebase";
 import { useContext, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Group, User } from "../../interfaces/dbData";
-import { useAuthState } from "react-firebase-hooks/auth";
-import authService from "../../services/authService";
 import groupService from "../../services/groupService";
 import userService from "../../services/userService";
 import { ModalContext } from "../../context/ModalContextProvider";
 import { AddPhoto, AddPhotoInput, Container, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
+import { UserContext } from "../../context/UserContextProvider";
 
 type FormFields = {
   name: string
@@ -25,7 +24,7 @@ function GroupForm() {
   const closeModalOnSuccess = () => {
     modalContextValue.setDisplayedComponent(null);
   };
-  const [user] = useAuthState(authService.getAuth());
+  const { user } = useContext(UserContext);
   const { register, setValue, handleSubmit, formState: { errors }, watch } = useForm<FormFields>();
   const [users, setUsers] = useState<User[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
