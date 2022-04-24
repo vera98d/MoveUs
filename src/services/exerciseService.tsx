@@ -4,7 +4,7 @@ class ExerciseService {
   getAll = async () => {
     const docRef = collection(getFirestore(), "exercises");
     const querySnapshot = await getDocs(docRef);
-    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    return querySnapshot.docs.map((doc) => ({ ...doc.data() }));
   };
 }
 

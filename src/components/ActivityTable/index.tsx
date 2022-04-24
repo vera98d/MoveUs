@@ -1,5 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useContext } from "react";
 import { Activity } from "../../interfaces/dbData";
+import AddActivity from "../AddActivity";
+import { ModalContext } from "../../context/ModalContextProvider";
 
 import {
   PaginationWrapper,
@@ -35,6 +37,8 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
   const indexOfLastActivity = currentPage * ExercisesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;
   const currentPageActivities = currentExercises.slice(indexOfFirstActivity, indexOfLastActivity);
+
+  const { setDisplayedComponent } = useContext(ModalContext);
 
   const tableBody = () => {
     return currentPageActivities?.map((activity: Activity) => {
@@ -79,7 +83,7 @@ const ExercisesTable: FC<Props> = ({ activities, isButtonVisible }) => {
           )}
       </GridContainer>
       <ScoreLine>
-        {isButtonVisible && <PageButton className="buttonFontSize" type="button">Add activity</PageButton> }
+        {isButtonVisible && <PageButton className="buttonFontSize" type="button" onClick={() => setDisplayedComponent(<AddActivity />)}>Add activity</PageButton> }
         <p className="sumPosition">Total Score: {sum}</p>
       </ScoreLine>
       <PaginationWrapper>

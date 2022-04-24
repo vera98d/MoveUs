@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import AddActivity from "./components/AddActivity";
 import GroupRanking from "./pages/GroupRanking";
 import UsersGroups from "./pages/UsersGroups";
 import HomePage from "./pages/HomePage";
