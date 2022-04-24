@@ -23,7 +23,6 @@ class AuthService {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
     } catch (err: unknown) {
-      console.error(err);
       if (err instanceof Error) {
         alert(err.message);
       }
@@ -58,7 +57,6 @@ class AuthService {
         activities: [],
       });
     } catch (err: unknown) {
-      console.error(err);
       if (err instanceof Error) {
         alert(err.message);
       }
