@@ -25,7 +25,9 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 45px;
+    font-family: ${(props) => props.theme.fontFamily.primaryFont};
+    font-size: 24px;
+    font-weight: bold;
   }
   
   .setPages {

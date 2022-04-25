@@ -39,7 +39,6 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 45px;
   }
     
   h3 {
@@ -56,7 +55,8 @@ export const Wrapper = styled.div`
   .usernameStyle {
     color: ${(props) => props.theme.colors.secondaryUi};
     font-family: ${(props) => props.theme.fontFamily.primaryFont};
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: bold;
   }
 `;
 
