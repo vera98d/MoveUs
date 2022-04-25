@@ -5,6 +5,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles";
 import AddActivity from ".";
 
+const userService = require("../../services/userService");
+const activityService = require("../../services/activityService");
+userService.updateUser = jest.fn();
+activityService.insert = jest.fn();
+
 test("is rendering expected elements", async () => {
   const { container } = render(
     <ThemeProvider theme={theme}>
