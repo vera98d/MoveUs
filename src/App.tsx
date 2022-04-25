@@ -9,6 +9,7 @@ import OverallRanking from "./pages/OverallRanking";
 import Workout from "./pages/Workout";
 import UsersGroups from "./pages/UsersGroups";
 import GroupRanking from "./pages/GroupRanking";
+import MyWorkout from "./pages/MyWorkout";
 
 function App() {
   return (
@@ -83,6 +84,11 @@ function App() {
           path="groups/:groupId"
           element={(
             <Auth restricted><GroupRanking /></Auth>)}
+        />
+        <Route
+          path="draw-exercises/:exerciseCount"
+          element={(
+            <Auth restricted><MyWorkout /></Auth>)}
         />
       </Route>
     </Routes>

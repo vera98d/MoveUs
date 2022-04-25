@@ -2,6 +2,7 @@ import { useContext } from "react";
 import DrawForm from "../../components/DrawForm";
 import { ModalContext } from "../../context/ModalContextProvider";
 import { Container, Exercise, H3, Tiles } from "./style";
+import exerciseService from "../../services/exerciseService";
 
 function Workout() {
   const modalContextValue = useContext(ModalContext);

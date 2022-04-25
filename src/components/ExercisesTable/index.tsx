@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState, useContext } from "react";
-import { Activity } from "../../interfaces/dbData";
-import AddActivity from "../AddActivity";
+import { Exercise } from "../../interfaces/dbData";
 import { ModalContext } from "../../context/ModalContextProvider";
 
 import {
@@ -12,29 +11,25 @@ import {
   GridChild,
   GridContainer,
   GridHeader,
-  ScoreLine,
-  PageButton,
   SiteSetterWrapper,
+  PageButton,
 } from "./styles";
-import activityService from "../../services/activityService";
+import ExerciseService from "../../services/exerciseService";
 
 interface Props {
-  userScore: number;
-  userId?: string;
-  isButtonVisible?: boolean;
+  exerciseCount: number;
 }
 
-const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
-  const [currentExercises, setCurrentExercises] = useState<Activity[]>([]);
+const ExercisesTable: FC<Props> = ({ exerciseCount }) => {
+  const [currentExercises, setCurrentExercises] = useState<Exercise[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ExercisesPerPage] = useState(7);
 
   useEffect(() => {
-    if (userId != null) {
-      activityService.getActivity(userId)
+    if (exerciseCount != null) {
+      ExerciseService.getRandomExercises(exerciseCount)
         .then((data) => {
-          const newActivities = data;
-          setCurrentExercises(newActivities);
+          setCurrentExercises(data);
         });
     }
   }, []);
@@ -46,14 +41,11 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
   const { setDisplayedComponent } = useContext(ModalContext);
 
   const tableBody = () => {
-    return currentPageActivities?.map((activity: Activity) => {
+    return currentPageActivities?.map((exercise: Exercise) => {
       return (
-        <GridLine key={activity.uid}>
-          <GridChild key={`exercise${activity.uid}`}>{activity.exercise}</GridChild>
-          <GridChild key={`duration${activity.uid}`}>{activity.duration}</GridChild>
-          <GridChild key={`score${activity.uid}`}>{activity.score}</GridChild>
-          <GridChild key={`date${activity.uid}`}>{new Date(activity.date).toLocaleDateString()}
-          </GridChild>
+        <GridLine key={exercise.id}>
+          <GridChild key={`exercise${exercise.id}`}>{exercise.name}</GridChild>
+          <GridChild key={`duration${exercise.id}`}>{exercise.weight}</GridChild>
         </GridLine>
       );
     });
@@ -63,16 +55,10 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
       <GridContainer>
         <GridLine>
           <GridHeader>
-            Exercise
+            Name
           </GridHeader>
           <GridHeader>
-            Time
-          </GridHeader>
-          <GridHeader>
-            Score
-          </GridHeader>
-          <GridHeader>
-            Last Activity
+            Weight
           </GridHeader>
         </GridLine>
         {currentPageActivities && tableBody()}
@@ -81,15 +67,9 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
             <EmptyGridLine lines={ExercisesPerPage - currentPageActivities.length}>
               <GridChild />
               <GridChild />
-              <GridChild />
-              <GridChild />
             </EmptyGridLine>
           )}
       </GridContainer>
-      <ScoreLine>
-        {isButtonVisible && <PageButton className="buttonFontSize" type="button" onClick={() => setDisplayedComponent(<AddActivity />)}>Add activity</PageButton> }
-        <p className="sumPosition">Total Score: {userScore}</p>
-      </ScoreLine>
       <PaginationWrapper>
         <SiteSetterWrapper>
           <PageButton
