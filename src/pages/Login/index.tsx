@@ -21,6 +21,8 @@ function Login() {
           <FormField>
             <Label>Enter your email</Label>
             <Input
+              id="email-input"
+              data-testid="email-input"
               type="email"
               autoComplete="email"
               {...register("email", {
@@ -37,6 +39,8 @@ function Login() {
           <FormField>
             <Label>Enter your password</Label>
             <Input
+              id="password-input"
+              data-testid="password-input"
               type="password"
               {...register("password", { required: true, minLength: 8 })}
               placeholder="Enter your password"

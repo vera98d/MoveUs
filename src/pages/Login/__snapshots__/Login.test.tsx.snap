@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ Ivxcq"
+  >
+    <div
+      class="sc-dkzDqf cdtgge"
+    >
+      <form
+        class="sc-hKMtZM hSlXAW"
+      >
+        <div
+          class="sc-eCYdqJ ezLTWf"
+        >
+          <p
+            class="sc-jSMfEi gTlygz"
+          >
+            Enter your email
+          </p>
+          <input
+            autocomplete="email"
+            class="sc-gKXOVf hZoMIk"
+            data-testid="email-input"
+            id="email-input"
+            name="email"
+            placeholder="Email"
+            type="email"
+          />
+          <span
+            class="sc-ftvSup cXlRvA"
+          />
+        </div>
+        <div
+          class="sc-eCYdqJ ezLTWf"
+        >
+          <p
+            class="sc-jSMfEi gTlygz"
+          >
+            Enter your password
+          </p>
+          <input
+            class="sc-gKXOVf hZoMIk"
+            data-testid="password-input"
+            id="password-input"
+            name="password"
+            placeholder="Enter your password"
+            type="password"
+          />
+        </div>
+        <button
+          class="sc-iBkjds eoSRHJ"
+        >
+          Login
+        </button>
+        <div
+          class="sc-papXJ fnNQlX"
+        >
+          Not a member yet?
+           
+          <a
+            class="sc-jqUVSM lnxtzK"
+            href="/team-jo-project-4/register"
+          >
+            Register now
+          </a>
+           
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
