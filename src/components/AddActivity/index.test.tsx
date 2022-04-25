@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { ThemeProvider } from "styled-components";
@@ -7,17 +7,21 @@ import AddActivity from ".";
 
 const userService = require("../../services/userService");
 const activityService = require("../../services/activityService");
-userService.updateUser = jest.fn();
-activityService.insert = jest.fn();
+
+jest.mock("../../services/userService");
+jest.mock("../../services/activityService");
 
 test("is rendering expected elements", async () => {
-  const { container } = render(
-    <ThemeProvider theme={theme}>
-      <AddActivity />
-    </ThemeProvider>,
-  );
-
-  expect(container).toMatchSnapshot();
+  userService.updateUser() as jest.Mock;
+  activityService.insert() as jest.Mock;
+  await act(async () => {
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <AddActivity />
+      </ThemeProvider>,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });
 
 test("Renders all elements", () => {
