@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import authService from "../../services/authService";
-import { useAuthState } from "react-firebase-hooks/auth";
 import Spinner from "./style";
 import Header from "../Header";
+import { UserContext } from "../../context/UserContextProvider";
 
 interface Props {
   restricted?: boolean;
@@ -11,16 +10,17 @@ interface Props {
 }
 
 const Auth: React.FC<Props> = ({ restricted, children }: Props): JSX.Element => {
-  const [user, loading] = useAuthState(authService.getAuth());
+  const { user, isLoading } = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    if (loading) {
+    if (isLoading) {
       return;
     }
     if (user && !restricted) navigate("/team-jo-project-4/home");
     if (!user && restricted) navigate("/team-jo-project-4");
-  }, [user, loading]);
-  if (loading) {
+  }, [user, isLoading]);
+
+  if (isLoading) {
     return (
       <Spinner>
         <div />

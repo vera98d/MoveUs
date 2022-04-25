@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BackgroundContainer from "../../components/BackgroundContainer/styles";
 import { Header } from "../../components/Typography/styles";
@@ -9,8 +9,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import authService from "../../services/authService";
 import userService from "../../services/userService";
 import Spinner from "../../components/Auth/style";
+import { ModalContext } from "../../context/ModalContextProvider";
+import GroupForm from "../../components/GroupForm";
 
 const UsersGroups = (): JSX.Element => {
+  const { setDisplayedComponent } = useContext(ModalContext);
   const [usersOwnedGroups, setUsersOwnedGroups] = useState<Group[]>([]);
   const [groupsUserBelongsTo, setGroupsUserBelongsTo] = useState<Group[]>([]);
   const [currentUser] = useAuthState(authService.getAuth());
@@ -74,7 +77,7 @@ const UsersGroups = (): JSX.Element => {
     <BackgroundContainer>
       <Header>My groups</Header>
       <TileContainer>
-        <Tile>
+        <Tile onClick={() => setDisplayedComponent(<GroupForm />)}>
           <TileContent>
             Create new group
           </TileContent>
