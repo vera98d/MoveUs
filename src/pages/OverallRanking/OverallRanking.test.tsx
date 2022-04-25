@@ -6,6 +6,14 @@ import userService from "../../services/userService";
 import { theme } from "../../styles";
 import { users } from "./mock";
 
+jest.mock("firebase/auth", () => ({
+  getAuth: () => {}
+}));
+
+jest.mock("react-firebase-hooks/auth", () => ({
+  useAuthState: () => ([])
+}));
+
 let orginalGetAll: any;
 beforeEach(() => {
   orginalGetAll = userService.getAllUsers;
