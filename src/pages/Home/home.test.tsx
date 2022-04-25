@@ -6,6 +6,14 @@ import { theme } from "../../styles";
 import { waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
+jest.mock("firebase/auth", () => ({
+  getAuth: () => {}
+}));
+
+jest.mock("react-firebase-hooks/auth", () => ({
+  useAuthState: () => ([])
+}));
+
 describe("HomePage", () => {
     test("matches snapshot", async () => {
       const { container } = render(
