@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverallRanking matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-papXJ iPAtWg"
+  >
+    <h1
+      class="sc-jqUVSM fHiCLF"
+    >
+      Overall Ranking
+    </h1>
+    <div
+      class="sc-bczRLJ ccrZxC"
+    >
+      <div
+        class="sc-gsnTZi ehtIOX"
+      >
+        <div
+          class="sc-dkzDqf sc-hKMtZM huYvCz hWkkkY"
+        >
+          Rank position
+        </div>
+        <div
+          class="sc-dkzDqf sc-hKMtZM huYvCz hWkkkY"
+        >
+          Full name
+        </div>
+        <div
+          class="sc-dkzDqf sc-hKMtZM huYvCz hWkkkY"
+        >
+          Score
+        </div>
+        <div
+          class="sc-dkzDqf sc-hKMtZM huYvCz hWkkkY"
+        >
+          Last activity
+        </div>
+      </div>
+      <div
+        class="sc-gsnTZi sc-jSMfEi ehtIOX ejdUyI"
+      >
+        <div
+          class="sc-dkzDqf huYvCz"
+        />
+        <div
+          class="sc-dkzDqf huYvCz"
+        />
+        <div
+          class="sc-dkzDqf huYvCz"
+        />
+        <div
+          class="sc-dkzDqf huYvCz"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

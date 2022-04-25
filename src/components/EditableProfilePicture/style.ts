@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PhotoProfile from "../ProfilePicture/style";
+import { PhotoProfile } from "../ProfilePicture/style";
 
 export const AddPhotoInput = styled.input`
 display: none;
@@ -8,6 +8,6 @@ display: none;
 export const StyledPhotoProfile = styled(PhotoProfile)`
 width: 100px;
 height: 100px;
-margin: 50px;
+margin-right: 50px;
 border: solid 2px; 
 `;

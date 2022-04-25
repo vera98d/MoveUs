@@ -1,4 +1,4 @@
-import PhotoProfile from "./style";
+import { PhotoProfile } from "./style";
 
 interface Props {
   avatarUrl?: string;

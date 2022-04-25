@@ -42,6 +42,9 @@ export const GridChild = styled.div`
     }
 `;
 
+export const UserGridChild = styled(GridChild)`
+cursor: pointer;
+`;
 export const GridHeader = styled(GridChild)`
     color: ${(props) => props.theme.colors.secondaryUi};
     font-size: 22px;

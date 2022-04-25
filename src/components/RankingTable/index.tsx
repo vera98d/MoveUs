@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { GridContainer, GridLine, GridChild, GridHeader, EmptyGridLine } from "./styles";
+import { GridContainer, GridLine, GridChild, GridHeader, EmptyGridLine, UserGridChild } from "./styles";
 import { User } from "../../interfaces/dbData";
 import RankingTablePagination from "../RankingTablePagination";
 import { useNavigate } from "react-router-dom";
@@ -48,9 +48,9 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
           {groupUser.rankPosition}
         </GridChild>
 
-        <GridChild onClick={() => { redirectToProfile(groupUser); }}>
+        <UserGridChild onClick={() => { redirectToProfile(groupUser); }}>
           {groupUser.name} {groupUser.surname}
-        </GridChild>
+        </UserGridChild>
 
         <GridChild>
           {groupUser.score}

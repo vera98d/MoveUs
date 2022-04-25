@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from "react";
 import { User } from "../../interfaces/dbData";
 import userService from "../../services/userService";
 import { useParams } from "react-router-dom";
+import { OtherUserPhotoProfile } from "../../components/ProfilePicture/style";
 
 function UsersExercises() {
   const { uid } = useParams();
@@ -24,7 +25,7 @@ function UsersExercises() {
               <Header />
               <Wrapper>
                 <div className="UserInformationContainer">
-                  <Img src={image} alt="" />
+                  <OtherUserPhotoProfile avatarUrl={selectedUser.avatarUrl} />
                   <span className="usernameStyle">{selectedUser.name} {selectedUser.surname}</span>
                 </div>
                 <LineWrapper>
