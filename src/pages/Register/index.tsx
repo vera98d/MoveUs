@@ -17,7 +17,7 @@ function Register() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await authService
       .registerWithEmailAndPassword(data.name, data.surname, data.login, data.email, data.password);
-    navigate({ pathname: "/team-jo-project-4" });
+    navigate({ pathname: "/team-jo-project-4/home" });
   };
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
 

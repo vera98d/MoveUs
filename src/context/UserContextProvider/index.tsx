@@ -20,7 +20,7 @@ interface Props {
 
 export function UserContextProvider({ children }: Props) {
   const [user, setUser] = useState<null | User>(null);
-  const [isLoadingUserData, setIsLoadingUserData] = useState(true);
+  const [isLoadingUserData, setIsLoadingUserData] = useState(false);
   const [authUser, isLoadingAuthUser] = useAuthState(authService.getAuth());
 
   const contextValue = useMemo(() => ({
@@ -31,6 +31,7 @@ export function UserContextProvider({ children }: Props) {
 
   useEffect(() => {
     if (authUser) {
+      setIsLoadingUserData(true);
       userService.getUserById(authUser.uid).then((data) => {
         if (data) {
           setUser(data);
@@ -38,6 +39,8 @@ export function UserContextProvider({ children }: Props) {
       }).finally(() => {
         setIsLoadingUserData(false);
       });
+    } else {
+      setUser(null);
     }
   }, [authUser]);
 
