@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const PhotoProfile = styled.div<{ avatarUrl?: string }>`
+export const PhotoProfile = styled.div<{ avatarUrl?: string }>`
     width: 60px;
     height: 60px;
     border: 2px solid ${(props) => props.theme.colors.secondaryUi};
@@ -11,4 +11,9 @@ const PhotoProfile = styled.div<{ avatarUrl?: string }>`
     background-size: cover;
 `;
 
-export default PhotoProfile;
+export const OtherUserPhotoProfile = styled(PhotoProfile)<{ avatarUrl?: string }>`
+width: 100px;
+height: 100px;
+margin-right: 50px;
+border: solid 2px; 
+`;
