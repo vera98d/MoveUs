@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState, useContext } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Exercise } from "../../interfaces/dbData";
-import { ModalContext } from "../../context/ModalContextProvider";
 
 import {
   PaginationWrapper,
@@ -27,25 +26,26 @@ const ExercisesTable: FC<Props> = ({ exerciseCount }) => {
 
   useEffect(() => {
     if (exerciseCount != null) {
-      ExerciseService.getRandomExercises(exerciseCount)
-        .then((data) => {
-          setCurrentExercises(data);
-        });
+      ExerciseService.getRandomExercises(exerciseCount).then((data) => {
+        setCurrentExercises(data);
+      });
     }
   }, []);
 
   const indexOfLastActivity = currentPage * ExercisesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;
-  const currentPageActivities = currentExercises.slice(indexOfFirstActivity, indexOfLastActivity);
-
-  const { setDisplayedComponent } = useContext(ModalContext);
-
+  const currentPageActivities = currentExercises.slice(
+    indexOfFirstActivity,
+    indexOfLastActivity
+  );
   const tableBody = () => {
     return currentPageActivities?.map((exercise: Exercise) => {
       return (
         <GridLine key={exercise.id}>
           <GridChild key={`exercise${exercise.id}`}>{exercise.name}</GridChild>
-          <GridChild key={`duration${exercise.id}`}>{exercise.weight}</GridChild>
+          <GridChild key={`duration${exercise.id}`}>
+            {exercise.weight}
+          </GridChild>
         </GridLine>
       );
     });
@@ -54,21 +54,18 @@ const ExercisesTable: FC<Props> = ({ exerciseCount }) => {
     <>
       <GridContainer>
         <GridLine>
-          <GridHeader>
-            Name
-          </GridHeader>
-          <GridHeader>
-            Weight
-          </GridHeader>
+          <GridHeader>Name</GridHeader>
+          <GridHeader>Weight</GridHeader>
         </GridLine>
         {currentPageActivities && tableBody()}
-        {ExercisesPerPage > currentPageActivities.length
-          && (
-            <EmptyGridLine lines={ExercisesPerPage - currentPageActivities.length}>
-              <GridChild />
-              <GridChild />
-            </EmptyGridLine>
-          )}
+        {ExercisesPerPage > currentPageActivities.length && (
+          <EmptyGridLine
+            lines={ExercisesPerPage - currentPageActivities.length}
+          >
+            <GridChild />
+            <GridChild />
+          </EmptyGridLine>
+        )}
       </GridContainer>
       <PaginationWrapper>
         <SiteSetterWrapper>
@@ -80,9 +77,7 @@ const ExercisesTable: FC<Props> = ({ exerciseCount }) => {
             {"<"}
           </PageButton>
           <PaginationList>
-            <PageNumber>
-              {currentPage}
-            </PageNumber>
+            <PageNumber>{currentPage}</PageNumber>
           </PaginationList>
           <PageButton
             type="button"
