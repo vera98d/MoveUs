@@ -95,3 +95,5 @@ test("validates form properly", async () => {
     expect(screen.queryByText("Please enter duration of your activity.")).not.toBeInTheDocument();
   });
 });
+
+afterAll(() => setTimeout(() => process.exit(), 1000));
