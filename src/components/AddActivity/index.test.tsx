@@ -1,6 +1,5 @@
 import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import React from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles";
 import AddActivity from ".";
