@@ -1,20 +1,28 @@
-import { render, screen, waitFor, fireEvent, act } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles";
 import AddActivity from ".";
 
-const userService = require("../../services/userService");
-const activityService = require("../../services/activityService");
+jest.mock("../../services/activityService", () => ({
+  getFirestore: () => {},
+}));
 
-jest.mock("../../services/userService");
-jest.mock("../../services/activityService");
+jest.mock("../../services/userService", () => ({
+  getFirestore: () => {},
+}));
 
-test("is rendering expected elements", async () => {
-  userService.updateUser() as jest.Mock;
-  activityService.insert() as jest.Mock;
-  await act(async () => {
+jest.mock("firebase/auth", () => ({
+  getAuth: () => {},
+}));
+
+jest.mock("react-firebase-hooks/auth", () => ({
+  useAuthState: () => ([]),
+}));
+
+test("is rendering expected elements", () => {
+  act(() => {
     const { container } = render(
       <ThemeProvider theme={theme}>
         <AddActivity />
@@ -24,12 +32,15 @@ test("is rendering expected elements", async () => {
   });
 });
 
-test("Renders all elements", () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <AddActivity />
-    </ThemeProvider>,
-  );
+it("Renders all elements", () => {
+  act(() => {
+    render(
+      <ThemeProvider theme={theme}>
+        <AddActivity />
+      </ThemeProvider>,
+    );
+  });
+
   const modalTitle = screen.getByText(/Add/i);
   const selectExerciseText = screen.getByText(/Select exercise/i);
   const selectExerciseInput = screen.getByRole("combobox");
