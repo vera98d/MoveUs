@@ -1,7 +1,15 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   AccountText,
-  Button, Container, Form, FormField, FormFieldError, Img, Input, Label, StyledLink, Wrapper,
+  Button,
+  Container,
+  Form,
+  FormField,
+  FormFieldError,
+  Input,
+  Label,
+  StyledLink,
+  Wrapper,
 } from "../../components/Form/styles";
 import authService from "../../services/authService";
 import { User } from "../../interfaces/dbData";
@@ -9,9 +17,13 @@ import { User } from "../../interfaces/dbData";
 type FormFields = Pick<User, "email" | "password">;
 
 function Login() {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormFields>();
-  const onSubmit: SubmitHandler<FormFields> = (data) => authService
-    .logInWithEmailAndPassword(data.email, data.password);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFields>();
+  const onSubmit: SubmitHandler<FormFields> = (data) =>
+    authService.logInWithEmailAndPassword(data.email, data.password);
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
 
   return (
@@ -34,7 +46,9 @@ function Login() {
               })}
               placeholder="Email"
             />
-            <FormFieldError>{errors.email?.type === "required" && "Email is required"}</FormFieldError>
+            <FormFieldError>
+              {errors.email?.type === "required" && "Email is required"}
+            </FormFieldError>
           </FormField>
           <FormField>
             <Label>Enter your password</Label>
@@ -48,10 +62,10 @@ function Login() {
           </FormField>
           <Button>Login</Button>
           <AccountText>
-            Not a member yet?
-            {" "}
-            <StyledLink to="/team-jo-project-4/register">Register now</StyledLink>
-            {" "}
+            Not a member yet?{" "}
+            <StyledLink to="/team-jo-project-4/register">
+              Register now
+            </StyledLink>{" "}
           </AccountText>
         </Form>
       </Wrapper>

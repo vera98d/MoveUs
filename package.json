@@ -47,7 +47,7 @@
     ]
   },
   "lint-staged": {
-    "**/*.{js,css,html,md,json}": "prettier --write"
+    "**/*.{js,ts,tsx,css,html,md,json}": "prettier --write"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.25",
