@@ -1,21 +1,30 @@
-import { getFirestore, collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+} from "firebase/firestore";
 import { Activity } from "../interfaces/dbData";
 
 class ActivityService {
   db = getFirestore();
 
-  getActivity = async (userId: string) => {
-    let userRef: Activity[] = [];
-
-    const q = query(collection(this.db, "users"), where("uid", "==", userId));
+  getActivityCollection = async (userId: string) => {
+    const actRef: Activity[] = [];
+    const q = query(
+      collection(this.db, "activities"),
+      where("uid", "==", userId)
+    );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((document) => {
-      userRef = (document.id, " => ", document.data().activities);
+      actRef.push(document.data() as Activity);
     });
-    return userRef;
+    return actRef;
   };
 
-  insert = async (activity: Activity) => {
+  insert = async (activity: Activity, userId: string) => {
     const activityRef = collection(this.db, "activities");
     try {
       const res = await addDoc(activityRef, {
@@ -23,6 +32,7 @@ class ActivityService {
         date: activity.date,
         duration: activity.duration,
         score: activity.score,
+        uid: userId,
       });
       return res.id;
     } catch (e) {

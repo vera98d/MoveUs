@@ -1,9 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Header, ModalLabel } from "../Modal/style";
 import { ModalContext } from "../../context/ModalContextProvider";
-import {
-  Button, Form, FormField, FormFieldError,
-} from "../Form/styles";
+import { Button, Form, FormField, FormFieldError } from "../Form/styles";
 
 import { Activity, Exercise } from "../../interfaces/dbData";
 import activityService from "../../services/activityService";
@@ -20,14 +18,36 @@ function AddActivity() {
     alert("You've added a new activity!");
   };
   const { user } = useContext(UserContext);
-  const { register, handleSubmit,
-    setValue, getValues, formState: { errors } } = useForm<Activity>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm<Activity>();
   const onSubmit: SubmitHandler<Activity> = (data) => {
-    const activityID : Promise<string | undefined> = activityService.insert(data);
+    const activityID: Promise<string | undefined> = activityService.insert(
+      data,
+      user!.uid
+    );
     activityID.then((d) => {
-      userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, d);
+      userService.updateUser(
+        user!.uid,
+        getValues("score"),
+        getValues("date"),
+        undefined,
+        undefined,
+        d
+      );
     });
-    userService.updateUser(user!.uid, getValues("score"), getValues("date"), undefined, undefined, data.uid);
+    userService.updateUser(
+      user!.uid,
+      getValues("score"),
+      getValues("date"),
+      undefined,
+      undefined,
+      data.uid
+    );
     closeModalOnSuccess();
   };
 
@@ -42,7 +62,8 @@ function AddActivity() {
     const t = time.split(":");
     const hours = t[0] as unknown;
     const minutes = t[1] as unknown;
-    const convertedSeconds = (hours as number) * 60 * 60 + (minutes as number) * 60;
+    const convertedSeconds =
+      (hours as number) * 60 * 60 + (minutes as number) * 60;
     return convertedSeconds;
   }
 
@@ -76,11 +97,16 @@ function AddActivity() {
             onChange={handleExerciseChange}
           >
             <option value=""> </option>
-            { exercisesState.map((e: Exercise) => {
-              return <option key={e.name} value={e.name}>{e.name}, weight: {e.weight}</option>;
+            {exercisesState.map((e: Exercise) => {
+              return (
+                <option key={e.name} value={e.name}>
+                  {e.name}, weight: {e.weight}
+                </option>
+              );
             })}
           </select>
           <FormFieldError>
+
             {errors.exercise?.type === "required" && "Please select the activity type."}
           </FormFieldError>
         </FormField>

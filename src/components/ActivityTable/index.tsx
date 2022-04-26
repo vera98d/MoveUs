@@ -31,28 +31,34 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
 
   useEffect(() => {
     if (userId != null) {
-      activityService.getActivity(userId)
-        .then((data) => {
-          const newActivities = data;
-          setCurrentExercises(newActivities);
-        });
+      activityService.getActivityCollection(userId).then((activity) => {
+        setCurrentExercises(activity);
+      });
     }
   }, []);
 
   const indexOfLastActivity = currentPage * ExercisesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - ExercisesPerPage;
-  const currentPageActivities = currentExercises.slice(indexOfFirstActivity, indexOfLastActivity);
+  const currentPageActivities = currentExercises.slice(
+    indexOfFirstActivity,
+    indexOfLastActivity
+  );
 
   const { setDisplayedComponent } = useContext(ModalContext);
 
   const tableBody = () => {
-    return currentPageActivities?.map((activity: Activity) => {
+    return currentPageActivities?.map((activity: Activity, index) => {
       return (
-        <GridLine key={activity.uid}>
-          <GridChild key={`exercise${activity.uid}`}>{activity.exercise}</GridChild>
-          <GridChild key={`duration${activity.uid}`}>{activity.duration}</GridChild>
+        <GridLine key={index}>
+          <GridChild key={`exercise${activity.uid}`}>
+            {activity.exercise}
+          </GridChild>
+          <GridChild key={`duration${activity.uid}`}>
+            {activity.duration}
+          </GridChild>
           <GridChild key={`score${activity.uid}`}>{activity.score}</GridChild>
-          <GridChild key={`date${activity.uid}`}>{new Date(activity.date).toLocaleDateString()}
+          <GridChild key={`date${activity.uid}`}>
+            {new Date(activity.date).toLocaleDateString()}
           </GridChild>
         </GridLine>
       );
@@ -62,32 +68,33 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
     <>
       <GridContainer>
         <GridLine>
-          <GridHeader>
-            Exercise
-          </GridHeader>
-          <GridHeader>
-            Time
-          </GridHeader>
-          <GridHeader>
-            Score
-          </GridHeader>
-          <GridHeader>
-            Last Activity
-          </GridHeader>
+          <GridHeader>Exercise</GridHeader>
+          <GridHeader>Time</GridHeader>
+          <GridHeader>Score</GridHeader>
+          <GridHeader>Last Activity</GridHeader>
         </GridLine>
         {currentPageActivities && tableBody()}
-        {ExercisesPerPage > currentPageActivities.length
-          && (
-            <EmptyGridLine lines={ExercisesPerPage - currentPageActivities.length}>
-              <GridChild />
-              <GridChild />
-              <GridChild />
-              <GridChild />
-            </EmptyGridLine>
-          )}
+        {ExercisesPerPage > currentPageActivities.length && (
+          <EmptyGridLine
+            lines={ExercisesPerPage - currentPageActivities.length}
+          >
+            <GridChild />
+            <GridChild />
+            <GridChild />
+            <GridChild />
+          </EmptyGridLine>
+        )}
       </GridContainer>
       <ScoreLine>
-        {isButtonVisible && <PageButton className="buttonFontSize" type="button" onClick={() => setDisplayedComponent(<AddActivity />)}>Add activity</PageButton> }
+        {isButtonVisible && (
+          <PageButton
+            className="buttonFontSize"
+            type="button"
+            onClick={() => setDisplayedComponent(<AddActivity />)}
+          >
+            Add activity
+          </PageButton>
+        )}
         <p className="sumPosition">Total Score: {userScore}</p>
       </ScoreLine>
       <PaginationWrapper>
@@ -100,9 +107,7 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
             {"<"}
           </PageButton>
           <PaginationList>
-            <PageNumber>
-              {currentPage}
-            </PageNumber>
+            <PageNumber>{currentPage}</PageNumber>
           </PaginationList>
           <PageButton
             type="button"
