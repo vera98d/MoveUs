@@ -3,12 +3,12 @@
 exports[`is rendering expected elements 1`] = `
 <div>
   <h1
-    class="sc-hKMtZM crnuFa"
+    class="sc-hKMtZM jdDlkz"
   >
     Add activity
   </h1>
   <form
-    class="sc-papXJ VcbNR"
+    class="sc-papXJ eFThpA"
   >
     <div
       class="sc-jqUVSM dFGdLF"
@@ -28,7 +28,7 @@ exports[`is rendering expected elements 1`] = `
         </option>
       </select>
       <span
-        class="sc-evZas jJOWwc"
+        class="sc-evZas iBuEyh"
       />
     </div>
     <div
@@ -45,7 +45,7 @@ exports[`is rendering expected elements 1`] = `
         type="date"
       />
       <span
-        class="sc-evZas jJOWwc"
+        class="sc-evZas iBuEyh"
       />
     </div>
     <div
@@ -62,7 +62,7 @@ exports[`is rendering expected elements 1`] = `
         type="time"
       />
       <span
-        class="sc-evZas jJOWwc"
+        class="sc-evZas iBuEyh"
       />
     </div>
     <p
@@ -80,7 +80,7 @@ exports[`is rendering expected elements 1`] = `
       />
     </div>
     <button
-      class="sc-crXcEl jbVVMD"
+      class="sc-crXcEl iThiiz"
     >
       Submit activity
     </button>
