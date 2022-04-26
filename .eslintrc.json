@@ -1,4 +1,5 @@
 {
+  "ignorePatterns": ["*.snap"],
   "env": {
     "browser": true,
     "es2021": true,
@@ -41,6 +42,7 @@
     "object-curly-newline": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
+    "max-len": [1, 140],
     "consistent-return": "off",
     "no-alert": "off",
     "react/function-component-definition": "off",
