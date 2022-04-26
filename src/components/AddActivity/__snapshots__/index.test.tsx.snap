@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`is rendering expected elements 1`] = `
+<div>
+  <h1
+    class="sc-hKMtZM jdDlkz"
+  >
+    Add activity
+  </h1>
+  <form
+    class="sc-papXJ eFThpA"
+  >
+    <div
+      class="sc-jqUVSM dFGdLF"
+    >
+      <p
+        class="sc-jSMfEi iUXMgt"
+      >
+        Select exercise
+      </p>
+      <select
+        name="exercise"
+      >
+        <option
+          value=""
+        >
+           
+        </option>
+      </select>
+      <span
+        class="sc-evZas iBuEyh"
+      />
+    </div>
+    <div
+      class="sc-jqUVSM dFGdLF"
+    >
+      <p
+        class="sc-jSMfEi iUXMgt"
+      >
+        Enter date of the activity
+      </p>
+      <input
+        data-testid="date"
+        name="date"
+        type="date"
+      />
+      <span
+        class="sc-evZas iBuEyh"
+      />
+    </div>
+    <div
+      class="sc-jqUVSM dFGdLF"
+    >
+      <p
+        class="sc-jSMfEi iUXMgt"
+      >
+        Select duration of the exercise
+      </p>
+      <input
+        data-testid="time"
+        name="duration"
+        type="time"
+      />
+      <span
+        class="sc-evZas iBuEyh"
+      />
+    </div>
+    <p
+      class="sc-jSMfEi iUXMgt"
+    >
+      Points gained:
+    </p>
+    <div
+      class="sc-jqUVSM dFGdLF"
+    >
+      <input
+        data-testid="score"
+        name="score"
+        readonly=""
+      />
+    </div>
+    <button
+      class="sc-crXcEl iThiiz"
+    >
+      Submit activity
+    </button>
+  </form>
+</div>
+`;

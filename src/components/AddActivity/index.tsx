@@ -88,10 +88,10 @@ function AddActivity() {
 
   return (
     <>
-      <Header> Add activity</Header>
+      <Header>Add activity</Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormField>
-          <ModalLabel>Select exercise.</ModalLabel>
+          <ModalLabel>Select exercise</ModalLabel>
           <select
             {...register("exercise", { required: true })}
             onChange={handleExerciseChange}
@@ -106,32 +106,40 @@ function AddActivity() {
             })}
           </select>
           <FormFieldError>
-            {errors.exercise?.type === "required" &&
-              "Please select  the activity type"}
+
+            {errors.exercise?.type === "required" && "Please select the activity type."}
           </FormFieldError>
         </FormField>
         <FormField>
-          <ModalLabel>Enter date of the activity.</ModalLabel>
-          <input type="date" {...register("date", { required: true })} />
+          <ModalLabel>Enter date of the activity</ModalLabel>
+          <input
+            data-testid="date"
+            type="date"
+            {...register("date", { required: true })}
+          />
           <FormFieldError>
-            {errors.date?.type === "required" && "Please select date"}
+            {errors.date?.type === "required" && "Please select date."}
           </FormFieldError>
         </FormField>
         <FormField>
           <ModalLabel>Select duration of the exercise</ModalLabel>
           <input
+            data-testid="time"
             type="time"
             {...register("duration", { required: true })}
             onChange={handleDurationChange}
           />
           <FormFieldError>
-            {errors.exercise?.type === "required" &&
-              "Please enter duration of your activity."}
+            {errors.duration?.type === "required" && "Please enter duration of your activity."}
           </FormFieldError>
         </FormField>
         <ModalLabel>Points gained:</ModalLabel>
         <FormField>
-          <input readOnly {...register("score", { required: true })} />
+          <input
+            readOnly
+            {...register("score", { required: true })}
+            data-testid="score"
+          />
         </FormField>
         <Button>Submit activity</Button>
       </Form>
