@@ -31,8 +31,8 @@ const ExercisesTable: FC<Props> = ({ userScore, userId, isButtonVisible }) => {
 
   useEffect(() => {
     if (userId != null) {
-      activityService.getActivityCollection(userId).then((data) => {
-        setCurrentExercises(data);
+      activityService.getActivityCollection(userId).then((activity) => {
+        setCurrentExercises(activity);
       });
     }
   }, []);
