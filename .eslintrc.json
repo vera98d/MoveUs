@@ -17,6 +17,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "filenames"],
   "rules": {
+    "implicit-arrow-linebreak": "off",
     "react/require-default-props": "off",
     "camelcase": [2, { "properties": "always" }],
     "filenames/match-regex": [
