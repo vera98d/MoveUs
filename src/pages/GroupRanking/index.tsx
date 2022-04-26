@@ -1,5 +1,5 @@
 import RankingTable from "../../components/RankingTable";
-import { User, Group } from "../../interfaces/dbData";
+import { User } from "../../interfaces/dbData";
 import BackgroundContainer from "../../components/BackgroundContainer/styles";
 import { Header, Text } from "../../components/Typography/styles";
 import { useParams } from "react-router-dom";
@@ -16,12 +16,15 @@ const GroupRanking = (): JSX.Element => {
   useEffect(() => {
     if (groupId) {
       setLoading(true);
-      groupRankingService.getGroupInfoById(groupId)
+      groupRankingService
+        .getGroupInfoById(groupId)
         .then((data) => setGroup(data));
-      groupRankingService.getGroupMembersInfo(groupId)
+      groupRankingService
+        .getGroupMembersInfo(groupId)
         .then((data) => {
           setGroupMembersInfo(data);
-        }).then(() => setLoading(false));
+        })
+        .then(() => setLoading(false));
     }
   }, []);
 
@@ -48,12 +51,8 @@ const GroupRanking = (): JSX.Element => {
   }
   return (
     <BackgroundContainer>
-      <Header>
-        {group.name}
-      </Header>
-      <Text>
-        {group.description}
-      </Text>
+      <Header>{group.name}</Header>
+      <Text>{group.description}</Text>
       <RankingTable groupUsers={groupMembersInfo} />
     </BackgroundContainer>
   );
