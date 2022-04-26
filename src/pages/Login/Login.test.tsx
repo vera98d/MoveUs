@@ -19,7 +19,7 @@ describe("Login", () => {
         <Router>
           <Login />
         </Router>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -30,7 +30,7 @@ describe("Login", () => {
         <Router>
           <Login />
         </Router>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     const inputEl = screen.getByTestId("email-input");
@@ -44,7 +44,7 @@ describe("Login", () => {
         <Router>
           <Login />
         </Router>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     const inputEl = screen.getByTestId("password-input");

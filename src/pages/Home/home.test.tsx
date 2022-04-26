@@ -21,19 +21,19 @@ describe("HomePage", () => {
         <Router>
           <HomePage />
         </Router>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     expect(container).toMatchSnapshot();
   });
 
-  test('First tile should show "Overall ranking"', () => {
+  test("First tile should show \"Overall ranking\"", () => {
     act(() => {
       render(
         <ThemeProvider theme={theme}>
           <Router>
             <HomePage />
           </Router>
-        </ThemeProvider>
+        </ThemeProvider>,
       );
     });
 
@@ -41,14 +41,14 @@ describe("HomePage", () => {
     waitFor(() => expect(expect(tileOne).toBeInTheDocument()));
   });
 
-  test('Second tile should show "Groups"', () => {
+  test("Second tile should show \"Groups\"", () => {
     act(() => {
       render(
         <ThemeProvider theme={theme}>
           <Router>
             <HomePage />
           </Router>
-        </ThemeProvider>
+        </ThemeProvider>,
       );
     });
 
@@ -56,14 +56,14 @@ describe("HomePage", () => {
     waitFor(() => expect(expect(tileTwo).toBeInTheDocument()));
   });
 
-  test('Third tile should show "Activity"', () => {
+  test("Third tile should show \"Activity\"", () => {
     act(() => {
       render(
         <ThemeProvider theme={theme}>
           <Router>
             <HomePage />
           </Router>
-        </ThemeProvider>
+        </ThemeProvider>,
       );
     });
 
@@ -71,14 +71,14 @@ describe("HomePage", () => {
     waitFor(() => expect(expect(tileThree).toBeInTheDocument()));
   });
 
-  test('Fourth tile should show "Workout"', () => {
+  test("Fourth tile should show \"Workout\"", () => {
     act(() => {
       render(
         <ThemeProvider theme={theme}>
           <Router>
             <HomePage />
           </Router>
-        </ThemeProvider>
+        </ThemeProvider>,
       );
     });
 
@@ -93,7 +93,7 @@ describe("HomePage", () => {
           <Router>
             <HomePage />
           </Router>
-        </ThemeProvider>
+        </ThemeProvider>,
       );
     });
 
