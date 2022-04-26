@@ -32,7 +32,7 @@ describe("OverallRanking", () => {
         <Router>
           <OverallRanking />
         </Router>
-      </ThemeProvider>,
+      </ThemeProvider>
     );
     expect(container).toMatchSnapshot();
   });
@@ -43,18 +43,18 @@ describe("OverallRanking", () => {
         <Router>
           <OverallRanking />
         </Router>
-      </ThemeProvider>,
+      </ThemeProvider>
     );
     expect(users.length).toBe(6);
   });
 
-  test("Header should show \"Overall Ranking\"", () => {
+  test('Header should show "Overall Ranking"', () => {
     render(
       <ThemeProvider theme={theme}>
         <Router>
           <OverallRanking />
         </Router>
-      </ThemeProvider>,
+      </ThemeProvider>
     );
     const header = screen.queryByText("Overall Ranking");
     expect(header).toBeInTheDocument();
