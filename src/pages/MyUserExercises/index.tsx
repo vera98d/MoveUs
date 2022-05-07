@@ -16,10 +16,16 @@ function MyUserExercises() {
       <Wrapper>
         <div className="UserInformationContainer">
           <EditableProfilePicture />
-          <span>{user.name} {user.surname}</span>
+          <span>
+            {user.name} {user.surname}
+          </span>
         </div>
         <LineWrapper>
-          <ExercisesTable userId={user.uid} isButtonVisible userScore={user.score} />
+          <ExercisesTable
+            userId={user.uid}
+            isButtonVisible
+            userScore={user.score}
+          />
         </LineWrapper>
       </Wrapper>
     </BackgroundContainer>

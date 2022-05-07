@@ -9,7 +9,10 @@ interface Props {
   children: React.ReactElement;
 }
 
-const Auth: React.FC<Props> = ({ restricted, children }: Props): JSX.Element => {
+const Auth: React.FC<Props> = ({
+  restricted,
+  children,
+}: Props): JSX.Element => {
   const { user, isLoading } = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {

@@ -3,54 +3,54 @@
 exports[`OverallRanking matches snapshot 1`] = `
 <div>
   <div
-    class="sc-jqUVSM ibeUEl"
+    class="sc-jqUVSM fBYwR"
   >
     <h1
-      class="sc-kDDrLX dwkZS"
+      class="sc-kDDrLX XmnMW"
     >
       Overall Ranking
     </h1>
     <div
-      class="sc-bczRLJ ccrZxC"
+      class="sc-bczRLJ fiqeeO"
     >
       <div
-        class="sc-gsnTZi ehtIOX"
+        class="sc-gsnTZi kwfkar"
       >
         <div
-          class="sc-dkzDqf sc-eCYdqJ huYvCz eXzVjt"
+          class="sc-dkzDqf sc-eCYdqJ VFyMr bMZgSh"
         >
           Rank position
         </div>
         <div
-          class="sc-dkzDqf sc-eCYdqJ huYvCz eXzVjt"
+          class="sc-dkzDqf sc-eCYdqJ VFyMr bMZgSh"
         >
           Full name
         </div>
         <div
-          class="sc-dkzDqf sc-eCYdqJ huYvCz eXzVjt"
+          class="sc-dkzDqf sc-eCYdqJ VFyMr bMZgSh"
         >
           Score
         </div>
         <div
-          class="sc-dkzDqf sc-eCYdqJ huYvCz eXzVjt"
+          class="sc-dkzDqf sc-eCYdqJ VFyMr bMZgSh"
         >
           Last activity
         </div>
       </div>
       <div
-        class="sc-gsnTZi sc-gKXOVf ehtIOX TGFbt"
+        class="sc-gsnTZi sc-gKXOVf kwfkar juykzd"
       >
         <div
-          class="sc-dkzDqf huYvCz"
+          class="sc-dkzDqf VFyMr"
         />
         <div
-          class="sc-dkzDqf huYvCz"
+          class="sc-dkzDqf VFyMr"
         />
         <div
-          class="sc-dkzDqf huYvCz"
+          class="sc-dkzDqf VFyMr"
         />
         <div
-          class="sc-dkzDqf huYvCz"
+          class="sc-dkzDqf VFyMr"
         />
       </div>
     </div>

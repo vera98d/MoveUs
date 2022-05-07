@@ -12,7 +12,8 @@ const RankingTablePagination: FC<Props> = ({
   usersPerPage,
   numberOfAllUsers,
   currentPage,
-  setCurrentPage }) => {
+  setCurrentPage,
+}) => {
   const pageNumbers: number = Math.ceil(numberOfAllUsers / usersPerPage);
 
   const [showNextButton, setShowNextButton] = useState(true);
@@ -44,21 +45,13 @@ const RankingTablePagination: FC<Props> = ({
 
   return (
     <NavContainer>
-      <NavigationButton
-        onClick={previousPage}
-        enabled={showPreviousButton}
-      >
+      <NavigationButton onClick={previousPage} enabled={showPreviousButton}>
         {"<"}
       </NavigationButton>
 
-      <CurrentPageNumber>
-        {currentPage}
-      </CurrentPageNumber>
+      <CurrentPageNumber>{currentPage}</CurrentPageNumber>
 
-      <NavigationButton
-        enabled={showNextButton}
-        onClick={nextPage}
-      >
+      <NavigationButton enabled={showNextButton} onClick={nextPage}>
         {">"}
       </NavigationButton>
     </NavContainer>

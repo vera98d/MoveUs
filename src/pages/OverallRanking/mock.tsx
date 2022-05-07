@@ -78,6 +78,7 @@ export const users: User[] = [
     groups: [],
     ownedGroups: [],
     activities: [],
-  }];
+  },
+];
 
 export const user: User = users[0];

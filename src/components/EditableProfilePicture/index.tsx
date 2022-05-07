@@ -8,7 +8,9 @@ import { AddPhotoInput, StyledPhotoProfile } from "./style";
 const EditableProfilePicture = () => {
   const { user, setUser, isLoading } = useContext(UserContext);
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = async (
+    e
+  ) => {
     if (!user || !e.target.files || !e.target.files[0]) {
       return;
     }
@@ -31,11 +33,7 @@ const EditableProfilePicture = () => {
       <label htmlFor="file-input">
         <StyledPhotoProfile avatarUrl={user.avatarUrl} />
       </label>
-      <AddPhotoInput
-        id="file-input"
-        type="file"
-        onChange={handleChange}
-      />
+      <AddPhotoInput id="file-input" type="file" onChange={handleChange} />
     </>
   );
 };

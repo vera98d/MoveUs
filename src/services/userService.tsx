@@ -1,4 +1,14 @@
-import { collection, getDocs, getFirestore, query, where, updateDoc, doc, setDoc, DocumentReference } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+  updateDoc,
+  doc,
+  setDoc,
+  DocumentReference,
+} from "firebase/firestore";
 import { User } from "../interfaces/dbData";
 
 class UserService {
@@ -45,7 +55,7 @@ class UserService {
     lastActivity?: Date,
     group?: string,
     ownedGroups?: string,
-    activities?: string,
+    activities?: string
   ) => {
     if (score) {
       this.getUser(uid).then((data) => {

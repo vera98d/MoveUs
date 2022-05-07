@@ -22,7 +22,7 @@ export const Header = styled.h1`
   font-size: ${(props) => props.theme.fontSize.header};
   color: ${(props) => props.theme.colors.secondaryUi};
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
-  margin-bottom: .4em;
+  margin-bottom: 0.4em;
 `;
 
 export const Wrapper = styled.div`
@@ -34,18 +34,18 @@ export const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 10px;
-  
+
   .UserInformationContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 45px;
   }
-    
+
   h3 {
     margin-bottom: 30px;
   }
-  
+
   .groupWrapper {
     width: 30%;
     display: flex;

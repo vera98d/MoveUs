@@ -1,5 +1,12 @@
 import { FC, useState } from "react";
-import { GridContainer, GridLine, GridChild, GridHeader, EmptyGridLine, UserGridChild } from "./styles";
+import {
+  GridContainer,
+  GridLine,
+  GridChild,
+  GridHeader,
+  EmptyGridLine,
+  UserGridChild,
+} from "./styles";
 import { User } from "../../interfaces/dbData";
 import RankingTablePagination from "../RankingTablePagination";
 import { useNavigate } from "react-router-dom";
@@ -15,11 +22,11 @@ interface UsersWithRankPosition extends User {
 }
 
 const RankingTable: FC<Props> = ({ groupUsers }) => {
-  const sortedUsersWithRankPosition: UsersWithRankPosition[] = groupUsers.sort(
-    (a, b) => b.score - a.score,
-  ).map((user, index) => {
-    return { ...user, rankPosition: index + 1 };
-  });
+  const sortedUsersWithRankPosition: UsersWithRankPosition[] = groupUsers
+    .sort((a, b) => b.score - a.score)
+    .map((user, index) => {
+      return { ...user, rankPosition: index + 1 };
+    });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(8);
@@ -27,10 +34,8 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
   const lastUserIndex = currentPage * usersPerPage;
   const firstUsernIndex = lastUserIndex - usersPerPage;
 
-  const currentRankPositions: UsersWithRankPosition[] = sortedUsersWithRankPosition.slice(
-    firstUsernIndex,
-    lastUserIndex,
-  );
+  const currentRankPositions: UsersWithRankPosition[] =
+    sortedUsersWithRankPosition.slice(firstUsernIndex, lastUserIndex);
   const [user] = useAuthState(authService.getAuth());
   const navigate = useNavigate();
   const redirectToProfile = (groupUser: UsersWithRankPosition) => {
@@ -44,17 +49,17 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
   const rankingTable: JSX.Element[] = currentRankPositions.map((groupUser) => {
     return (
       <GridLine key={groupUser.uid}>
-        <GridChild>
-          {groupUser.rankPosition}
-        </GridChild>
+        <GridChild>{groupUser.rankPosition}</GridChild>
 
-        <UserGridChild onClick={() => { redirectToProfile(groupUser); }}>
+        <UserGridChild
+          onClick={() => {
+            redirectToProfile(groupUser);
+          }}
+        >
           {groupUser.name} {groupUser.surname}
         </UserGridChild>
 
-        <GridChild>
-          {groupUser.score}
-        </GridChild>
+        <GridChild>{groupUser.score}</GridChild>
 
         <GridChild>
           {new Date(groupUser.lastActivity).toLocaleDateString()}
@@ -73,30 +78,23 @@ const RankingTable: FC<Props> = ({ groupUsers }) => {
           <GridHeader>Last activity</GridHeader>
         </GridLine>
         {rankingTable}
-        {
-          usersPerPage > currentRankPositions.length
-          && (
-            <EmptyGridLine lines={usersPerPage - currentRankPositions.length}>
-              <GridChild />
-              <GridChild />
-              <GridChild />
-              <GridChild />
-            </EmptyGridLine>
-          )
-        }
+        {usersPerPage > currentRankPositions.length && (
+          <EmptyGridLine lines={usersPerPage - currentRankPositions.length}>
+            <GridChild />
+            <GridChild />
+            <GridChild />
+            <GridChild />
+          </EmptyGridLine>
+        )}
       </GridContainer>
-      {
-        usersPerPage <= sortedUsersWithRankPosition.length
-        && (
-          <RankingTablePagination
-            usersPerPage={usersPerPage}
-            numberOfAllUsers={sortedUsersWithRankPosition.length}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        )
-      }
-
+      {usersPerPage <= sortedUsersWithRankPosition.length && (
+        <RankingTablePagination
+          usersPerPage={usersPerPage}
+          numberOfAllUsers={sortedUsersWithRankPosition.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </>
   );
 };

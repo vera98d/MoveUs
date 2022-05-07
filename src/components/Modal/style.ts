@@ -21,8 +21,11 @@ export const StyledModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: linear-gradient(180deg, ${(props) => props.theme.colors.primaryUi} 15%, 
-  ${(props) => props.theme.colors.tertiaryUi} 100%);
+  background-image: linear-gradient(
+    180deg,
+    ${(props) => props.theme.colors.primaryUi} 15%,
+    ${(props) => props.theme.colors.tertiaryUi} 100%
+  );
   border: 2px solid ${(props) => props.theme.colors.secondaryUi};
   border-radius: 15px;
   box-shadow: 0 5px 15px ${(props) => props.theme.colors.secondaryUi};
@@ -43,12 +46,15 @@ export const ModalContent = styled.div`
   &::-webkit-scrollbar-thumb {
     background: ${(props) => props.theme.colors.primaryUi};
     border-radius: 5px;
-     }
+  }
   &::-webkit-scrollbar-track {
-    background-image: linear-gradient(180deg, ${(props) => props.theme.colors.primaryUi} 15%, 
-  ${(props) => props.theme.colors.tertiaryUi} 100%);
+    background-image: linear-gradient(
+      180deg,
+      ${(props) => props.theme.colors.primaryUi} 15%,
+      ${(props) => props.theme.colors.tertiaryUi} 100%
+    );
     border-radius: 5px;
-    }
+  }
 `;
 
 export const ModalOverlay = styled.div`
@@ -62,14 +68,14 @@ export const ModalOverlay = styled.div`
 `;
 
 export const Header = styled.h1`
-display: flex;
-justify-content: center;
-text-align: center;
-margin: 25px;
-font-family: ${(props) => props.theme.fontFamily.primaryFont};
-font-size: 24px;
-font-weight: 1000;
-color: ${(props) => props.theme.colors.secondaryUi};
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 25px;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  font-size: 24px;
+  font-weight: 1000;
+  color: ${(props) => props.theme.colors.secondaryUi};
 `;
 
 export const CloseButton = styled.button`
@@ -92,8 +98,8 @@ export const CloseButton = styled.button`
 `;
 
 export const ModalLabel = styled.p`
-color: ${(props) => props.theme.colors.secondaryUi};
-font-family: ${(props) => props.theme.fontFamily.primaryFont};
-font-size: 15px;
-font-weight: 1000;
+  color: ${(props) => props.theme.colors.secondaryUi};
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  font-size: 15px;
+  font-weight: 1000;
 `;

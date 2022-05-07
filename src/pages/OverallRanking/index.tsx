@@ -9,7 +9,8 @@ const OverallRanking = (): JSX.Element => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    userService.getAllUsers()
+    userService
+      .getAllUsers()
       .then((data) => {
         setUsers(data);
       })
@@ -22,9 +23,7 @@ const OverallRanking = (): JSX.Element => {
 
   return (
     <BackgroundContainer>
-      <Header>
-        Overall Ranking
-      </Header>
+      <Header>Overall Ranking</Header>
       <RankingTable groupUsers={users} />
     </BackgroundContainer>
   );

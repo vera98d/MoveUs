@@ -3,25 +3,25 @@
 exports[`Login matches snapshot 1`] = `
 <div>
   <div
-    class="sc-bczRLJ Ivxcq"
+    class="sc-bczRLJ llUgnK"
   >
     <div
-      class="sc-dkzDqf cdtgge"
+      class="sc-dkzDqf dBGSmS"
     >
       <form
-        class="sc-hKMtZM hSlXAW"
+        class="sc-hKMtZM dkUaUq"
       >
         <div
-          class="sc-eCYdqJ ezLTWf"
+          class="sc-eCYdqJ Kiuuf"
         >
           <p
-            class="sc-jSMfEi gTlygz"
+            class="sc-jSMfEi lmaPab"
           >
             Enter your email
           </p>
           <input
             autocomplete="email"
-            class="sc-gKXOVf hZoMIk"
+            class="sc-gKXOVf gyVkUA"
             data-testid="email-input"
             id="email-input"
             name="email"
@@ -29,19 +29,19 @@ exports[`Login matches snapshot 1`] = `
             type="email"
           />
           <span
-            class="sc-ftvSup cXlRvA"
+            class="sc-ftvSup dQGNRI"
           />
         </div>
         <div
-          class="sc-eCYdqJ ezLTWf"
+          class="sc-eCYdqJ Kiuuf"
         >
           <p
-            class="sc-jSMfEi gTlygz"
+            class="sc-jSMfEi lmaPab"
           >
             Enter your password
           </p>
           <input
-            class="sc-gKXOVf hZoMIk"
+            class="sc-gKXOVf gyVkUA"
             data-testid="password-input"
             id="password-input"
             name="password"
@@ -50,17 +50,17 @@ exports[`Login matches snapshot 1`] = `
           />
         </div>
         <button
-          class="sc-iBkjds eoSRHJ"
+          class="sc-iBkjds gMQUUp"
         >
           Login
         </button>
         <div
-          class="sc-papXJ fnNQlX"
+          class="sc-papXJ eMOwUv"
         >
           Not a member yet?
            
           <a
-            class="sc-jqUVSM lnxtzK"
+            class="sc-jqUVSM eBkEai"
             href="/team-jo-project-4/register"
           >
             Register now

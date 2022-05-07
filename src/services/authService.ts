@@ -19,7 +19,7 @@ class AuthService {
 
   getAuth = () => this.auth;
 
-  logInWithEmailAndPassword = async (email:string, password:string) => {
+  logInWithEmailAndPassword = async (email: string, password: string) => {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
     } catch (err: unknown) {
@@ -34,13 +34,13 @@ class AuthService {
     surname: User["surname"],
     login: User["login"],
     email: User["email"],
-    password: User["password"],
+    password: User["password"]
   ) => {
     try {
       const res = await createUserWithEmailAndPassword(
         this.auth,
         email,
-        password,
+        password
       );
       const { user } = res;
       await addDoc(collection(getFirestore(), "users"), {

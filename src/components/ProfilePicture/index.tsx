@@ -6,9 +6,7 @@ interface Props {
 }
 
 const ProfilePicture = ({ avatarUrl, onClick }: Props) => {
-  return (
-    <PhotoProfile avatarUrl={avatarUrl} onClick={onClick} />
-  );
+  return <PhotoProfile avatarUrl={avatarUrl} onClick={onClick} />;
 };
 
 export default ProfilePicture;

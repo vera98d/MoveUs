@@ -1,6 +1,5 @@
 name: Unit test
-on:
-  pull_request
+on: pull_request
 jobs:
   unit-test:
     runs-on: ubuntu-latest
@@ -12,4 +11,4 @@ jobs:
         run: npm ci
 
       - name: Test 🧪
-        run: npm test    
+        run: npm test

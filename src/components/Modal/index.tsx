@@ -16,16 +16,14 @@ function Modal() {
         }}
       />
       <StyledModal>
-        <CloseButton onClick={() => {
-          modalContext.setDisplayedComponent(null);
-        }}
+        <CloseButton
+          onClick={() => {
+            modalContext.setDisplayedComponent(null);
+          }}
         >
           <img alt="close button" src="assets/close_button.svg" />
         </CloseButton>
-        <ModalContent>
-
-          {modalContext.displayedComponent}
-        </ModalContent>
+        <ModalContent>{modalContext.displayedComponent}</ModalContent>
       </StyledModal>
     </>
   );

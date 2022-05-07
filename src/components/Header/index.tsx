@@ -16,9 +16,7 @@ const LogoutButton = () => {
   };
   return (
     <RightButton onClick={handleButtonClick}>
-      <Logout>
-        Log out
-      </Logout>
+      <Logout>Log out</Logout>
     </RightButton>
   );
 };
@@ -33,10 +31,16 @@ function Header() {
 
   return (
     <Container>
-      <Img src={`${process.env.PUBLIC_URL}/assets/logo.png`} onClick={() => navigate("/team-jo-project-4/home")} />
+      <Img
+        src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+        onClick={() => navigate("/team-jo-project-4/home")}
+      />
       {user && !isLoading && (
         <RightSection>
-          <ProfilePicture avatarUrl={user.avatarUrl} onClick={handleProfilePictureClick} />
+          <ProfilePicture
+            avatarUrl={user.avatarUrl}
+            onClick={handleProfilePictureClick}
+          />
           <LogoutButton />
         </RightSection>
       )}

@@ -106,8 +106,8 @@ function AddActivity() {
             })}
           </select>
           <FormFieldError>
-
-            {errors.exercise?.type === "required" && "Please select the activity type."}
+            {errors.exercise?.type === "required" &&
+              "Please select the activity type."}
           </FormFieldError>
         </FormField>
         <FormField>
@@ -130,7 +130,8 @@ function AddActivity() {
             onChange={handleDurationChange}
           />
           <FormFieldError>
-            {errors.duration?.type === "required" && "Please enter duration of your activity."}
+            {errors.duration?.type === "required" &&
+              "Please enter duration of your activity."}
           </FormFieldError>
         </FormField>
         <ModalLabel>Points gained:</ModalLabel>

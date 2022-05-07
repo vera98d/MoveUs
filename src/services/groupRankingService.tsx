@@ -1,9 +1,19 @@
-import { getFirestore, collection, getDocs, query, where, documentId } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+  documentId,
+} from "firebase/firestore";
 import { Group, User } from "../interfaces/dbData";
 
 class GroupRankingService {
   getGroupsUserBelongsTo = async (currentUserInfo: User) => {
-    const q = query(collection(getFirestore(), "groups"), where("members", "array-contains", currentUserInfo.uid));
+    const q = query(
+      collection(getFirestore(), "groups"),
+      where("members", "array-contains", currentUserInfo.uid)
+    );
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((doc) => ({
       uid: doc.id,
@@ -16,7 +26,10 @@ class GroupRankingService {
   };
 
   getUsersOwnedGroups = async (currentUserInfo: User) => {
-    const q = query(collection(getFirestore(), "groups"), where("owner", "==", currentUserInfo.uid));
+    const q = query(
+      collection(getFirestore(), "groups"),
+      where("owner", "==", currentUserInfo.uid)
+    );
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((doc) => ({
       uid: doc.id,
@@ -33,7 +46,10 @@ class GroupRankingService {
 
     if (group && group.members.length > 0) {
       const userRef = collection(getFirestore(), "users");
-      const queryByGroupMembers = query(userRef, where("uid", "in", group.members));
+      const queryByGroupMembers = query(
+        userRef,
+        where("uid", "in", group.members)
+      );
       const membersQuerySnapshot = await getDocs(queryByGroupMembers);
 
       return membersQuerySnapshot.docs.map((doc) => ({
@@ -55,7 +71,10 @@ class GroupRankingService {
   };
 
   getGroupInfoById = async (groupId: string) => {
-    const q = query(collection(getFirestore(), "groups"), where(documentId(), "==", groupId));
+    const q = query(
+      collection(getFirestore(), "groups"),
+      where(documentId(), "==", groupId)
+    );
     const querySnapshot = await getDocs(q);
     const groupDoc = querySnapshot.docs.find((doc) => doc.id === groupId);
 

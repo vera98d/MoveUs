@@ -2,21 +2,40 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
   AccountText,
-  Button, Container, Form, FormField, FormFieldError, Input, Label, StyledLink, Wrapper,
+  Button,
+  Container,
+  Form,
+  FormField,
+  FormFieldError,
+  Input,
+  Label,
+  StyledLink,
+  Wrapper,
 } from "../../components/Form/styles";
 import { User } from "../../interfaces/dbData";
 import authService from "../../services/authService";
 
-type FormFields = Pick<User, "name" | "surname" | "login" | "email" | "password"> & { passwordConfirmation: string };
+type FormFields = Pick<
+  User,
+  "name" | "surname" | "login" | "email" | "password"
+> & { passwordConfirmation: string };
 
 function Register() {
   const navigate = useNavigate();
   const {
-    register, handleSubmit, watch, formState: { errors },
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
   } = useForm<FormFields>();
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    await authService
-      .registerWithEmailAndPassword(data.name, data.surname, data.login, data.email, data.password);
+    await authService.registerWithEmailAndPassword(
+      data.name,
+      data.surname,
+      data.login,
+      data.email,
+      data.password
+    );
     navigate({ pathname: "/team-jo-project-4/home" });
   };
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
@@ -30,13 +49,18 @@ function Register() {
             <Input
               type="text"
               autoComplete="name"
-              {...register("name", { required: true, minLength: 3, maxLength: 20 })}
+              {...register("name", {
+                required: true,
+                minLength: 3,
+                maxLength: 20,
+              })}
               placeholder="Name"
             />
             <FormFieldError>
               {errors.name?.type === "required" && "Please enter your name"}
               {errors.name?.type === "minLength" && "Use at least 3 characters"}
-              {errors.name?.type === "maxLength" && "You can use 20 characters at most"}
+              {errors.name?.type === "maxLength" &&
+                "You can use 20 characters at most"}
             </FormFieldError>
           </FormField>
           <FormField>
@@ -44,13 +68,20 @@ function Register() {
             <Input
               type="text"
               autoComplete="family-name"
-              {...register("surname", { required: true, minLength: 3, maxLength: 20 })}
+              {...register("surname", {
+                required: true,
+                minLength: 3,
+                maxLength: 20,
+              })}
               placeholder="Surname"
             />
             <FormFieldError>
-              {errors.surname?.type === "required" && "Please enter your surname"}
-              {errors.surname?.type === "minLength" && "Use at least 3 characters"}
-              {errors.surname?.type === "maxLength" && "You can use 20 characters at most"}
+              {errors.surname?.type === "required" &&
+                "Please enter your surname"}
+              {errors.surname?.type === "minLength" &&
+                "Use at least 3 characters"}
+              {errors.surname?.type === "maxLength" &&
+                "You can use 20 characters at most"}
             </FormFieldError>
           </FormField>
           <FormField>
@@ -58,13 +89,20 @@ function Register() {
             <Input
               type="text"
               autoComplete="username"
-              {...register("login", { required: true, minLength: 3, maxLength: 20 })}
+              {...register("login", {
+                required: true,
+                minLength: 3,
+                maxLength: 20,
+              })}
               placeholder="Login"
             />
             <FormFieldError>
-              {errors.login?.type === "required" && "Please enter your username"}
-              {errors.login?.type === "minLength" && "Use at least 3 characters"}
-              {errors.login?.type === "maxLength" && "You can use 20 characters at most"}
+              {errors.login?.type === "required" &&
+                "Please enter your username"}
+              {errors.login?.type === "minLength" &&
+                "Use at least 3 characters"}
+              {errors.login?.type === "maxLength" &&
+                "You can use 20 characters at most"}
             </FormFieldError>
           </FormField>
           <FormField>
@@ -81,7 +119,9 @@ function Register() {
               })}
               placeholder="Email"
             />
-            <FormFieldError>{errors.email?.type === "required" && "Email is required"}</FormFieldError>
+            <FormFieldError>
+              {errors.email?.type === "required" && "Email is required"}
+            </FormFieldError>
           </FormField>
           <FormField>
             <Label>Eneter your password</Label>
@@ -92,7 +132,8 @@ function Register() {
             />
             <FormFieldError>
               {errors.password?.type === "required" && "Password is required"}
-              {errors.password?.type === "minLength" && "Min length is 8 characters"}
+              {errors.password?.type === "minLength" &&
+                "Min length is 8 characters"}
             </FormFieldError>
           </FormField>
           <FormField>
@@ -112,10 +153,8 @@ function Register() {
           </FormField>
           <Button>Register</Button>
           <AccountText>
-            Already have an account?
-            {" "}
-            <StyledLink to="/team-jo-project-4">Login now</StyledLink>
-            {" "}
+            Already have an account?{" "}
+            <StyledLink to="/team-jo-project-4">Login now</StyledLink>{" "}
           </AccountText>
         </Form>
       </Wrapper>

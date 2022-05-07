@@ -26,6 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
+    "prettier": "prettier --write .",
     "lint": "eslint \"**/*.ts*\""
   },
   "eslintConfig": {

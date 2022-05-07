@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 10px;
-  
+
   .UserInformationContainer {
     display: flex;
     align-items: center;
@@ -29,22 +29,22 @@ export const Wrapper = styled.div`
     font-size: 24px;
     font-weight: bold;
   }
-  
+
   .setPages {
     margin-bottom: 50px;
   }
-  
+
   h3 {
     margin-bottom: 30px;
   }
-  
+
   .groupWrapper {
     width: 30%;
     display: flex;
     align-items: center;
     flex-direction: column;
   }
-  
+
   .usernameStyle {
     color: ${(props) => props.theme.colors.secondaryUi};
     font-family: ${(props) => props.theme.fontFamily.primaryFont};
@@ -57,7 +57,7 @@ export const LineWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin: 20px 0;
-  
+
   .lineWrapperContent {
     margin: 20px 0;
     width: 100%;
@@ -71,7 +71,7 @@ export const GroupContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  
+
   .verticalLine {
     padding: 0 15px;
   }

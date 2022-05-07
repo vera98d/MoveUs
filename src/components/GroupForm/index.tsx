@@ -8,14 +8,22 @@ import { Group, User } from "../../interfaces/dbData";
 import groupService from "../../services/groupService";
 import userService from "../../services/userService";
 import { ModalContext } from "../../context/ModalContextProvider";
-import { AddPhoto, AddPhotoInput, Container, GroupDescription, GroupImage, GroupImageComponents, UsersMultiSelect } from "./style";
+import {
+  AddPhoto,
+  AddPhotoInput,
+  Container,
+  GroupDescription,
+  GroupImage,
+  GroupImageComponents,
+  UsersMultiSelect,
+} from "./style";
 import { UserContext } from "../../context/UserContextProvider";
 
 type FormFields = {
-  name: string
-  description: string
-  images: FileList
-  members: User[]
+  name: string;
+  description: string;
+  images: FileList;
+  members: User[];
 };
 
 function GroupForm() {
@@ -25,12 +33,19 @@ function GroupForm() {
     modalContextValue.setDisplayedComponent(null);
   };
   const { user } = useContext(UserContext);
-  const { register, setValue, handleSubmit, formState: { errors }, watch } = useForm<FormFields>();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<FormFields>();
   const [users, setUsers] = useState<User[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    userService.getAllUsers()
+    userService
+      .getAllUsers()
       .then((data) => {
         if (data) {
           setUsers(data);
@@ -102,7 +117,8 @@ function GroupForm() {
           <FormFieldError>
             {errors.name?.type === "required" && "Please enter group name"}
             {errors.name?.type === "minLength" && "Use at least 3 characters"}
-            {errors.name?.type === "maxLength" && "You can use 20 characters at most"}
+            {errors.name?.type === "maxLength" &&
+              "You can use 20 characters at most"}
           </FormFieldError>
         </FormField>
         <FormField>
@@ -115,9 +131,12 @@ function GroupForm() {
             placeholder="Group description"
           />
           <FormFieldError>
-            {errors.description?.type === "required" && "Please enter group description"}
-            {errors.description?.type === "minLength" && "Use at least 3 characters"}
-            {errors.description?.type === "maxLength" && "You can use 1500 characters at most"}
+            {errors.description?.type === "required" &&
+              "Please enter group description"}
+            {errors.description?.type === "minLength" &&
+              "Use at least 3 characters"}
+            {errors.description?.type === "maxLength" &&
+              "You can use 1500 characters at most"}
           </FormFieldError>
         </FormField>
         <FormField>

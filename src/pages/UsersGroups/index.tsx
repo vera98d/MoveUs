@@ -21,39 +21,41 @@ const UsersGroups = (): JSX.Element => {
 
   useEffect(() => {
     setLoading(true);
-    userService.getUser(currentUser!.uid)
-      .then((data) => {
-        groupRankingService.getUsersOwnedGroups(data)
-          .then((groups) => setUsersOwnedGroups(groups));
+    userService.getUser(currentUser!.uid).then((data) => {
+      groupRankingService
+        .getUsersOwnedGroups(data)
+        .then((groups) => setUsersOwnedGroups(groups));
 
-        groupRankingService.getGroupsUserBelongsTo(data)
-          .then((groups) => setGroupsUserBelongsTo(groups)).then(() => setLoading(false));
-      });
+      groupRankingService
+        .getGroupsUserBelongsTo(data)
+        .then((groups) => setGroupsUserBelongsTo(groups))
+        .then(() => setLoading(false));
+    });
   }, []);
 
-  const usersGroupsTiles: JSX.Element[] = usersOwnedGroups.map((group: Group) => {
-    return (
-      <Link to={`/team-jo-project-4/groups/${group.uid}`} key={group.uid}>
-        <Tile img={group.imageUrl}>
-          <TileContent>
-            {group.name}
-          </TileContent>
-        </Tile>
-      </Link>
-    );
-  });
+  const usersGroupsTiles: JSX.Element[] = usersOwnedGroups.map(
+    (group: Group) => {
+      return (
+        <Link to={`/team-jo-project-4/groups/${group.uid}`} key={group.uid}>
+          <Tile img={group.imageUrl}>
+            <TileContent>{group.name}</TileContent>
+          </Tile>
+        </Link>
+      );
+    }
+  );
 
-  const groupsUserBelongsToTiles: JSX.Element[] = groupsUserBelongsTo.map((group: Group) => {
-    return (
-      <Link to={`/team-jo-project-4/groups/${group.uid}`} key={group.uid}>
-        <Tile img={group.imageUrl}>
-          <TileContent>
-            {group.name}
-          </TileContent>
-        </Tile>
-      </Link>
-    );
-  });
+  const groupsUserBelongsToTiles: JSX.Element[] = groupsUserBelongsTo.map(
+    (group: Group) => {
+      return (
+        <Link to={`/team-jo-project-4/groups/${group.uid}`} key={group.uid}>
+          <Tile img={group.imageUrl}>
+            <TileContent>{group.name}</TileContent>
+          </Tile>
+        </Link>
+      );
+    }
+  );
 
   if (loading) {
     return (
@@ -78,18 +80,13 @@ const UsersGroups = (): JSX.Element => {
       <Header>My groups</Header>
       <TileContainer>
         <Tile onClick={() => setDisplayedComponent(<GroupForm />)}>
-          <TileContent>
-            Create new group
-          </TileContent>
+          <TileContent>Create new group</TileContent>
         </Tile>
         {usersGroupsTiles}
       </TileContainer>
       <Header>The groups I belong to</Header>
-      <TileContainer>
-        {groupsUserBelongsToTiles}
-      </TileContainer>
+      <TileContainer>{groupsUserBelongsToTiles}</TileContainer>
     </BackgroundContainer>
-
   );
 };
 

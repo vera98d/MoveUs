@@ -7,12 +7,16 @@ import { ModalContext } from "../../context/ModalContextProvider";
 import { Container, NumberInput } from "./style";
 
 type FormFields = {
-  exercisesCount: number
+  exercisesCount: number;
 };
 
 function DrawForm() {
   const modalContextValue = useContext(ModalContext);
-  const { register, handleSubmit, formState: { errors } } = useForm<FormFields>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFields>();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     navigate(`/team-jo-project-4/draw-exercises/${data.exercisesCount}`);
@@ -32,9 +36,11 @@ function DrawForm() {
           })}
         />
         <FormFieldError>
-          {errors.exercisesCount?.type === "required" && "Let's do some exercises! Enter the number"}
+          {errors.exercisesCount?.type === "required" &&
+            "Let's do some exercises! Enter the number"}
           {errors.exercisesCount?.type === "min" && "Do at least one exercise"}
-          {errors.exercisesCount?.type === "max" && "Hold on buddy! Don't strain yourself so much."}
+          {errors.exercisesCount?.type === "max" &&
+            "Hold on buddy! Don't strain yourself so much."}
         </FormFieldError>
         <Button>Draw</Button>
       </Form>
