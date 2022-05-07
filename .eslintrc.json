@@ -5,7 +5,12 @@
     "es2021": true,
     "jest": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "airbnb-typescript"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -17,11 +22,6 @@
   },
   "plugins": ["react", "@typescript-eslint", "filenames"],
   "rules": {
-    "declaration": "off",
-    "assignment": "off",
-    "return": "off",
-    "arrow": "off",
-    "condition": "off",
     "implicit-arrow-linebreak": "off",
     "react/require-default-props": "off",
     "camelcase": [2, { "properties": "always" }],
@@ -38,8 +38,6 @@
     "class-methods-use-this": "off",
     "import/order": "off",
     "linebreak-style": "off",
-    "quotes": [2, "double"],
-    "@typescript-eslint/quotes": [2, "double"],
     "react/jsx-filename-extension": [
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }

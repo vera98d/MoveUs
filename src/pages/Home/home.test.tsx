@@ -1,9 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import HomePage from "./index";
 import { theme } from "../../styles";
-import { waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
 jest.mock("firebase/auth", () => ({
