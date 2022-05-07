@@ -21,7 +21,7 @@
     "assignment": "off",
     "return": "off",
     "arrow": "off",
-    "condition": "ignore",
+    "condition": "off",
     "implicit-arrow-linebreak": "off",
     "react/require-default-props": "off",
     "camelcase": [2, { "properties": "always" }],
