@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/MoveUs/team-jo-project-4/static/js/main.6e9e7aa7.js",
+    "main.js": "/MoveUs/team-jo-project-4/static/js/main.ad4b4284.js",
     "static/js/787.4c585071.chunk.js": "/MoveUs/team-jo-project-4/static/js/787.4c585071.chunk.js",
     "index.html": "/MoveUs/team-jo-project-4/index.html",
-    "main.6e9e7aa7.js.map": "/MoveUs/team-jo-project-4/static/js/main.6e9e7aa7.js.map",
+    "main.ad4b4284.js.map": "/MoveUs/team-jo-project-4/static/js/main.ad4b4284.js.map",
     "787.4c585071.chunk.js.map": "/MoveUs/team-jo-project-4/static/js/787.4c585071.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.6e9e7aa7.js"
+    "static/js/main.ad4b4284.js"
   ]
 }
