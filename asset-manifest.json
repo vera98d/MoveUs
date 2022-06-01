@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/team-jo-project-4/static/js/main.6d72fbda.js",
-    "static/js/787.4c585071.chunk.js": "/team-jo-project-4/static/js/787.4c585071.chunk.js",
-    "index.html": "/team-jo-project-4/index.html",
-    "main.6d72fbda.js.map": "/team-jo-project-4/static/js/main.6d72fbda.js.map",
-    "787.4c585071.chunk.js.map": "/team-jo-project-4/static/js/787.4c585071.chunk.js.map"
+    "main.js": "/TravelApp/static/js/main.f116011c.js",
+    "static/js/787.4c585071.chunk.js": "/TravelApp/static/js/787.4c585071.chunk.js",
+    "index.html": "/TravelApp/index.html",
+    "main.f116011c.js.map": "/TravelApp/static/js/main.f116011c.js.map",
+    "787.4c585071.chunk.js.map": "/TravelApp/static/js/787.4c585071.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.6d72fbda.js"
+    "static/js/main.f116011c.js"
   ]
 }
