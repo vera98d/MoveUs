@@ -14,7 +14,7 @@ import MyWorkout from "./pages/MyWorkout";
 function App() {
   return (
     <Routes>
-      <Route path="/team-jo-project-4">
+      <Route path="/MoveUs/">
         <Route
           index
           element={

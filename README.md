@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# MoeUs CodersCamp 2021 - Team Jan Owsiany
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction:
 
-## Available Scripts
+Would you like to achieve a great figure before vacation? This is the best way to can do that - all you have to do is run this app and start to workout. You can choose exercises you like or if you prefere you can give your choice to the fate and draw a specific number of exercises. Do you have problem with with motivation? This is not a problem at all thanks to this app! Who don't like a little bit of competition. Important part of the app is overall ranking and rankings in groups created by you and your friends. So now you have no choice, move us!
 
-In the project directory, you can run:
+## Used technologies:
 
-### `npm start`
+- [React v 17.0.2](https://reactjs.org)
+- [Styled-Component](https://styled-components.com/)
+- [Firebase](https://firebase.google.com/)
+- [ESLint](https://eslint.org)
+- [React Router](https://reactrouter.com)
+- [React Context](https://reactjs.org/docs/context.html)
+- [React Hook Form](https://react-hook-form.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project assumptions:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+As a team we created an app with Frontend part based on React and Firebase Backend. Thanks to Firebase we created user (with email/passwort authentication), groups, exercises and activities collections. We also using Firebase storage to upload images.
 
-### `npm test`
+## Development:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app uses standard setup of create-react-app. To standarize how the code is written we used eslint (with extended airbnb rules) and prettier. You will also need to setup you own Firebase app (Firestore, Authentication and Storge).
 
-### `npm run build`
+Live demo: [MoveUs](https://vera98d.github.io/MoveUs/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run application you have to install dependencies and run npm command: `npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## The Team
 
-### `npm run eject`
+**Mentor**: [Jan Owsiany](https://github.com/janowsiany)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Members**:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Weronika Luteńko](https://github.com/vera98d/)
+- [Maciej Wójcik](https://github.com/cherrycoke2l)
+- [Jacek Mickiewicz](https://github.com/JaCoWymowny)
+- [Magdalena Kita](https://github.com/MagdalenaKita)
+- [Natalia Mateusiak](https://github.com/natimati)
