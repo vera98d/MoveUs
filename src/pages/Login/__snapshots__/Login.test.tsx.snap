@@ -61,7 +61,7 @@ exports[`Login matches snapshot 1`] = `
            
           <a
             class="sc-jqUVSM eBkEai"
-            href="/team-jo-project-4/register"
+            href="/register"
           >
             Register now
           </a>

@@ -19,8 +19,8 @@ const Auth: React.FC<Props> = ({
     if (isLoading) {
       return;
     }
-    if (user && !restricted) navigate("/team-jo-project-4/home");
-    if (!user && restricted) navigate("/team-jo-project-4");
+    if (user && !restricted) navigate("/home");
+    if (!user && restricted) navigate("/");
   }, [user, isLoading]);
 
   if (isLoading) {

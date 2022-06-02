@@ -1,4 +1,4 @@
-# CodersCamp 2021 - Team Jan Owsiany - Project 4
+# MoveUs - CodersCamp 2021 - Team Jan Owsiany
 
 ## Introduction:
 
@@ -24,13 +24,13 @@ The app uses standard setup of create-react-app. To standarize how the code is w
 
 ## Production setup and deployment:
 
-- [You find our app here](https://coderscamp2021.github.io/team-jo-project-4/)
+Live demo: [MoveUs](https://vera98d.github.io/TravelApp/)
 
 For deployment we are using github workflows. After merge to master application is deployed to github pages. We also have workflow for application tests - merge is not possible if tests fail.
 
 ## Setup:
 
-To run application you have to install dependencies and run npm command: `npm start`
+To run application you have to install dependencies by running `npm install` and then run project by `npm start` command.
 
 ## The Team
 
