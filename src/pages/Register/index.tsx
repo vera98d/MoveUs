@@ -36,7 +36,7 @@ function Register() {
       data.email,
       data.password
     );
-    navigate({ pathname: "/team-jo-project-4/home" });
+    navigate({ pathname: "/MoveUs/home" });
   };
   const onSubmitError: SubmitHandler<any> = (data) => console.log(data, errors);
 
@@ -154,7 +154,7 @@ function Register() {
           <Button>Register</Button>
           <AccountText>
             Already have an account?{" "}
-            <StyledLink to="/team-jo-project-4">Login now</StyledLink>{" "}
+            <StyledLink to="/MoveUs/">Login now</StyledLink>{" "}
           </AccountText>
         </Form>
       </Wrapper>
