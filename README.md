@@ -1,4 +1,4 @@
-# MoeUs CodersCamp 2021 - Team Jan Owsiany
+# MoveUs - Activity App
 
 ## Introduction:
 
